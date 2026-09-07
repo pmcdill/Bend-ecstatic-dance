@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500&family=Nunito+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+<script src="./image-slot.js"></script>
+<style>
+  body{margin:0;background:#e8e4dc;font-family:system-ui,sans-serif}
+  a{color:inherit}
+  .dv-opt:target .dv-oid{background:#2a78d6 !important;color:#fff !important}
+</style>
+</helmet>
+
+<section class="dv-turn" id="t1" style="padding:44px 48px 40px;background:#e8e4dc">
+  <div style="display:flex;align-items:baseline;gap:10px;margin:0 0 8px">
+    <a href="#t1" style="font:600 10px ui-monospace,Menlo,monospace;padding:3px 7px;background:#1a1a1a;color:#fff;border-radius:4px;text-decoration:none">1</a>
+    <span style="font:600 13px/1.2 system-ui,sans-serif;color:#1a1a1a">Artist card explorations — warm-up + time slots</span>
+  </div>
+  <p style="margin:0 0 26px;font:12px/1.5 system-ui,sans-serif;color:rgba(0,0,0,.5);max-width:640px">Same week (Kalpa · Jul 16) shown three ways. Each surfaces a separate instructor photo for the somatic warm-up and the two time slots (warm-up + dance). Drop images onto any slot.</p>
+
+  <div style="display:flex;flex-wrap:wrap;gap:40px;align-items:flex-start">
+
+    <!-- ============ 1a — WARM-UP PANEL ============ -->
+    <div class="dv-opt" id="1a" style="flex:none;display:flex;flex-direction:column;gap:11px;scroll-margin-top:16px">
+      <div style="display:flex;align-items:baseline;gap:9px;font:400 11px/1.3 system-ui,sans-serif;color:rgba(0,0,0,.55)">
+        <a class="dv-oid" href="#1a" style="font:600 10.5px ui-monospace,Menlo,monospace;padding:3px 7px;background:rgba(0,0,0,.08);color:#1a1a1a;border-radius:5px;text-decoration:none">1a</a>
+        Photo hero + dedicated warm-up panel
+      </div>
+      <div style="width:440px;border-radius:22px;overflow:hidden;background:linear-gradient(180deg,#241844,#2f1f4d);border:1px solid rgba(203,183,255,.18);box-shadow:0 20px 50px rgba(8,5,26,.4);font-family:'Nunito Sans',sans-serif;color:#efe8ff">
+        <div style="position:relative;height:230px">
+          <image-slot id="c1a-artist" shape="rect" placeholder="Artist photo" style="width:100%;height:100%"></image-slot>
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(36,24,68,.95));pointer-events:none"></div>
+          <div style="position:absolute;left:22px;bottom:16px">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">
+              <span style="font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:#f0d9a8">Thu · Jul 16</span>
+              <span style="display:inline-flex;align-items:center;gap:6px;font-size:10px;letter-spacing:.12em;text-transform:uppercase;padding:3px 10px;border-radius:20px;border:1px solid rgba(240,217,168,.55);color:#f0d9a8"><span style="width:6px;height:6px;border-radius:50%;background:#f0d9a8"></span>Live DJ set</span>
+            </div>
+            <div style="font-family:'Cormorant Garamond',serif;font-size:40px;line-height:1">Kalpa</div>
+          </div>
+        </div>
+        <div style="padding:22px 24px">
+          <p style="font-size:14px;line-height:1.65;color:rgba(239,232,255,.8);font-weight:300;margin:0 0 20px">Organic house and downtempo built for barefoot movement — textured, spacious, deeply felt.</p>
+          <!-- warm-up panel -->
+          <div style="background:rgba(203,183,255,.08);border:1px solid rgba(203,183,255,.16);border-radius:16px;padding:18px">
+            <div style="font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:#cbb7ff;margin-bottom:14px">Somatic warm-up · 45 min before</div>
+            <div style="display:flex;align-items:center;gap:14px">
+              <div style="flex:none;width:60px;height:60px;border-radius:50%;overflow:hidden;border:1px solid rgba(203,183,255,.3)">
+                <image-slot id="c1a-instr" shape="circle" placeholder="Instructor" style="width:100%;height:100%"></image-slot>
+              </div>
+              <div>
+                <div style="font-family:'Cormorant Garamond',serif;font-size:24px;line-height:1.05;color:#efe8ff">Embodied dance</div>
+                <div style="font-size:12px;color:rgba(239,232,255,.6);margin-top:2px">Led by a guest instructor (TBA)</div>
+              </div>
+            </div>
+          </div>
+          <!-- time slots -->
+          <div style="display:flex;gap:12px;margin-top:16px">
+            <div style="flex:1;padding:12px 14px;border-radius:12px;background:rgba(255,255,255,.03);border:1px solid rgba(203,183,255,.14)">
+              <div style="font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#cbb7ff">Warm-up</div>
+              <div style="font-family:'Cormorant Garamond',serif;font-size:22px;color:#f0d9a8;margin-top:2px">7:00–7:45</div>
+            </div>
+            <div style="flex:1;padding:12px 14px;border-radius:12px;background:rgba(255,255,255,.03);border:1px solid rgba(203,183,255,.14)">
+              <div style="font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#cbb7ff">Dance</div>
+              <div style="font-family:'Cormorant Garamond',serif;font-size:22px;color:#f0d9a8;margin-top:2px">8:00–10:00</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ 1b — DUAL PORTRAITS + TIMELINE ============ -->
+    <div class="dv-opt" id="1b" style="flex:none;display:flex;flex-direction:column;gap:11px;scroll-margin-top:16px">
+      <div style="display:flex;align-items:baseline;gap:9px;font:400 11px/1.3 system-ui,sans-serif;color:rgba(0,0,0,.55)">
+        <a class="dv-oid" href="#1b" style="font:600 10.5px ui-monospace,Menlo,monospace;padding:3px 7px;background:rgba(0,0,0,.08);color:#1a1a1a;border-radius:5px;text-decoration:none">1b</a>
+        Dual portraits + vertical timeline
+      </div>
+      <div style="width:440px;border-radius:22px;overflow:hidden;background:linear-gradient(180deg,#241844,#2f1f4d);border:1px solid rgba(203,183,255,.18);box-shadow:0 20px 50px rgba(8,5,26,.4);font-family:'Nunito Sans',sans-serif;color:#efe8ff">
+        <div style="padding:22px 24px 4px;display:flex;align-items:center;justify-content:space-between">
+          <span style="font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:#f0d9a8">Thursday · July 16</span>
+        </div>
+        <div style="display:flex;gap:14px;padding:14px 24px 0">
+          <div style="flex:1;text-align:center">
+            <div style="width:100%;aspect-ratio:1;border-radius:16px;overflow:hidden;border:1px solid rgba(203,183,255,.2)">
+              <image-slot id="c1b-instr" shape="rect" placeholder="Instructor" style="width:100%;height:100%"></image-slot>
+            </div>
+            <div style="font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#cbb7ff;margin-top:10px">Warm-up</div>
+            <div style="font-family:'Cormorant Garamond',serif;font-size:20px;margin-top:1px">Embodied dance</div>
+          </div>
+          <div style="flex:1;text-align:center">
+            <div style="width:100%;aspect-ratio:1;border-radius:16px;overflow:hidden;border:1px solid rgba(240,217,168,.35)">
+              <image-slot id="c1b-artist" shape="rect" placeholder="Artist photo" style="width:100%;height:100%"></image-slot>
+            </div>
+            <div style="font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#f0d9a8;margin-top:10px">Live DJ set</div>
+            <div style="font-family:'Cormorant Garamond',serif;font-size:20px;margin-top:1px">Kalpa</div>
+          </div>
+        </div>
+        <div style="padding:22px 24px 24px">
+          <div style="display:flex;gap:14px;align-items:flex-start">
+            <div style="flex:none;display:flex;flex-direction:column;align-items:center;padding-top:4px">
+              <span style="width:11px;height:11px;border-radius:50%;background:#cbb7ff"></span>
+              <span style="width:2px;flex:1;min-height:34px;background:rgba(203,183,255,.3)"></span>
+              <span style="width:11px;height:11px;border-radius:50%;background:#f0d9a8"></span>
+            </div>
+            <div style="flex:1;display:flex;flex-direction:column;gap:22px">
+              <div><div style="font-family:'Cormorant Garamond',serif;font-size:22px;color:#efe8ff">7:00pm · Somatic warm-up</div><div style="font-size:13px;color:rgba(239,232,255,.62);margin-top:2px">Embodied dance · guest instructor (TBA)</div></div>
+              <div><div style="font-family:'Cormorant Garamond',serif;font-size:22px;color:#efe8ff">8:00pm · Ecstatic dance</div><div style="font-size:13px;color:rgba(239,232,255,.62);margin-top:2px">Live set by Kalpa · until 10pm</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ 1c — SCHEDULE-LED ============ -->
+    <div class="dv-opt" id="1c" style="flex:none;display:flex;flex-direction:column;gap:11px;scroll-margin-top:16px">
+      <div style="display:flex;align-items:baseline;gap:9px;font:400 11px/1.3 system-ui,sans-serif;color:rgba(0,0,0,.55)">
+        <a class="dv-oid" href="#1c" style="font:600 10.5px ui-monospace,Menlo,monospace;padding:3px 7px;background:rgba(0,0,0,.08);color:#1a1a1a;border-radius:5px;text-decoration:none">1c</a>
+        Schedule-led, two stacked slots
+      </div>
+      <div style="width:460px;border-radius:22px;overflow:hidden;background:linear-gradient(180deg,#241844,#2f1f4d);border:1px solid rgba(203,183,255,.18);box-shadow:0 20px 50px rgba(8,5,26,.4);font-family:'Nunito Sans',sans-serif;color:#efe8ff">
+        <div style="padding:22px 26px;border-bottom:1px solid rgba(203,183,255,.14);display:flex;align-items:baseline;justify-content:space-between">
+          <span style="font-family:'Cormorant Garamond',serif;font-size:26px">Thursday, July 16</span>
+          <span style="font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#cbb7ff">The Glow Pad</span>
+        </div>
+        <!-- warm-up slot -->
+        <div style="display:flex;gap:18px;align-items:center;padding:20px 26px">
+          <div style="flex:none;width:52px;text-align:right"><div style="font-family:'Cormorant Garamond',serif;font-size:26px;color:#f0d9a8;line-height:1">7:00</div><div style="font-size:10px;color:rgba(239,232,255,.5)">pm</div></div>
+          <div style="flex:none;width:66px;height:66px;border-radius:14px;overflow:hidden;border:1px solid rgba(203,183,255,.3)">
+            <image-slot id="c1c-instr" shape="rect" placeholder="Instructor" style="width:100%;height:100%"></image-slot>
+          </div>
+          <div style="flex:1">
+            <div style="font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#cbb7ff">Somatic warm-up · 45 min</div>
+            <div style="font-family:'Cormorant Garamond',serif;font-size:24px;line-height:1.1;margin-top:1px">Embodied dance</div>
+            <div style="font-size:12px;color:rgba(239,232,255,.6)">Guest instructor (TBA)</div>
+          </div>
+        </div>
+        <div style="height:1px;background:rgba(203,183,255,.12);margin:0 26px"></div>
+        <!-- dance slot -->
+        <div style="display:flex;gap:18px;align-items:center;padding:20px 26px">
+          <div style="flex:none;width:52px;text-align:right"><div style="font-family:'Cormorant Garamond',serif;font-size:26px;color:#f0d9a8;line-height:1">8:00</div><div style="font-size:10px;color:rgba(239,232,255,.5)">pm</div></div>
+          <div style="flex:none;width:66px;height:66px;border-radius:14px;overflow:hidden;border:1px solid rgba(240,217,168,.4)">
+            <image-slot id="c1c-artist" shape="rect" placeholder="Artist" style="width:100%;height:100%"></image-slot>
+          </div>
+          <div style="flex:1">
+            <div style="display:flex;align-items:center;gap:8px"><span style="font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#f0d9a8">Ecstatic dance</span><span style="width:5px;height:5px;border-radius:50%;background:#f0d9a8"></span><span style="font-size:11px;color:rgba(239,232,255,.55)">until 10pm</span></div>
+            <div style="font-family:'Cormorant Garamond',serif;font-size:24px;line-height:1.1;margin-top:1px">Kalpa</div>
+            <div style="font-size:12px;color:rgba(239,232,255,.6)">Live DJ set</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <p style="margin:26px 0 0;font:12px/1.5 system-ui,sans-serif;color:rgba(0,0,0,.5)">Try next: "use <a class="dv-oid" href="#1a" style="text-decoration:none">1a</a> in the site" · "make <a class="dv-oid" href="#1c" style="text-decoration:none">1c</a> the lineup row style" · "combine <a class="dv-oid" href="#1b" style="text-decoration:none">1b</a> portraits with <a class="dv-oid" href="#1a" style="text-decoration:none">1a</a> layout" · "new directions"</p>
+</section>
+
+</x-dc>
+</body>
+</html>

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics="">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&amp;family=Nunito+Sans:wght@300;400;600;700&amp;display=swap" rel="stylesheet">
+<meta name="design_doc_mode" content="canvas">
+<style>
+  body{margin:0;background:#0f0b24;font-family:'Nunito Sans',sans-serif}
+  a{color:#f0d9a8;text-decoration:none}
+  a:hover{color:#f6e6bf}
+  @keyframes drift{0%{transform:translate(0,0)}50%{transform:translate(16px,-20px)}100%{transform:translate(0,0)}}
+  @keyframes driftb{0%{transform:translate(0,0)}50%{transform:translate(-18px,16px)}100%{transform:translate(0,0)}}
+</style>
+</helmet>
+
+<section style="padding:44px 44px 80px;display:flex;flex-direction:column;gap:30px">
+  <div style="max-width:760px">
+    <div style="font-size:12px;letter-spacing:.34em;text-transform:uppercase;color:#cbb7ff;font-weight:600;margin-bottom:14px">Turn 1 · Color directions</div>
+    <div style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:40px;line-height:1.05;color:#efe8ff;margin-bottom:12px">A little more color</div>
+    <div style="font-size:15px;line-height:1.65;color:rgba(239,232,255,.72);max-width:660px">Same foundation in all three — deep indigo base, Cormorant serif headlines, glass cards, and gold as the through-line. Each direction just <em style="color:#efe8ff;font-style:italic">adds a second accent</em> and shifts the gradient a touch, so different roles (live sets vs. curated, labels vs. accents) get their own hue. Reference a direction by id: <a href="#1a">1a</a>, <a href="#1b">1b</a>, <a href="#1c">1c</a>.</div>
+  </div>
+
+  <div style="display:flex;gap:34px;flex-wrap:wrap;align-items:flex-start">
+
+    <!-- ============ 1a AURORA ============ -->
+    <div id="1a" style="display:flex;flex-direction:column;gap:16px;width:520px">
+      <div style="display:flex;align-items:center;gap:12px">
+        <span style="font-family:'Cormorant Garamond',serif;font-size:13px;font-weight:700;letter-spacing:.04em;color:#12102e;background:#f0d9a8;border-radius:20px;padding:3px 13px">1a</span>
+        <span style="font-family:'Cormorant Garamond',serif;font-size:24px;color:#efe8ff">Aurora</span>
+        <span style="font-size:12px;color:rgba(239,232,255,.55)">cool counterpoint</span>
+      </div>
+      <div style="display:flex;gap:9px;align-items:center">
+        <span style="width:17px;height:17px;border-radius:50%;background:#f0d9a8"></span>
+        <span style="width:17px;height:17px;border-radius:50%;background:#6fe0c4"></span>
+        <span style="width:17px;height:17px;border-radius:50%;background:#9dc3f2"></span>
+        <span style="width:17px;height:17px;border-radius:50%;background:#1e183d;box-shadow:inset 0 0 0 1px rgba(255,255,255,.15)"></span>
+        <span style="font-size:11px;color:rgba(239,232,255,.45);margin-left:4px">gold · aurora teal · periwinkle · indigo</span>
+      </div>
+      <div style="width:520px;border-radius:22px;overflow:hidden;background:linear-gradient(180deg,#120f2e 0%,#1e183d 45%,#26344f 100%);color:#eef0ff;font-family:'Nunito Sans',sans-serif;box-shadow:0 34px 80px rgba(8,5,26,.55);position:relative">
+        <div style="position:absolute;top:60px;left:40px;width:160px;height:160px;border-radius:50%;background:radial-gradient(circle at 40% 40%,rgba(111,224,196,.28),transparent 70%);filter:blur(6px);animation:drift 19s ease-in-out infinite;pointer-events:none"></div>
+        <div style="position:absolute;top:430px;right:30px;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle at 50% 50%,rgba(240,217,168,.2),transparent 70%);filter:blur(8px);animation:driftb 24s ease-in-out infinite;pointer-events:none"></div>
+        <div style="position:relative;z-index:2;display:flex;align-items:center;justify-content:space-between;padding:16px 24px;border-bottom:1px solid rgba(157,195,242,.2)">
+          <span style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:17px;letter-spacing:.05em;color:#eef0ff">Bend Ecstatic Dance</span>
+          <div style="display:flex;gap:16px;font-size:10px;letter-spacing:.14em;text-transform:uppercase">
+            <span style="color:#eef0ff;border-bottom:2px solid #f0d9a8;padding-bottom:3px">Schedule</span>
+            <span style="color:rgba(238,240,255,.5)">About</span>
+            <span style="color:rgba(238,240,255,.5)">Details</span>
+          </div>
+        </div>
+        <div style="position:relative;z-index:2;text-align:center;padding:30px 26px 6px">
+          <div style="font-size:10px;letter-spacing:.34em;text-transform:uppercase;color:#9dc3f2;font-weight:600;margin-bottom:12px">Bend, Oregon</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:42px;line-height:1.02">Bend Ecstatic Dance</div>
+          <div style="margin:22px auto 0;padding:11px 20px;background:linear-gradient(90deg,transparent,rgba(240,217,168,.12),transparent);border-top:1px solid rgba(240,217,168,.25);border-bottom:1px solid rgba(240,217,168,.25);display:flex;align-items:center;justify-content:center;gap:12px">
+            <span style="width:26px;height:1px;background:rgba(240,217,168,.5)"></span>
+            <span style="font-size:10px;letter-spacing:.4em;text-transform:uppercase;color:#f0d9a8;font-weight:700">This week's DJ</span>
+            <span style="width:26px;height:1px;background:rgba(240,217,168,.5)"></span>
+          </div>
+        </div>
+        <div style="position:relative;z-index:2;display:flex;gap:18px;align-items:center;padding:20px 26px 6px;text-align:left">
+          <div style="flex:none;width:118px;height:118px;border-radius:14px;background:linear-gradient(150deg,#2a3a55,#3a5a68);box-shadow:0 12px 30px rgba(8,5,26,.5)"></div>
+          <div style="flex:1">
+            <div style="font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:#f0d9a8">Thursday · July 16</div>
+            <div style="font-family:'Cormorant Garamond',serif;font-size:34px;line-height:1;margin:4px 0 10px">Kalpa</div>
+            <div style="display:flex;gap:7px;flex-wrap:wrap;margin-bottom:13px">
+              <span style="padding:4px 11px;border-radius:20px;border:1px solid rgba(111,224,196,.45);color:#6fe0c4;font-size:10px;letter-spacing:.05em">Live DJ set</span>
+              <span style="padding:4px 11px;border-radius:20px;border:1px solid rgba(157,195,242,.3);color:#9dc3f2;font-size:10px;letter-spacing:.05em">8–10pm</span>
+            </div>
+            <button style="padding:9px 20px;border-radius:30px;background:#f0d9a8;color:#182742;font-family:'Nunito Sans',sans-serif;font-weight:700;font-size:11px;border:none;cursor:pointer">Read more →</button>
+          </div>
+        </div>
+        <div style="position:relative;z-index:2;display:flex;flex-direction:column;gap:12px;padding:22px 26px">
+          <div style="display:flex;gap:16px;align-items:center;border:1px solid rgba(157,195,242,.2);border-radius:16px;background:rgba(255,255,255,.045);padding:15px 18px">
+            <div style="flex:none;width:68px;height:68px;border-radius:12px;background:linear-gradient(150deg,#2a3a55,#3a5a68)"></div>
+            <div style="flex:1"><div style="font-family:'Cormorant Garamond',serif;font-size:24px;line-height:1;margin-bottom:6px">DJ Neoma</div><span style="font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#6fe0c4">Live DJ set</span></div>
+          </div>
+          <div style="display:flex;gap:16px;align-items:center;border:1px solid rgba(157,195,242,.2);border-radius:16px;background:rgba(255,255,255,.045);padding:15px 18px">
+            <div style="flex:none;width:68px;height:68px;border-radius:12px;background:linear-gradient(150deg,#3a5a68,#2a3a55)"></div>
+            <div style="flex:1"><div style="font-family:'Cormorant Garamond',serif;font-size:24px;line-height:1;margin-bottom:6px">Amanda Ramirez</div><span style="font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#9dc3f2">Curated setlist</span></div>
+          </div>
+        </div>
+        <div style="position:relative;z-index:2;padding:24px 26px 30px;background:rgba(157,195,242,.06);border-top:1px solid rgba(157,195,242,.2)">
+          <div style="text-align:center;font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;font-size:20px;line-height:1.4;margin-bottom:20px">"A body unlearning its edges, remembering it was always music only pretending to be still."</div>
+          <div style="display:flex;justify-content:center;gap:18px;flex-wrap:wrap;text-align:center">
+            <div><div style="font-family:'Cormorant Garamond',serif;font-size:16px;color:#f0d9a8">No shoes</div><div style="font-size:10px;color:rgba(238,240,255,.55);margin-top:2px">Bare feet</div></div>
+            <div><div style="font-family:'Cormorant Garamond',serif;font-size:16px;color:#f0d9a8">No talking</div><div style="font-size:10px;color:rgba(238,240,255,.55);margin-top:2px">Body speaks</div></div>
+            <div><div style="font-family:'Cormorant Garamond',serif;font-size:16px;color:#f0d9a8">No phones</div><div style="font-size:10px;color:rgba(238,240,255,.55);margin-top:2px">Fully present</div></div>
+            <div><div style="font-family:'Cormorant Garamond',serif;font-size:16px;color:#f0d9a8">Sober</div><div style="font-size:10px;color:rgba(238,240,255,.55);margin-top:2px">Substance-free</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ 1b NEBULA ============ -->
+    <div id="1b" style="display:flex;flex-direction:column;gap:16px;width:520px">
+      <div style="display:flex;align-items:center;gap:12px">
+        <span style="font-family:'Cormorant Garamond',serif;font-size:13px;font-weight:700;letter-spacing:.04em;color:#12102e;background:#f0d9a8;border-radius:20px;padding:3px 13px">1b</span>
+        <span style="font-family:'Cormorant Garamond',serif;font-size:24px;color:#efe8ff">Nebula</span>
+        <span style="font-size:12px;color:rgba(239,232,255,.55)">jewel-toned</span>
+      </div>
+      <div style="display:flex;gap:9px;align-items:center">
+        <span style="width:17px;height:17px;border-radius:50%;background:#f0d9a8"></span>
+        <span style="width:17px;height:17px;border-radius:50%;background:#f2a0c0"></span>
+        <span style="width:17px;height:17px;border-radius:50%;background:#d9a6e8"></span>
+        <span style="width:17px;height:17px;border-radius:50%;background:#341946;box-shadow:inset 0 0 0 1px rgba(255,255,255,.15)"></span>
+        <span style="font-size:11px;color:rgba(239,232,255,.45);margin-left:4px">gold · rose · orchid · plum</span>
+      </div>
+      <div style="width:520px;border-radius:22px;overflow:hidden;background:linear-gradient(180deg,#160f2c 0%,#341946 40%,#511f4f 75%,#5c2450 100%);color:#f4ecff;font-family:'Nunito Sans',sans-serif;box-shadow:0 34px 80px rgba(8,5,26,.55);position:relative">
+        <div style="position:absolute;top:60px;left:40px;width:160px;height:160px;border-radius:50%;background:radial-gradient(circle at 40% 40%,rgba(242,160,192,.26),transparent 70%);filter:blur(6px);animation:drift 19s ease-in-out infinite;pointer-events:none"></div>
+        <div style="position:absolute;top:430px;right:30px;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle at 50% 50%,rgba(240,217,168,.2),transparent 70%);filter:blur(8px);animation:driftb 24s ease-in-out infinite;pointer-events:none"></div>
+        <div style="position:relative;z-index:2;display:flex;align-items:center;justify-content:space-between;padding:16px 24px;border-bottom:1px solid rgba(217,166,232,.22)">
+          <span style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:17px;letter-spacing:.05em;color:#f4ecff">Bend Ecstatic Dance</span>
+          <div style="display:flex;gap:16px;font-size:10px;letter-spacing:.14em;text-transform:uppercase">
+            <span style="color:#f4ecff;border-bottom:2px solid #f0d9a8;padding-bottom:3px">Schedule</span>
+            <span style="color:rgba(244,236,255,.5)">About</span>
+            <span style="color:rgba(244,236,255,.5)">Details</span>
+          </div>
+        </div>
+        <div style="position:relative;z-index:2;text-align:center;padding:30px 26px 6px">
+          <div style="font-size:10px;letter-spacing:.34em;text-transform:uppercase;color:#d9a6e8;font-weight:600;margin-bottom:12px">Bend, Oregon</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:42px;line-height:1.02">Bend Ecstatic Dance</div>
+          <div style="margin:22px auto 0;padding:11px 20px;background:linear-gradient(90deg,transparent,rgba(240,217,168,.12),transparent);border-top:1px solid rgba(240,217,168,.25);border-bottom:1px solid rgba(240,217,168,.25);display:flex;align-items:center;justify-content:center;gap:12px">
+            <span style="width:26px;height:1px;background:rgba(240,217,168,.5)"></span>
+            <span style="font-size:10px;letter-spacing:.4em;text-transform:uppercase;color:#f0d9a8;font-weight:700">This week's DJ</span>
+            <span style="width:26px;height:1px;background:rgba(240,217,168,.5)"></span>
+          </div>
+        </div>
+        <div style="position:relative;z-index:2;display:flex;gap:18px;align-items:center;padding:20px 26px 6px;text-align:left">
+          <div style="flex:none;width:118px;height:118px;border-radius:14px;background:linear-gradient(150deg,#43204a,#5a2a55);box-shadow:0 12px 30px rgba(8,5,26,.5)"></div>
+          <div style="flex:1">
+            <div style="font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:#f0d9a8">Thursday · July 16</div>
+            <div style="font-family:'Cormorant Garamond',serif;font-size:34px;line-height:1;margin:4px 0 10px">Kalpa</div>
+            <div style="display:flex;gap:7px;flex-wrap:wrap;margin-bottom:13px">
+              <span style="padding:4px 11px;border-radius:20px;border:1px solid rgba(242,160,192,.45);color:#f2a0c0;font-size:10px;letter-spacing:.05em">Live DJ set</span>
+              <span style="padding:4px 11px;border-radius:20px;border:1px solid rgba(217,166,232,.3);color:#d9a6e8;font-size:10px;letter-spacing:.05em">8–10pm</span>
+            </div>
+            <button style="padding:9px 20px;border-radius:30px;background:#f0d9a8;color:#2a1236;font-family:'Nunito Sans',sans-serif;font-weight:700;font-size:11px;border:none;cursor:pointer">Read more →</button>
+          </div>
+        </div>
+        <div style="position:relative;z-index:2;display:flex;flex-direction:column;gap:12px;padding:22px 26px">
+          <div style="display:flex;gap:16px;align-items:center;border:1px solid rgba(217,166,232,.22);border-radius:16px;background:rgba(255,255,255,.05);padding:15px 18px">
+            <div style="flex:none;width:68px;height:68px;border-radius:12px;background:linear-gradient(150deg,#43204a,#5a2a55)"></div>
+            <div style="flex:1"><div style="font-family:'Cormorant Garamond',serif;font-size:24px;line-height:1;margin-bottom:6px">DJ Neoma</div><span style="font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#f2a0c0">Live DJ set</span></div>
+          </div>
+          <div style="display:flex;gap:16px;align-items:center;border:1px solid rgba(217,166,232,.22);border-radius:16px;background:rgba(255,255,255,.05);padding:15px 18px">
+            <div style="flex:none;width:68px;height:68px;border-radius:12px;background:linear-gradient(150deg,#5a2a55,#43204a)"></div>
+            <div style="flex:1"><div style="font-family:'Cormorant Garamond',serif;font-size:24px;line-height:1;margin-bottom:6px">Amanda Ramirez</div><span style="font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#d9a6e8">Curated setlist</span></div>
+          </div>
+        </div>
+        <div style="position:relative;z-index:2;padding:24px 26px 30px;background:rgba(217,166,232,.06);border-top:1px solid rgba(217,166,232,.22)">
+          <div style="text-align:center;font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;font-size:20px;line-height:1.4;margin-bottom:20px">"A body unlearning its edges, remembering it was always music only pretending to be still."</div>
+          <div style="display:flex;justify-content:center;gap:18px;flex-wrap:wrap;text-align:center">
+            <div><div style="font-family:'Cormorant Garamond',serif;font-size:16px;color:#f0d9a8">No shoes</div><div style="font-size:10px;color:rgba(244,236,255,.55);margin-top:2px">Bare feet</div></div>
+            <div><div style="font-family:'Cormorant Garamond',serif;font-size:16px;color:#f0d9a8">No talking</div><div style="font-size:10px;color:rgba(244,236,255,.55);margin-top:2px">Body speaks</div></div>
+            <div><div style="font-family:'Cormorant Garamond',serif;font-size:16px;color:#f0d9a8">No phones</div><div style="font-size:10px;color:rgba(244,236,255,.55);margin-top:2px">Fully present</div></div>
+            <div><div style="font-family:'Cormorant Garamond',serif;font-size:16px;color:#f0d9a8">Sober</div><div style="font-size:10px;color:rgba(244,236,255,.55);margin-top:2px">Substance-free</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ 1c SUNSET MESA ============ -->
+    <div id="1c" style="display:flex;flex-direction:column;gap:16px;width:520px">
+      <div style="display:flex;align-items:center;gap:12px">
+        <span style="font-family:'Cormorant Garamond',serif;font-size:13px;font-weight:700;letter-spacing:.04em;color:#12102e;background:#f0c88a;border-radius:20px;padding:3px 13px">1c</span>
+        <span style="font-family:'Cormorant Garamond',serif;font-size:24px;color:#efe8ff">Sunset Mesa</span>
+        <span style="font-size:12px;color:rgba(239,232,255,.55)">warm high-desert</span>
+      </div>
+      <div style="display:flex;gap:9px;align-items:center">
+        <span style="width:17px;height:17px;border-radius:50%;background:#f0c88a"></span>
+        <span style="width:17px;height:17px;border-radius:50%;background:#e28a5c"></span>
+        <span style="width:17px;height:17px;border-radius:50%;background:#e2b7c4"></span>
+        <span style="width:17px;height:17px;border-radius:50%;background:#3a1f3d;box-shadow:inset 0 0 0 1px rgba(255,255,255,.15)"></span>
+        <span style="font-size:11px;color:rgba(239,232,255,.45);margin-left:4px">amber · terracotta · dusty rose · aubergine</span>
+      </div>
+      <div style="width:520px;border-radius:22px;overflow:hidden;background:linear-gradient(180deg,#1b1330 0%,#3a1f3d 42%,#5a2f3c 78%,#6d3a37 100%);color:#f7ede6;font-family:'Nunito Sans',sans-serif;box-shadow:0 34px 80px rgba(8,5,26,.55);position:relative">
+        <div style="position:absolute;top:60px;left:40px;width:160px;height:160px;border-radius:50%;background:radial-gradient(circle at 40% 40%,rgba(240,200,138,.26),transparent 70%);filter:blur(6px);animation:drift 19s ease-in-out infinite;pointer-events:none"></div>
+        <div style="position:absolute;top:430px;right:30px;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle at 50% 50%,rgba(226,138,92,.22),transparent 70%);filter:blur(8px);animation:driftb 24s ease-in-out infinite;pointer-events:none"></div>
+        <div style="position:relative;z-index:2;display:flex;align-items:center;justify-content:space-between;padding:16px 24px;border-bottom:1px solid rgba(226,138,92,.22)">
+          <span style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:17px;letter-spacing:.05em;color:#f7ede6">Bend Ecstatic Dance</span>
+          <div style="display:flex;gap:16px;font-size:10px;letter-spacing:.14em;text-transform:uppercase">
+            <span style="color:#f7ede6;border-bottom:2px solid #f0c88a;padding-bottom:3px">Schedule</span>
+            <span style="color:rgba(247,237,230,.5)">About</span>
+            <span style="color:rgba(247,237,230,.5)">Details</span>
+          </div>
+        </div>
+        <div style="position:relative;z-index:2;text-align:center;padding:30px 26px 6px">
+          <div style="font-size:10px;letter-spacing:.34em;text-transform:uppercase;color:#e2b7c4;font-weight:600;margin-bottom:12px">Bend, Oregon</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:42px;line-height:1.02">Bend Ecstatic Dance</div>
+          <div style="margin:22px auto 0;padding:11px 20px;background:linear-gradient(90deg,transparent,rgba(240,200,138,.12),transparent);border-top:1px solid rgba(240,200,138,.28);border-bottom:1px solid rgba(240,200,138,.28);display:flex;align-items:center;justify-content:center;gap:12px">
+            <span style="width:26px;height:1px;background:rgba(240,200,138,.5)"></span>
+            <span style="font-size:10px;letter-spacing:.4em;text-transform:uppercase;color:#f0c88a;font-weight:700">This week's DJ</span>
+            <span style="width:26px;height:1px;background:rgba(240,200,138,.5)"></span>
+          </div>
+        </div>
+        <div style="position:relative;z-index:2;display:flex;gap:18px;align-items:center;padding:20px 26px 6px;text-align:left">
+          <div style="flex:none;width:118px;height:118px;border-radius:14px;background:linear-gradient(150deg,#4a2a3a,#6a3a35);box-shadow:0 12px 30px rgba(8,5,26,.5)"></div>
+          <div style="flex:1">
+            <div style="font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:#f0c88a">Thursday · July 16</div>
+            <div style="font-family:'Cormorant Garamond',serif;font-size:34px;line-height:1;margin:4px 0 10px">Kalpa</div>
+            <div style="display:flex;gap:7px;flex-wrap:wrap;margin-bottom:13px">
+              <span style="padding:4px 11px;border-radius:20px;border:1px solid rgba(226,138,92,.5);color:#e28a5c;font-size:10px;letter-spacing:.05em">Live DJ set</span>
+              <span style="padding:4px 11px;border-radius:20px;border:1px solid rgba(226,183,196,.35);color:#e2b7c4;font-size:10px;letter-spacing:.05em">8–10pm</span>
+            </div>
+            <button style="padding:9px 20px;border-radius:30px;background:#f0c88a;color:#35201e;font-family:'Nunito Sans',sans-serif;font-weight:700;font-size:11px;border:none;cursor:pointer">Read more →</button>
+          </div>
+        </div>
+        <div style="position:relative;z-index:2;display:flex;flex-direction:column;gap:12px;padding:22px 26px">
+          <div style="display:flex;gap:16px;align-items:center;border:1px solid rgba(226,138,92,.22);border-radius:16px;background:rgba(255,255,255,.045);padding:15px 18px">
+            <div style="flex:none;width:68px;height:68px;border-radius:12px;background:linear-gradient(150deg,#4a2a3a,#6a3a35)"></div>
+            <div style="flex:1"><div style="font-family:'Cormorant Garamond',serif;font-size:24px;line-height:1;margin-bottom:6px">DJ Neoma</div><span style="font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#e28a5c">Live DJ set</span></div>
+          </div>
+          <div style="display:flex;gap:16px;align-items:center;border:1px solid rgba(226,138,92,.22);border-radius:16px;background:rgba(255,255,255,.045);padding:15px 18px">
+            <div style="flex:none;width:68px;height:68px;border-radius:12px;background:linear-gradient(150deg,#6a3a35,#4a2a3a)"></div>
+            <div style="flex:1"><div style="font-family:'Cormorant Garamond',serif;font-size:24px;line-height:1;margin-bottom:6px">Amanda Ramirez</div><span style="font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#e2b7c4">Curated setlist</span></div>
+          </div>
+        </div>
+        <div style="position:relative;z-index:2;padding:24px 26px 30px;background:rgba(226,138,92,.06);border-top:1px solid rgba(226,138,92,.22)">
+          <div style="text-align:center;font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;font-size:20px;line-height:1.4;margin-bottom:20px">"A body unlearning its edges, remembering it was always music only pretending to be still."</div>
+          <div style="display:flex;justify-content:center;gap:18px;flex-wrap:wrap;text-align:center">
+            <div><div style="font-family:'Cormorant Garamond',serif;font-size:16px;color:#f0c88a">No shoes</div><div style="font-size:10px;color:rgba(247,237,230,.55);margin-top:2px">Bare feet</div></div>
+            <div><div style="font-family:'Cormorant Garamond',serif;font-size:16px;color:#f0c88a">No talking</div><div style="font-size:10px;color:rgba(247,237,230,.55);margin-top:2px">Body speaks</div></div>
+            <div><div style="font-family:'Cormorant Garamond',serif;font-size:16px;color:#f0c88a">No phones</div><div style="font-size:10px;color:rgba(247,237,230,.55);margin-top:2px">Fully present</div></div>
+            <div><div style="font-family:'Cormorant Garamond',serif;font-size:16px;color:#f0c88a">Sober</div><div style="font-size:10px;color:rgba(247,237,230,.55);margin-top:2px">Substance-free</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+</x-dc>
+</body>
+</html>

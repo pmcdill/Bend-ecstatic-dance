@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics="">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&amp;family=Nunito+Sans:wght@300;400;600;700&amp;display=swap" rel="stylesheet">
+<style>
+  html{scroll-behavior:smooth}
+  body{margin:0;background:#1b1330;font-family:'Nunito Sans',sans-serif;overflow-x:hidden}
+  a{color:inherit}
+  @keyframes drift{0%{transform:translate(0,0)}50%{transform:translate(18px,-24px)}100%{transform:translate(0,0)}}
+  @keyframes driftb{0%{transform:translate(0,0)}50%{transform:translate(-22px,18px)}100%{transform:translate(0,0)}}
+  @keyframes twinkle{0%,100%{opacity:.25}50%{opacity:.9}}
+  @keyframes edSpin{to{transform:rotate(360deg)}}
+  @keyframes edCube{0%{transform:rotateX(-20deg) rotateY(14deg)}100%{transform:rotateX(340deg) rotateY(374deg)}}
+  @keyframes edPulse{0%,100%{opacity:.45}50%{opacity:.95}}
+  @keyframes edFade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+</style>
+</helmet>
+
+<div style="width:100%;min-height:100vh;background:linear-gradient(180deg,#1b1330 0%,#3a1f3d 42%,#5a2f3c 74%,#6d3a37 100%);color:#f7ede6;font-family:'Nunito Sans',sans-serif;position:relative">
+  <div style="position:absolute;top:120px;left:80px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle at 35% 35%,rgba(226,183,196,.35),transparent 70%);filter:blur(6px);animation:drift 19s ease-in-out infinite;pointer-events:none"></div>
+  <div style="position:absolute;top:640px;right:70px;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle at 50% 50%,rgba(240,200,138,.22),transparent 70%);filter:blur(8px);animation:driftb 24s ease-in-out infinite;pointer-events:none"></div>
+  <div style="position:absolute;top:70px;right:210px;width:5px;height:5px;border-radius:50%;background:#fff;box-shadow:0 0 8px #fff;animation:twinkle 5s ease-in-out infinite;pointer-events:none"></div>
+  <div style="position:absolute;top:150px;left:420px;width:4px;height:4px;border-radius:50%;background:#fff;box-shadow:0 0 8px #fff;animation:twinkle 7s ease-in-out .8s infinite;pointer-events:none"></div>
+  <div style="position:absolute;top:260px;right:120px;width:3px;height:3px;border-radius:50%;background:#f0c88a;box-shadow:0 0 8px #f0c88a;animation:twinkle 6s ease-in-out 1.4s infinite;pointer-events:none"></div>
+
+  <!-- sticky nav -->
+  <div style="position:sticky;top:0;z-index:30;display:flex;align-items:center;justify-content:space-between;padding:20px 48px;background:rgba(27,19,48,.55);backdrop-filter:blur(10px);border-bottom:1px solid rgba(226,183,196,.12)">
+    <a href="#top" style="text-decoration:none;font-family:'Cormorant Garamond',serif;font-weight:500;font-size:22px;letter-spacing:.06em;color:#f7ede6">Bend Ecstatic Dance</a>
+    <div style="display:flex;gap:30px;font-size:13px;letter-spacing:.09em;text-transform:uppercase">
+      <sc-for list="{{ navItems }}" as="n" hint-placeholder-count="4">
+        <a href="{{ n.href }}" style="{{ n.style }}">{{ n.label }}</a>
+      </sc-for>
+    </div>
+  </div>
+
+  <!-- hero -->
+  <div id="top" style="position: relative; z-index: 2; text-align: center; padding: 64px 60px 92px; scroll-margin-top: 80px; padding-bottom: 64px">
+    <div style="font-size: 14px; letter-spacing: .34em; text-transform: uppercase; color: #e2b7c4; font-weight: 600; margin-bottom: 22px">Bend, Oregon</div>
+    <h1 style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:76px;line-height:1.02;margin:0;letter-spacing:.01em">Bend Ecstatic Dance</h1>
+    <div style="max-width:820px;margin:80px auto 0;padding:22px 40px;background:linear-gradient(90deg,transparent,rgba(240,200,138,.12),transparent);border-top:1px solid rgba(240,200,138,.25);border-bottom:1px solid rgba(240,200,138,.25);display:flex;align-items:center;justify-content:center;gap:18px">
+      <span style="width:44px;height:1px;background:rgba(240,200,138,.5)"></span>
+      <span style="font-size:16px;letter-spacing:.4em;text-transform:uppercase;color:#f0c88a;font-weight:700">THIS WEEK'S DJ</span>
+      <span style="width:44px;height:1px;background:rgba(240,200,138,.5)"></span>
+    </div>
+    <div style="max-width:820px;margin:40px auto 0;display:flex;gap:44px;align-items:center;text-align:left;justify-content:center;flex-wrap:wrap">
+      <div style="flex:none;width:300px;height:300px;border-radius:20px;overflow:hidden;box-shadow:0 18px 44px rgba(8,5,26,.5)">
+        <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="art-1a-feat" shape="rect" placeholder="Photo" style="width:100%;height:100%" hint-size="300px,300px"></x-import>
+      </div>
+      <div style="flex:1;min-width:320px">
+        <div style="font-size:12px;letter-spacing:.34em;text-transform:uppercase;color:#f0c88a">THURSDAY · JULY 16</div>
+        <div style="font-family: 'Cormorant Garamond',serif; font-weight: 400; font-size: 56px; line-height: .98; margin: 8px 0 16px">Kalpa</div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px">
+          <a href="https://www.google.com/maps/place/Tula+Movement+Arts" target="_blank" style="display:inline-flex;align-items:center;gap:7px;text-decoration:none;padding:6px 14px;border-radius:30px;border:1px solid rgba(226,183,196,.3);font-size:12px;letter-spacing:.06em;color:#e2b7c4">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            The Glow Pad
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+          </a>
+          <span style="padding:6px 15px;border-radius:30px;border:1px solid rgba(226,183,196,.3);font-size:12px;letter-spacing:.06em;color:#e2b7c4">8–10pm</span>
+          <span style="padding:6px 15px;border-radius:30px;border:1px solid rgba(226,183,196,.3);font-size:12px;letter-spacing:.06em;color:#e2b7c4">Live DJ set</span>
+        </div>
+        <p style="font-size:15px;line-height:1.7;color:rgba(247,237,230,.82);font-weight:400;margin:0 0 22px;max-width:540px">Kalpa weaves organic house and downtempo into a slow-rising journey built for barefoot movement — textured, spacious, and deeply felt.</p>
+        <button onClick="{{ open.jul16 }}" style="cursor:pointer;padding:13px 30px;border-radius:40px;background:#f0c88a;color:#3a1f3d;font-family:'Nunito Sans',sans-serif;font-weight:700;font-size:14px;letter-spacing:.04em;border:none">Read more →</button>
+      </div>
+    </div>
+  </div><div style="max-width:120px;height:1px;margin:52px auto 0;background:rgba(226,183,196,.25)"></div>
+
+  <sc-if value="{{ modalOpen }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ closeModal }}" style="position:fixed;inset:0;z-index:50;display:flex;align-items:center;justify-content:center;padding:32px;background:rgba(8,5,26,.72);backdrop-filter:blur(6px);overflow-y:auto">
+      <div onClick="{{ stopProp }}" style="position:relative;width:640px;max-width:100%;max-height:90vh;overflow-y:auto;border-radius:26px;overflow-x:hidden;background:linear-gradient(180deg,#3a1f3d,#5a2f3c);border:1px solid rgba(226,183,196,.28);box-shadow:0 40px 100px rgba(0,0,0,.6);color:#f7ede6;text-align:left">
+        <div style="position:relative;width:100%;height:min(46vh,420px);overflow:hidden">
+          <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="{{ modalArtist.slotId }}" shape="rect" placeholder="Artist photo" style="width:100%;height:100%" hint-size="640px,640px"></x-import>
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(58,31,61,.92));pointer-events:none"></div>
+          <button onClick="{{ closeModal }}" style="position:absolute;top:16px;right:16px;width:38px;height:38px;border-radius:50%;background:rgba(8,5,26,.5);border:1px solid rgba(226,183,196,.3);color:#f7ede6;font-size:18px;cursor:pointer;line-height:1">×</button>
+          <div style="position:absolute;left:32px;bottom:18px">
+            <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+              <div style="font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:#f0c88a">{{ modalArtist.date }}</div>
+              <span style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;padding:3px 11px;border-radius:20px;background:rgba(8,5,26,.4);border:1px solid rgba(226,183,196,.4);color:#f7ede6">{{ modalArtist.typeLabel }}</span>
+            </div>
+            <div style="font-family:'Cormorant Garamond',serif;font-size:52px;line-height:1;margin-top:6px">{{ modalArtist.name }}</div>
+          </div>
+        </div>
+        <div style="padding:30px 34px 34px">
+          <div style="font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:#e2b7c4;margin-bottom:10px">{{ modalArtist.typeLabel }}</div>
+          <p style="font-size:15px;line-height:1.75;color:rgba(247,237,230,.82);font-weight:400;margin:0 0 24px">{{ modalArtist.dj }}</p>
+          <div style="font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:#e2b7c4;margin-bottom:10px">About the set</div>
+          <p style="font-size:15px;line-height:1.75;color:rgba(247,237,230,.82);font-weight:400;margin:0 0 24px">{{ modalArtist.set }}</p>
+          <div style="height:1px;background:rgba(226,183,196,.16);margin:0 0 24px"></div>
+          <div style="font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:#e2b7c4;margin-bottom:10px">SOMALAB · 7pm<span style="letter-spacing: 3.36px;"> ·&nbsp;45 mins</span></div>
+          <div style="display:flex;align-items:center;gap:16px;margin-bottom:10px">
+            <div style="flex:none;width:64px;height:64px;border-radius:50%;overflow:hidden;border:1px solid rgba(226,183,196,.3)">
+              <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="{{ modalArtist.instrSlotId }}" shape="circle" placeholder="Instructor" style="width:100%;height:100%" hint-size="64px,64px"></x-import>
+            </div>
+            <div>
+              <div style="font-family:'Cormorant Garamond',serif;font-size:24px;color:#f0c88a">{{ modalArtist.somaticInstructor }}</div>
+              <div style="font-size:12px;color:rgba(247,237,230,.6);margin-top:2px">{{ modalArtist.somatic }}</div>
+            </div>
+          </div>
+          <p style="font-size:15px;line-height:1.75;color:rgba(247,237,230,.82);font-weight:400;margin:0 0 24px">{{ modalArtist.somaticBlurb }}</p>
+          <div style="display:flex;gap:22px;flex-wrap:wrap;padding-top:20px;border-top:1px solid rgba(226,183,196,.16);font-size:13px;color:rgba(247,237,230,.7)">
+            <div><span style="color: rgb(240, 217, 168);">SomaLab</span> 7-7:45pm</div>
+            <div><span style="color:#f0c88a">Dance</span> 8–10pm</div>
+            <div><span style="color:#f0c88a">Entry</span> Sliding scale</div>
+            <div><span style="color:#f0c88a">Ages</span> 12+</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ calendarOpen }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ closeCalendar }}" style="position:fixed;inset:0;z-index:50;display:flex;align-items:center;justify-content:center;padding:32px;background:rgba(8,5,26,.72);backdrop-filter:blur(6px);overflow-y:auto">
+      <div onClick="{{ stopProp }}" style="position:relative;width:560px;max-width:100%;max-height:90vh;overflow-y:auto;border-radius:26px;background:linear-gradient(180deg,#3a1f3d,#5a2f3c);border:1px solid rgba(226,183,196,.28);box-shadow:0 40px 100px rgba(0,0,0,.6);color:#f7ede6;text-align:left;padding:30px 34px 34px">
+        <button onClick="{{ closeCalendar }}" style="position:absolute;top:16px;right:16px;width:38px;height:38px;border-radius:50%;background:rgba(8,5,26,.4);border:1px solid rgba(226,183,196,.3);color:#f7ede6;font-size:18px;cursor:pointer;line-height:1">×</button>
+        <div style="font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:#e2b7c4;margin-bottom:4px">Every Thursday</div>
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:22px">
+          <button onClick="{{ prevMonth }}" style="{{ prevStyle }}">‹</button>
+          <div style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:34px;line-height:1">{{ monthLabel }}</div>
+          <button onClick="{{ nextMonth }}" style="{{ nextStyle }}">›</button>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin-bottom:6px">
+          <sc-for list="{{ weekdays }}" as="w" hint-placeholder-count="7">
+            <div style="text-align:center;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:rgba(247,237,230,.45);padding-bottom:4px">{{ w }}</div>
+          </sc-for>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:6px">
+          <sc-for list="{{ calCells }}" as="c" hint-placeholder-count="35">
+            <div style="{{ c.cellStyle }}">
+              <div style="{{ c.numStyle }}">{{ c.day }}</div>
+              <div style="{{ c.nameStyle }}">{{ c.name }}</div>
+            </div>
+          </sc-for>
+        </div>
+        <div style="display:flex;gap:20px;flex-wrap:wrap;margin-top:22px;padding-top:18px;border-top:1px solid rgba(226,183,196,.16);font-size:12px;color:rgba(247,237,230,.7)">
+          <div style="display:flex;align-items:center;gap:8px"><span style="width:12px;height:12px;border-radius:4px;background:rgba(240,200,138,.5);border:1px solid rgba(240,200,138,.6)"></span>Dance night</div>
+          <div style="display:flex;align-items:center;gap:8px"><span style="width:12px;height:12px;border-radius:4px;border:1px dashed rgba(226,183,196,.5)"></span>Artist TBA</div>
+          <div style="margin-left:auto">Doors 7:45pm · Dance 8–10pm</div>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+  <div id="artists" style="position: relative; z-index: 2; padding: 20px 60px 90px; scroll-margin-top: 80px; padding-top: 90px">
+    <div style="text-align:center;margin-bottom:40px">
+      <div style="font-size: 14px; letter-spacing: .34em; text-transform: uppercase; color: #e2b7c4; margin-bottom: 32px; font-weight: 600">Schedule<br></div>
+    </div>
+
+    <div style="width:max-content;margin:0 auto 48px;display:grid;grid-template-columns:auto auto;column-gap:16px;row-gap:8px;font-size:18px;color:rgba(247,237,230,.6)">
+      <span style="text-align:right;color:#f0c88a;font-variant-numeric:tabular-nums">7–7:45</span><span style="text-align:left">SomaLab</span>
+      <span style="text-align:right;color:#f0c88a;font-variant-numeric:tabular-nums">8–8:15</span><span style="text-align:left">Opening circle</span>
+      <span style="text-align:right;color:#f0c88a;font-variant-numeric:tabular-nums">8:15–9:45</span><span style="text-align:left">Ecstatic dance</span>
+      <span style="text-align:right;color:#f0c88a;font-variant-numeric:tabular-nums">9:45–10</span><span style="text-align:left">Closing circle</span>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 40px; max-width: 820px; margin: 0 auto">
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:#e2b7c4;padding-left:4px">This Thursday · July 16</div>
+        <div onClick="{{ open.jul16 }}" style="display:flex;gap:30px;align-items:stretch;flex-wrap:wrap;border:1px solid rgba(226,183,196,.18);border-radius:20px;background:rgba(255,255,255,.03);padding:26px 30px;cursor:pointer;transition:border-color .2s,background .2s,transform .2s,box-shadow .2s" style-hover="border-color:rgba(226,183,196,.4);background:rgba(240,200,138,.12);transform:translateY(-3px);box-shadow:0 16px 40px rgba(8,5,26,.4)">
+          <div style="flex:none;width:150px;align-self:stretch;border-radius:16px;overflow:hidden;box-shadow:0 14px 34px rgba(8,5,26,.45)">
+            <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="art-1a-jul16" shape="rect" placeholder="Photo" style="width:100%;height:100%" hint-size="150px,100%"></x-import>
+          </div>
+          <div style="flex:1;min-width:280px">
+            <div style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:40px;line-height:1;margin-bottom:14px">Kalpa</div>
+            <div style="margin-bottom:16px"><span style="font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:#f0c88a">Live DJ set</span></div>
+            <p style="font-size:14px;line-height:1.65;color:rgba(247,237,230,.82);font-weight:400;margin:0 0 14px;max-width:500px">Organic house and downtempo woven into a slow-rising journey built for barefoot movement — textured, spacious, and deeply felt.</p>
+            <div style="font-size:13px;letter-spacing:.05em;color:rgba(247,237,230,.62)"><span style="color:#e2b7c4">SomaLab:</span> Embodied dance by Sol</div>
+          </div>
+          <div style="flex:none;align-self:flex-start;margin-top:12px;color:rgba(226,183,196,.55)"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:#e2b7c4;padding-left:4px">July 23</div>
+        <div onClick="{{ open.jul2 }}" style="display:flex;gap:30px;align-items:stretch;flex-wrap:wrap;border:1px solid rgba(226,183,196,.18);border-radius:20px;background:rgba(255,255,255,.03);padding:26px 30px;cursor:pointer;transition:border-color .2s,background .2s,transform .2s,box-shadow .2s" style-hover="border-color:rgba(226,183,196,.4);background:rgba(240,200,138,.12);transform:translateY(-3px);box-shadow:0 16px 40px rgba(8,5,26,.4)">
+          <div style="flex:none;width:150px;align-self:stretch;border-radius:16px;overflow:hidden;box-shadow:0 14px 34px rgba(8,5,26,.45)">
+            <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="art-1a-jul2" shape="rect" placeholder="Photo" style="width:100%;height:100%" hint-size="150px,100%"></x-import>
+          </div>
+          <div style="flex:1;min-width:280px">
+            <div style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:40px;line-height:1;margin-bottom:14px">Amanda Ramirez</div>
+            <div style="margin-bottom:16px"><span style="font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:#e2b7c4">Curated setlist</span></div>
+            <p style="font-size:14px;line-height:1.65;color:rgba(247,237,230,.82);font-weight:400;margin:0 0 14px;max-width:500px">Warm, soulful setlists that hold the room gently and open space for the collective to arrive.</p>
+            <div style="font-size:13px;letter-spacing:.05em;color:rgba(247,237,230,.62)"><span style="color:#e2b7c4">SomaLab:</span> Contact dance by Ryza</div>
+          </div>
+          <div style="flex:none;align-self:flex-start;margin-top:12px;color:rgba(226,183,196,.55)"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:#e2b7c4;padding-left:4px">July 30</div>
+        <div onClick="{{ open.jul9 }}" style="display:flex;gap:30px;align-items:stretch;flex-wrap:wrap;border:1px solid rgba(226,183,196,.18);border-radius:20px;background:rgba(255,255,255,.03);padding:26px 30px;cursor:pointer;transition:border-color .2s,background .2s,transform .2s,box-shadow .2s" style-hover="border-color:rgba(226,183,196,.4);background:rgba(240,200,138,.12);transform:translateY(-3px);box-shadow:0 16px 40px rgba(8,5,26,.4)">
+          <div style="flex:none;width:150px;align-self:stretch;border-radius:16px;overflow:hidden;box-shadow:0 14px 34px rgba(8,5,26,.45)">
+            <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="art-1a-jul9" shape="rect" placeholder="Photo" style="width:100%;height:100%" hint-size="150px,100%"></x-import>
+          </div>
+          <div style="flex:1;min-width:280px">
+            <div style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:40px;line-height:1;margin-bottom:14px">Electric Indigo</div>
+            <div style="margin-bottom:16px"><span style="font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:#f0c88a">Live DJ set</span></div>
+            <p style="font-size:14px;line-height:1.65;color:rgba(247,237,230,.82);font-weight:400;margin:0 0 14px;max-width:500px">Pulsing, hypnotic electronic textures with a shimmer of the cosmic — hard to keep still through.</p>
+            <div style="font-size:13px;letter-spacing:.05em;color:rgba(247,237,230,.62)"><span style="color:#e2b7c4">SomaLab:</span> Yoga by Mara</div>
+          </div>
+          <div style="flex:none;align-self:flex-start;margin-top:12px;color:rgba(226,183,196,.55)"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:#e2b7c4;padding-left:4px">August 6</div>
+        <div onClick="{{ open.jul16 }}" style="display:flex;gap:30px;align-items:stretch;flex-wrap:wrap;border:1px solid rgba(226,183,196,.18);border-radius:20px;background:rgba(255,255,255,.03);padding:26px 30px;cursor:pointer;transition:border-color .2s,background .2s,transform .2s,box-shadow .2s" style-hover="border-color:rgba(226,183,196,.4);background:rgba(240,200,138,.12);transform:translateY(-3px);box-shadow:0 16px 40px rgba(8,5,26,.4)">
+          <div style="flex:none;width:150px;align-self:stretch;border-radius:16px;overflow:hidden;box-shadow:0 14px 34px rgba(8,5,26,.45)">
+            <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="art-1a-jul16b" shape="rect" placeholder="Photo" style="width:100%;height:100%" hint-size="150px,100%"></x-import>
+          </div>
+          <div style="flex:1;min-width:280px">
+            <div style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:40px;line-height:1;margin-bottom:14px">Kalpa</div>
+            <div style="margin-bottom:16px"><span style="font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:#f0c88a">Live DJ set</span></div>
+            <p style="font-size:14px;line-height:1.65;color:rgba(247,237,230,.82);font-weight:400;margin:0 0 14px;max-width:500px">Organic house and downtempo woven into a slow-rising journey built for barefoot movement — textured, spacious, and deeply felt.</p>
+            <div style="font-size:13px;letter-spacing:.05em;color:rgba(247,237,230,.62)"><span style="color:#e2b7c4">SomaLab:</span> Embodied dance by Sol</div>
+          </div>
+          <div style="flex:none;align-self:flex-start;margin-top:12px;color:rgba(226,183,196,.55)"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:#e2b7c4;padding-left:4px">August 13</div>
+        <div onClick="{{ open.jul23 }}" style="display:flex;gap:30px;align-items:stretch;flex-wrap:wrap;border:1px solid rgba(226,183,196,.18);border-radius:20px;background:rgba(255,255,255,.03);padding:26px 30px;cursor:pointer;transition:border-color .2s,background .2s,transform .2s,box-shadow .2s" style-hover="border-color:rgba(226,183,196,.4);background:rgba(240,200,138,.12);transform:translateY(-3px);box-shadow:0 16px 40px rgba(8,5,26,.4)">
+          <div style="flex:none;width:150px;align-self:stretch;border-radius:16px;overflow:hidden;box-shadow:0 14px 34px rgba(8,5,26,.45)">
+            <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="art-1a-jul23" shape="rect" placeholder="Photo" style="width:100%;height:100%" hint-size="150px,100%"></x-import>
+          </div>
+          <div style="flex:1;min-width:280px">
+            <div style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:40px;line-height:1;margin-bottom:14px">DJ Neoma</div>
+            <div style="margin-bottom:16px"><span style="font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:#f0c88a">Live DJ set</span></div>
+            <p style="font-size:14px;line-height:1.65;color:rgba(247,237,230,.82);font-weight:400;margin:0 0 14px;max-width:500px">Global rhythms and bass-forward grooves rooted in dance floors around the world.</p>
+            <div style="font-size:13px;letter-spacing:.05em;color:rgba(247,237,230,.62)"><span style="color:#e2b7c4">SomaLab:</span> Acrobatic dance by Theo</div>
+          </div>
+          <div style="flex:none;align-self:flex-start;margin-top:12px;color:rgba(226,183,196,.55)"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:#e2b7c4;padding-left:4px">August 20</div>
+        <div style="display:flex;gap:30px;align-items:stretch;flex-wrap:wrap;border:1px dashed rgba(226,183,196,.3);border-radius:20px;background:rgba(255,255,255,.02);padding:26px 30px">
+          <div style="flex:none;width:150px;align-self:stretch;min-height:120px;border-radius:16px;border:1px dashed rgba(226,183,196,.35);display:flex;align-items:center;justify-content:center;color:rgba(226,183,196,.5);font-family:'Cormorant Garamond',serif;font-size:54px">?</div>
+          <div style="flex:1;min-width:280px">
+            <div style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:40px;line-height:1.05;color:rgba(247,237,230,.7);margin-bottom:10px">Artist to be announced</div>
+            <p style="font-size:14px;line-height:1.65;color:rgba(247,237,230,.55);margin:0">The next guest in the lineup is still being confirmed — check back soon.</p>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:#e2b7c4;padding-left:4px">August 27</div>
+        <div onClick="{{ open.jul30 }}" style="display:flex;gap:30px;align-items:stretch;flex-wrap:wrap;border:1px solid rgba(226,183,196,.18);border-radius:20px;background:rgba(255,255,255,.03);padding:26px 30px;cursor:pointer;transition:border-color .2s,background .2s,transform .2s,box-shadow .2s" style-hover="border-color:rgba(226,183,196,.4);background:rgba(240,200,138,.12);transform:translateY(-3px);box-shadow:0 16px 40px rgba(8,5,26,.4)">
+          <div style="flex:none;width:150px;align-self:stretch;border-radius:16px;overflow:hidden;box-shadow:0 14px 34px rgba(8,5,26,.45)">
+            <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="art-1a-jul30" shape="rect" placeholder="Photo" style="width:100%;height:100%" hint-size="150px,100%"></x-import>
+          </div>
+          <div style="flex:1;min-width:280px">
+            <div style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:40px;line-height:1;margin-bottom:14px">Puma</div>
+            <div style="margin-bottom:16px"><span style="font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:#e2b7c4">Curated setlist</span></div>
+            <p style="font-size:14px;line-height:1.65;color:rgba(247,237,230,.82);font-weight:400;margin:0 0 14px;max-width:500px">Intuitive setlists that read the room and follow the collective pulse — feeling over formula.</p>
+            <div style="font-size:13px;letter-spacing:.05em;color:rgba(247,237,230,.62)"><span style="color:#e2b7c4">SomaLab:</span> Yoga by Wren</div>
+          </div>
+          <div style="flex:none;align-self:flex-start;margin-top:12px;color:rgba(226,183,196,.55)"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></div>
+        </div>
+      </div>
+    </div>
+      </div>
+
+  <!-- about -->
+  <div id="about" style="position:relative;z-index:2;padding:64px 60px;background:rgba(255,255,255,.04);border-top:1px solid rgba(226,183,196,.12);border-bottom:1px solid rgba(226,183,196,.12);scroll-margin-top:80px">
+    <div style="max-width:940px;margin:0 auto;text-align:center">
+      <div style="font-size: 14px; letter-spacing: .34em; text-transform: uppercase; color: #e2b7c4; margin-bottom: 32px; font-weight: 600">WHAT exactly is ECSTATIC DANCE?<br></div>
+      <div style="max-width:660px;margin:0 auto;min-height:180px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px">
+        <sc-if value="{{ voiceLoading }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;flex-direction:column;align-items:center;gap:26px">
+            <div style="display:flex;align-items:center;justify-content:center;width:120px;height:120px">{{ iconImg }}</div>
+            <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:22px;color:rgba(247,237,230,.7);animation:edPulse 1.6s ease-in-out infinite">Searching the cosmos...</div>
+          </div>
+        </sc-if>
+        <sc-if value="{{ voiceReady }}" hint-placeholder-val="{{ true }}">
+          <p style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:29px;line-height:1.5;margin:0;color:#f7ede6;animation:edFade .6s ease">{{ voiceText }}</p>
+          <div style="font-size: 14px; letter-spacing: .2em; text-transform: uppercase; color: #f0c88a; margin-top: 6px">— {{ voiceLabel }}</div>
+        </sc-if>
+      </div>
+      <button onClick="{{ rollDice }}" disabled="{{ voiceLoading }}" style="{{ rollBtnStyle }}">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 3 21 3 21 8"></polyline><line x1="4" y1="20" x2="21" y2="3"></line><polyline points="21 16 21 21 16 21"></polyline><line x1="15" y1="15" x2="21" y2="21"></line><line x1="4" y1="4" x2="9" y2="9"></line></svg>
+        Ask someone else
+      </button>
+      <div style="max-width:120px;height:1px;margin:52px auto 0;background:rgba(226,183,196,.25)"></div>
+      <div style="display:flex;justify-content:center;gap:48px;margin-top:52px;flex-wrap:wrap">
+        <div style="text-align:center"><div style="font-family:'Cormorant Garamond',serif;font-size:20px;color:#f0c88a">No shoes</div><div style="font-size:13px;color:rgba(247,237,230,.6);margin-top:4px">Bare feet or soft soles</div></div>
+        <div style="text-align:center"><div style="font-family:'Cormorant Garamond',serif;font-size:20px;color:#f0c88a">No talking</div><div style="font-size:13px;color:rgba(247,237,230,.6);margin-top:4px">Let the body speak</div></div>
+        <div style="text-align:center"><div style="font-family:'Cormorant Garamond',serif;font-size:20px;color:#f0c88a">No phones</div><div style="font-size:13px;color:rgba(247,237,230,.6);margin-top:4px">Fully present, together</div></div>
+        <div style="text-align:center"><div style="font-family:'Cormorant Garamond',serif;font-size:20px;color:#f0c88a">Substance-free</div><div style="font-size:13px;color:rgba(247,237,230,.6);margin-top:4px">No alcohol, sober dance floor</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- details -->
+  <div id="location" style="position: relative; z-index: 2; padding: 72px 60px 20px; scroll-margin-top: 80px; padding-bottom: 72px">
+    <div style="font-size: 14px; letter-spacing: .34em; text-transform: uppercase; color: #e2b7c4; font-weight: 600; margin-bottom: 28px; text-align: center">Details</div>
+    <div style="display:flex;gap:48px;flex-wrap:wrap;align-items:stretch;max-width:1000px;margin:0 auto">
+      <div style="flex:1;min-width:300px">
+        <h3 style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:40px;margin:0 0 6px">The Glow Pad</h3>
+        <p style="font-size:15px;line-height:1.7;color:rgba(247,237,230,.82);margin:0 0 26px">at Tula Movement Arts · Bend, Oregon</p>
+        <div style="display:flex;flex-direction:column;gap:16px;margin-bottom:28px">
+          <div style="display:flex;gap:18px;align-items:baseline"><span style="flex:none;width:78px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#f0c88a">When</span><span style="font-size:15px;color:rgba(247,237,230,.82)">Every Thursday · Doors 7:45pm · Dance 8–10pm</span></div>
+          <div style="display:flex;gap:18px;align-items:baseline"><span style="flex:none;width:78px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#f0c88a">Price</span><span style="font-size:15px;color:rgba(247,237,230,.82)">Sliding scale — pay what feels right</span></div>
+          <div style="display:flex;gap:18px;align-items:baseline"><span style="flex:none;width:78px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#f0c88a">Ages</span><span style="font-size:15px;color:rgba(247,237,230,.82)">All ages 12 and up welcome</span></div>
+          <div style="display:flex;gap:18px;align-items:baseline"><span style="flex:none;width:78px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#f0c88a">Bring</span><span style="font-size:15px;color:rgba(247,237,230,.82)">Water, bare feet, and an open heart</span></div>
+        </div>
+        <div style="display:flex;gap:24px;align-items:center;flex-wrap:wrap">
+          <a href="https://www.google.com/maps/place/Tula+Movement+Arts" target="_blank" style="text-decoration:none;font-size:14px;letter-spacing:.05em;color:#f0c88a;border-bottom:1px solid rgba(240,200,138,.5);padding-bottom:2px">Open in Google Maps →</a>
+        </div>
+        <div style="margin-top:26px;display:flex;align-items:center;gap:18px;flex-wrap:wrap">
+          <span style="font-size:15px;color:rgba(247,237,230,.82)">See all dance events happening nearby</span>
+          <button onClick="{{ openCalendar }}" style="cursor:pointer;display:inline-flex;align-items:center;gap:9px;padding:9px 20px;border-radius:30px;background:transparent;border:1px solid rgba(226,183,196,.4);color:#f7ede6;font-family:'Nunito Sans',sans-serif;font-size:13px;font-weight:600;letter-spacing:.04em">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            View calendar
+          </button>
+        </div>
+        <div style="margin-top:32px;padding-top:26px;border-top:1px solid rgba(226,183,196,.14)">
+          <div style="font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#f0c88a;margin-bottom:12px">Connect</div>
+          <a href="mailto:ecstaticdancebend@gmail.com" style="display:block;text-decoration:none;font-size:16px;color:#f7ede6;margin-bottom:16px">ecstaticdancebend@gmail.com</a>
+          <div style="display:flex;gap:14px">
+            <a href="https://www.instagram.com/bendecstaticdance" target="_blank" style="text-decoration:none;padding:11px 22px;border-radius:30px;border:1px solid rgba(226,183,196,.35);color:#f7ede6;font-size:13px;letter-spacing:.05em">Instagram</a>
+            <a href="https://www.facebook.com/bendecstaticdance" target="_blank" style="text-decoration:none;padding:11px 22px;border-radius:30px;border:1px solid rgba(226,183,196,.35);color:#f7ede6;font-size:13px;letter-spacing:.05em">Facebook</a>
+          </div>
+        </div>
+      </div>
+      <div style="flex:1;min-width:320px;border-radius:18px;overflow:hidden;border:1px solid rgba(226,183,196,.2);min-height:360px;background:#1b1330">
+        <iframe title="Map to The Glow Pad at Tula Movement Arts" src="https://maps.google.com/maps?q=Tula%20Movement%20Arts%20Bend%20Oregon&amp;z=15&amp;output=embed" style="width:100%;height:100%;min-height:360px;border:0;filter:invert(0.92) hue-rotate(180deg) brightness(0.9) contrast(0.9)" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <div style="position:relative;z-index:2;text-align:center;padding:26px;font-size:12px;letter-spacing:.1em;color:rgba(247,237,230,.4)">© 2026 Bend Ecstatic Dance · All rights reserved</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { modalArtistId: null, voice: 'poet', active: 'top', calendarOpen: false, calMonth: 0, voiceLoading: false, loadIdx: 0 };
+  componentDidMount() {
+    const ids = ['top', 'artists', 'about', 'location'];
+    this.onScroll = () => {
+      const line = window.innerHeight * 0.4;
+      let current = ids[0];
+      for (const id of ids) {
+        const el = document.getElementById(id);
+        if (!el) continue;
+        const r = el.getBoundingClientRect();
+        if (r.top <= line) current = id; // last section whose top has passed the line wins
+      }
+      if (current !== this.state.active) this.setState({ active: current });
+    };
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+    window.addEventListener('resize', this.onScroll, { passive: true });
+    this.onScroll();
+  }
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.onScroll);
+    window.removeEventListener('resize', this.onScroll);
+    clearTimeout(this._rollT); clearInterval(this._rollI); clearInterval(this._dieI);
+  }
+  buildIcons() {
+    return ['chakras 1', 'eye closed 1', 'eye icon 1', 'eye-sun 1', 'moon eye 1', 'moon stars 1', 'moon sun 1'].map((n) => 'uploads/' + n.replace(/ /g, '%20') + '.png');
+  }
+  renderVals() {
+    const navBase = { textDecoration: 'none', position: 'relative', paddingBottom: '5px', color: 'rgba(247,237,230,.6)', borderBottom: '2px solid transparent', transition: 'color .25s, border-color .25s' };
+    const navActive = { color: '#f7ede6', borderBottom: '2px solid #f0c88a' };
+    const navItems = [['artists', 'Schedule'], ['about', 'About'], ['location', 'Details']].map(([id, label]) => ({ id, label, href: '#' + id, style: this.state.active === id ? Object.assign({}, navBase, navActive) : navBase }));
+    const artists = {
+      jul2: { name: 'Amanda Ramirez', date: 'Thursday · July 2', slotId: 'art-1a-jul2', dj: 'Amanda Ramirez is a longtime member of the Bend dance community who curates warm, soulful setlists rather than mixing live — an evening shaped like a story.', set: 'Earthy, melodic openings that rise into radiant, full-hearted release, then settle gently back to the ground. Expect goosebumps.' },
+      jul9: { name: 'Electric Indigo', date: 'Thursday · July 9', slotId: 'art-1a-jul9', dj: 'Electric Indigo brings pulsing, hypnotic electronic textures with a shimmer of the cosmic — a DJ who loves a slow, patient build.', set: 'Deep, driving grooves that arrive in waves: trance-tinged peaks, spacious breath-breaks, and a luminous comedown.' },
+      jul16: { name: 'Kalpa', date: 'Thursday · July 16', slotId: 'art-1a-jul16', dj: 'Kalpa is a Bend-based DJ and movement facilitator drawn to organic, earthy sound. Blending live percussion textures with deep electronic grooves, they hold space for a floor to arrive, unwind, and let go together.', set: 'A gentle opening wave, a slow build through tribal and organic house, a full-bodied peak, and a soft landing — a three-act arc from first breath to final stillness.' },
+      jul23: { name: 'DJ Neoma', date: 'Thursday · July 23', slotId: 'art-1a-jul23', dj: 'DJ Neoma spins global rhythms and bass-forward grooves rooted in dance floors around the world, with an ear for the unexpected.', set: 'Percussive, hip-shaking, and full of surprise — a set that keeps the body guessing and grinning all the way through.' },
+      jul30: { name: 'Puma', date: 'Thursday · July 30', slotId: 'art-1a-jul30', dj: 'Puma crafts intuitive setlists that read the room and follow the collective pulse, favoring feeling over formula.', set: 'A responsive, ever-shifting journey — no two moments the same, all of it built for letting go.' },
+    };
+    const types = { jul2: 'Curated setlist', jul9: 'Live DJ set', jul16: 'Live DJ set', jul23: 'Live DJ set', jul30: 'Curated setlist' };
+    Object.keys(types).forEach((k) => { artists[k].typeLabel = types[k]; artists[k].isLive = types[k] === 'Live DJ set'; });
+    const somatic = {
+      jul2: { name: 'Contact dance', instr: 'Ryza', blurb: 'A guided contact-improvisation warm-up — explore weight-sharing, rolling points of contact, and moving in duet before the floor opens.' },
+      jul9: { name: 'Yoga', instr: 'Mara', blurb: 'A gentle grounding yoga flow to open the hips, spine, and breath, easing body and mind onto the dance floor.' },
+      jul16: { name: 'Embodied dance', instr: 'Sol', blurb: 'A somatic, sensation-led practice tuning into subtle movement and inner rhythm to help you arrive fully in the body.' },
+      jul23: { name: 'Acrobatic dance', instr: 'Theo', blurb: 'A playful acro-based warm-up building trust, balance, and partner flying — no experience needed, spotters provided.' },
+      jul30: { name: 'Yoga', instr: 'Wren', blurb: 'A slow, restorative yoga sequence to soften tension and settle the nervous system ahead of the dance.' },
+    };
+    Object.keys(somatic).forEach((k) => { artists[k].somatic = somatic[k].name; artists[k].somaticBlurb = somatic[k].blurb; artists[k].somaticInstructor = somatic[k].instr; artists[k].instrSlotId = 'instr-' + k; });
+    const openArtist = (id) => () => this.setState({ modalArtistId: id });
+
+    const months = [{ y: 2026, m: 6, label: 'July 2026' }, { y: 2026, m: 7, label: 'August 2026' }];
+    const events = { '2026-6-16': 'Kalpa', '2026-6-23': 'Amanda Ramirez', '2026-6-30': 'Electric Indigo', '2026-7-6': 'Kalpa', '2026-7-13': 'DJ Neoma', '2026-7-27': 'Puma' };
+    const tba = { '2026-7-20': true };
+    const thisWeek = '2026-6-16';
+    const ci = this.state.calMonth;
+    const cm = months[ci];
+    const firstDow = new Date(cm.y, cm.m, 1).getDay();
+    const daysIn = new Date(cm.y, cm.m + 1, 0).getDate();
+    const calCells = [];
+    for (let i = 0; i < firstDow; i++) calCells.push({ day: '', name: '', cellStyle: {}, numStyle: {}, nameStyle: { display: 'none' } });
+    for (let d = 1; d <= daysIn; d++) {
+      const key = cm.y + '-' + cm.m + '-' + d;
+      const isThu = new Date(cm.y, cm.m, d).getDay() === 4;
+      const ev = events[key];
+      const isTba = tba[key];
+      const isNow = key === thisWeek;
+      const cell = { minHeight: '54px', padding: '5px 4px', borderRadius: '10px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start', border: '1px solid transparent' };
+      let num = { fontSize: '13px', fontWeight: 400, color: 'rgba(247,237,230,.55)', lineHeight: 1 };
+      let nameStyle = { display: 'none' };
+      if (ev) {
+        Object.assign(cell, { background: isNow ? 'rgba(240,200,138,.24)' : 'rgba(240,200,138,.1)', border: '1px solid rgba(240,200,138,' + (isNow ? '.7' : '.4') + ')' });
+        num = { fontSize: '13px', fontWeight: 700, color: '#f0c88a', lineHeight: 1 };
+        nameStyle = { fontSize: '12px', lineHeight: 1.15, color: '#f7ede6', textAlign: 'center', marginTop: '5px', fontWeight: 600 };
+      } else if (isTba) {
+        Object.assign(cell, { background: 'rgba(255,255,255,.02)', border: '1px dashed rgba(226,183,196,.4)' });
+        num = { fontSize: '13px', fontWeight: 600, color: 'rgba(226,183,196,.8)', lineHeight: 1 };
+        nameStyle = { fontSize: '12px', lineHeight: 1.15, color: 'rgba(247,237,230,.5)', textAlign: 'center', marginTop: '5px', fontWeight: 500 };
+      } else if (isThu) {
+        num = Object.assign({}, num, { color: 'rgba(247,237,230,.85)', fontWeight: 600 });
+      }
+      calCells.push({ day: d, name: ev || (isTba ? 'TBA' : ''), cellStyle: cell, numStyle: num, nameStyle });
+    }
+    const navBtn = (on) => ({ cursor: on ? 'pointer' : 'default', width: '36px', height: '36px', borderRadius: '50%', background: 'transparent', border: '1px solid rgba(226,183,196,' + (on ? '.4' : '.12') + ')', color: on ? '#f7ede6' : 'rgba(247,237,230,.25)', fontSize: '20px', lineHeight: 1, fontFamily: "'Nunito Sans',sans-serif" });
+
+    const voices = {
+      poet: { label: 'Poet-philosopher', text: 'To dance ecstatically is to become, for one trembling hour, a rumor of the wind — a body unlearning its edges, remembering it was always music only pretending to be still.' },
+      dict: { label: 'Edance facilitator', text: 'A freeform movement practice performed without steps, speech, or shoes, in which participants move spontaneously to a live DJ\u2019s set. See also: joy, sweat, catharsis.' },
+      uncle: { label: 'Uncle Steve', text: 'So let me get this straight — you drive across town on a Thursday to flail around barefoot in the dark, no beer, and nobody\u2019s allowed to TALK? \u2026And you LIKE it?' },
+      dj: { label: 'The hype DJ', text: 'It\u2019s church, but the sermon is a bassline and somebody stole the pews. You come as you are and leave about nine pounds lighter. Let\u2019s GO.' },
+      toddler: { label: 'A delighted toddler', text: 'Everybody go wiggle-wiggle and nobody says stop and there\u2019s NO shoes and you can spin around until you fall down. Best day of my whole life.' },
+      scientist: { label: 'A skeptical scientist', text: 'Rhythmic entrainment, elevated heart rate, and social synchrony producing a measurable improvement in mood. Fine. Against my expectations, it works.' },
+      grandma: { label: 'A mystic grandmother', text: 'Oh, sweetheart. It\u2019s just the old thing — bodies and drums and letting the whole heavy day slide right off your shoulders. We\u2019ve always done this.' },
+      consultant: { label: 'A corporate consultant', text: 'Think of it as an unstructured, high-engagement wellness touchpoint that unlocks holistic synergy across the whole individual. Barefoot, though.' },
+      genz: { label: 'A Gen-Z teen', text: 'ok so it\u2019s giving silent rave but make it healing and everyone\u2019s lowkey feral and somehow it\u2019s the least problematic thing I\u2019ve ever done??' },
+    };
+    const idle = { cursor: 'pointer', padding: '9px 18px', borderRadius: '30px', background: 'transparent', border: '1px solid rgba(226,183,196,.3)', color: 'rgba(247,237,230,.7)', fontFamily: "'Nunito Sans',sans-serif", fontSize: '13px', fontWeight: 600 };
+    const active = Object.assign({}, idle, { background: '#f0c88a', border: '1px solid #f0c88a', color: '#3a1f3d' });
+    return {
+      navItems,
+      modalOpen: !!this.state.modalArtistId,
+      modalArtist: this.state.modalArtistId ? artists[this.state.modalArtistId] : {},
+      open: { jul2: openArtist('jul2'), jul9: openArtist('jul9'), jul16: openArtist('jul16'), jul23: openArtist('jul23'), jul30: openArtist('jul30') },
+      closeModal: () => this.setState({ modalArtistId: null }),
+      stopProp: (e) => e.stopPropagation(),
+      voiceText: voices[this.state.voice].text,
+      voiceLabel: voices[this.state.voice].label,
+      voiceLoading: this.state.voiceLoading,
+      voiceReady: !this.state.voiceLoading,
+      loadingText: ['Wandering into the crowd…', 'Tapping a philosopher on the shoulder…', 'Finding another perspective…'][this.state.loadIdx % 3],
+      iconImg: this.state.voiceLoading ? React.createElement('img', { src: this.buildIcons()[(this.state.iconIdx || 0) % 7], alt: '', style: { width: '100%', height: '100%', objectFit: 'contain', filter: 'drop-shadow(0 8px 20px rgba(8,5,26,.5))' } }) : null,
+      rollBtnStyle: { marginTop: '22px', cursor: this.state.voiceLoading ? 'default' : 'pointer', opacity: this.state.voiceLoading ? 0.5 : 1, display: 'inline-flex', alignItems: 'center', gap: '10px', padding: '12px 26px', borderRadius: '40px', background: 'transparent', border: '1px solid rgba(226,183,196,.4)', color: '#f7ede6', fontFamily: "'Nunito Sans',sans-serif", fontSize: '13px', fontWeight: 600, letterSpacing: '.04em' },
+      rollDice: () => {
+        if (this.state.voiceLoading) return;
+        this.setState({ voiceLoading: true, loadIdx: Math.floor(Math.random() * 3), iconIdx: Math.floor(Math.random() * 7) });
+        clearInterval(this._rollI);
+        this._rollI = setInterval(() => this.setState((s) => ({ loadIdx: s.loadIdx + 1 })), 550);
+        clearInterval(this._dieI);
+        this._dieI = setInterval(() => this.setState((s) => ({ dieIdx: (s.dieIdx || 0) + 1 })), 110);
+        this._rollT = setTimeout(() => {
+          clearInterval(this._rollI);
+          clearInterval(this._dieI);
+          const keys = Object.keys(voices).filter((k) => k !== this.state.voice);
+          this.setState({ voice: keys[Math.floor(Math.random() * keys.length)], voiceLoading: false });
+        }, 2500);
+      },
+      calendarOpen: this.state.calendarOpen,
+      openCalendar: () => this.setState({ calendarOpen: true }),
+      closeCalendar: () => this.setState({ calendarOpen: false }),
+      monthLabel: cm.label,
+      weekdays: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+      calCells,
+      prevMonth: () => this.setState((s) => ({ calMonth: Math.max(0, s.calMonth - 1) })),
+      nextMonth: () => this.setState((s) => ({ calMonth: Math.min(months.length - 1, s.calMonth + 1) })),
+      prevStyle: navBtn(ci > 0),
+      nextStyle: navBtn(ci < months.length - 1),
+    };
+  }
+}
+</script>
+</body>
+</html>
