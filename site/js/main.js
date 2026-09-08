@@ -78,6 +78,10 @@
   }
 
   const SOCIAL_ICONS = {
+    websiteUrl: {
+      label: 'Website',
+      svg: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.5"></circle><line x1="2.5" y1="12" x2="21.5" y2="12"></line><path d="M12 2.5c3 3 3 16 0 19"></path><path d="M12 2.5c-3 3-3 16 0 19"></path></svg>',
+    },
     instagramUrl: {
       label: 'Instagram',
       svg: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.2" cy="6.8" r="0.6" fill="currentColor" stroke="none"></circle></svg>',

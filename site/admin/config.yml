@@ -35,6 +35,7 @@ collections:
               - { label: "SomaLab instructor name", name: "somaticInstructor", widget: "string", required: false }
               - { label: "SomaLab instructor photo", name: "somaticInstructorPhoto", widget: "image", required: false }
               - { label: "SomaLab blurb (shown in Read More)", name: "somaticBlurb", widget: "text", required: false }
+              - { label: "Artist website link (optional)", name: "websiteUrl", widget: "string", required: false }
               - { label: "Instagram link (optional)", name: "instagramUrl", widget: "string", required: false }
               - { label: "Spotify link (optional)", name: "spotifyUrl", widget: "string", required: false }
               - { label: "SoundCloud link (optional)", name: "soundcloudUrl", widget: "string", required: false }
