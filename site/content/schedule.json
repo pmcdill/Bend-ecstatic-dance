@@ -1,9 +1,9 @@
 {
   "weeks": [
     {
-      "shortDescription": "With performances that have been dazzling dance floors, Inner Forest has been the  standOut performance at multiple festivals that many of us have been awed by in recent years. \n\n7-7:45 Soma Lab with Casey Thomas and Loua-Acro Contact Fusion\n8-10pm Ecstatic Dance with Dj Inner Forest\n$22-18 sliding scale payment\nAges 12+   \n\nBend Ecstatic Dance is Every Thursday \nat Tula Movement Arts \n2797 NW Clearwater Drive",
+      "shortDescription": "With performances that have been dazzling dance floors, Inner Forest has been the  standOut performance at multiple festivals that many of us have been awed by in recent years. Inner Forest is an Oregon-based musician, DJ, and producer weaving ancient sound wisdom into forward-thinking electronic music. Drawing from global traditions and bass-driven experimentation, his work blurs the line between ceremony and dancefloor, offering immersive journeys that awaken the body, mind, and spirit. \nEach composition is crafted with intention, layering organic instrumentation, hypnotic rhythms, and visionary textures to guide listeners into altered states of connection and bliss. \nInner Forest has performed alongside artists such as Beats Antique, CloZee, Desert Dwellers, Tipper, David Starfire, David Satori, Zoe Jakes, ill.Gates, Lafa Taylor, Nico Luminous, ill-esha, Trevor Kelly, Knowa Lusion, and The Human Experience. His music appears on High Vibe Records and Merkaba Music\n\n7-7:45 Soma Lab with Casey Thomas and Loua-Acro Contact Fusion\n8-10pm Ecstatic Dance with Dj Inner Forest\n$22-18 sliding scale payment\nAges 12+   \n\nBend Ecstatic Dance is Every Thursday \nat Tula Movement Arts \n2797 NW Clearwater Drive",
       "somaticOffering": "Acro-Contact Fusion",
-      "bio": "Inner Forest is an Oregon-based musician, DJ, and producer weaving ancient sound wisdom into forward-thinking electronic music. Drawing from global traditions and bass-driven experimentation, his work blurs the line between ceremony and dancefloor, offering immersive journeys that awaken the body, mind, and spirit. \nEach composition is crafted with intention, layering organic instrumentation, hypnotic rhythms, and visionary textures to guide listeners into altered states of connection and bliss. \nInner Forest has performed alongside artists such as Beats Antique, CloZee, Desert Dwellers, Tipper, David Starfire, David Satori, Zoe Jakes, ill.Gates, Lafa Taylor, Nico Luminous, ill-esha, Trevor Kelly, Knowa Lusion, and The Human Experience. His music appears on High Vibe Records and Merkaba Music.",
+      "bio": ".",
       "soundcloudUrl": "https://on.soundcloud.com/GwfFbuQgIji7zCFhJu",
       "name": "DJ Inner Forest",
       "photo": "/assets/images/uploads/sept-10.png",
@@ -17,80 +17,20 @@
       "somaticBlurb": "Cacey Thomas, one of our greatest bodyBoss experts leads\nAcro Contact Fusion this week with Loua\n\nExplore the ooey-gooey space where therapeutic acro meets contact improv. We’ll begin with a grounding partner thai massage warm-up to drop in and connect. From there, we’ll stay close to the floor, learning to roll, melt, and transition in and out of acro yoga shapes. We’ll weave these movements into contact improv, exploring how acro poses can emerge naturally within a shared dance. Come ready to slow down, get playful, and discover new ways of moving together.\n\nOur weekly eDance offers a facilitated movement experience called Soma Lab.\nIt’s included in the regular cost of entry.\nEach Week:\n7-7:45pm Soma Lab\n8-10pm Ecstatic Dance\nAll together $22-18 Sliding Scale Payment\n\nBendEcstaticDance.com"
     },
     {
-      "shortDescription": "Warm, soulful setlists that hold the room gently and open space for the collective to arrive.",
-      "somaticOffering": "Contact dance",
-      "bio": "Amanda Ramirez is a longtime member of the Bend dance community who curates warm, soulful setlists rather than mixing live — an evening shaped like a story.",
-      "name": "Amanda Ramirez",
-      "photo": "assets/images/amanda-card.webp",
-      "tba": false,
-      "somaticInstructorPhoto": "assets/images/ryza-instructor.webp",
-      "setDescription": "Earthy, melodic openings that rise into radiant, full-hearted release, then settle gently back to the ground. Expect goosebumps.",
-      "typeLabel": "Curated setlist",
-      "somaticInstructor": "Ryza",
-      "id": "amanda-2026-07-23",
-      "somaticBlurb": "A guided contact-improvisation warm-up — explore weight-sharing, rolling points of contact, and moving in duet before the floor opens."
-    },
-    {
-      "shortDescription": "Pulsing, hypnotic electronic textures with a shimmer of the cosmic — hard to keep still through.",
-      "somaticOffering": "Yoga",
-      "bio": "Electric Indigo brings pulsing, hypnotic electronic textures with a shimmer of the cosmic — a DJ who loves a slow, patient build.",
-      "name": "Electric Indigo",
-      "photo": "assets/images/indigo-card.webp",
-      "tba": false,
-      "somaticInstructorPhoto": "assets/images/mara-instructor.webp",
-      "setDescription": "Deep, driving grooves that arrive in waves: trance-tinged peaks, spacious breath-breaks, and a luminous comedown.",
-      "typeLabel": "Live DJ set",
-      "somaticInstructor": "Mara",
-      "id": "indigo-2026-07-30",
-      "somaticBlurb": "A gentle grounding yoga flow to open the hips, spine, and breath, easing body and mind onto the dance floor."
-    },
-    {
-      "shortDescription": "Organic house and downtempo woven into a slow-rising journey built for barefoot movement — textured, spacious, and deeply felt.",
-      "somaticOffering": "Embodied dance",
-      "bio": "Kalpa is a Bend-based DJ and movement facilitator drawn to organic, earthy sound. Blending live percussion textures with deep electronic grooves, they hold space for a floor to arrive, unwind, and let go together.",
-      "name": "Kalpa",
-      "photo": "assets/images/kalpa-card.webp",
-      "tba": false,
-      "somaticInstructorPhoto": "assets/images/sol-instructor.webp",
-      "setDescription": "A gentle opening wave, a slow build through tribal and organic house, a full-bodied peak, and a soft landing — a three-act arc from first breath to final stillness.",
-      "typeLabel": "Live DJ set",
-      "somaticInstructor": "Sol",
-      "id": "kalpa-2026-08-06",
-      "somaticBlurb": "A somatic, sensation-led practice tuning into subtle movement and inner rhythm to help you arrive fully in the body."
-    },
-    {
-      "shortDescription": "Global rhythms and bass-forward grooves rooted in dance floors around the world.",
-      "somaticOffering": "Acrobatic dance",
-      "bio": "DJ Neoma spins global rhythms and bass-forward grooves rooted in dance floors around the world, with an ear for the unexpected.",
-      "name": "DJ Neoma",
-      "photo": "assets/images/neoma-card.webp",
+      "shortDescription": "Dawn describes her style as “World Beats & Power Ballads,” and creates transformative journeys through deep tribal rhythms interwoven with the soaring vocals and melodies, mixed with a little funk. She loves creating sonic landscapes that sync you to the primal pulse of the Earth, and get you tapped in to the collective heartbeat of everyone else on the dancefloor.\n\nDawn believes that dance is a powerful conduit to joy, and a prayer in motion that allows you to shed the weight of the world and dance your way into ecstatic connection with the Divine. Let the beat guide you, the melody envelop you, and the dance set your spirit free.",
+      "somaticOffering": "",
+      "bio": "",
+      "soundcloudUrl": "https://on.soundcloud.com/3bLCK1jRc3O7qEIPm8",
+      "name": "Dj Dawn Michaela",
+      "photo": "/assets/images/uploads/img_3822.jpeg",
       "tba": false,
       "somaticInstructorPhoto": null,
-      "setDescription": "Percussive, hip-shaking, and full of surprise — a set that keeps the body guessing and grinning all the way through.",
+      "setDescription": "",
       "typeLabel": "Live DJ set",
-      "somaticInstructor": "Theo",
-      "id": "neoma-2026-08-13",
-      "somaticBlurb": "A playful acro-based warm-up building trust, balance, and partner flying — no experience needed, spotters provided."
-    },
-    {
-      "id": "tba-2026-08-20",
-      "tba": true,
-      "name": "Artist to be announced",
-      "shortDescription": "The next guest in the lineup is still being confirmed — check back soon."
-    },
-    {
-      "shortDescription": "Intuitive setlists that read the room and follow the collective pulse — feeling over formula.",
-      "somaticOffering": "Yoga",
-      "bio": "Puma crafts intuitive setlists that read the room and follow the collective pulse, favoring feeling over formula.",
-      "name": "Puma",
-      "photo": "assets/images/puma-card.webp",
-      "tba": false,
-      "somaticInstructorPhoto": null,
-      "setDescription": "A responsive, ever-shifting journey — no two moments the same, all of it built for letting go.",
-      "typeLabel": "Curated setlist",
-      "somaticInstructor": "Wren",
+      "somaticInstructor": "",
       "id": "puma-2026-08-27",
-      "somaticBlurb": "A slow, restorative yoga sequence to soften tension and settle the nervous system ahead of the dance."
+      "instagramUrl": "https://www.instagram.com/dawnmichaela_?stkn=aThoMmlrNmIxb3k0",
+      "somaticBlurb": ""
     }
   ]
 }
