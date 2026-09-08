@@ -1,0 +1,42 @@
+backend:
+  name: github
+  repo: pmcdill/Bend-ecstatic-dance
+  branch: main
+  base_url: https://bend-ecstatic-oauth.vercel.app
+
+# Images uploaded through the CMS land in the repo here, and are referenced
+# on the live site as /assets/images/uploads/... (site/ is the Vercel
+# project's deployment root).
+media_folder: "site/assets/images/uploads"
+public_folder: "/assets/images/uploads"
+
+collections:
+  - name: "schedule"
+    label: "Schedule"
+    files:
+      - name: "weeks"
+        label: "Weekly Schedule"
+        file: "site/content/schedule.json"
+        fields:
+          - label: "Weeks"
+            name: "weeks"
+            widget: "list"
+            summary: "{{fields.dateLabel}} — {{fields.name}}"
+            fields:
+              - { label: "Featured this week (shown big in the hero)", name: "featured", widget: "boolean", default: false }
+              - { label: "TBA (no artist confirmed yet)", name: "tba", widget: "boolean", default: false }
+              - { label: 'Date label (shown above the card — e.g. "July 23" or "This Thursday · July 16")', name: "dateLabel", widget: "string" }
+              - { label: 'Date display (shown in the Read More popup — e.g. "Thursday · July 23")', name: "dateDisplay", widget: "string", required: false }
+              - { label: "Artist / act name", name: "name", widget: "string" }
+              - { label: "Set type", name: "typeLabel", widget: "select", options: ["Live DJ set", "Curated setlist"], required: false }
+              - { label: "Card photo", name: "photo", widget: "image", required: false }
+              - { label: 'Card photo position (advanced — CSS object-position, e.g. "50% 70%")', name: "photoPosition", widget: "string", required: false }
+              - { label: "Hero photo (only used when this week is Featured)", name: "featuredPhoto", widget: "image", required: false }
+              - { label: "Short description (shown on the hero + schedule card)", name: "shortDescription", widget: "text" }
+              - { label: "About the DJ (shown in Read More)", name: "bio", widget: "text", required: false }
+              - { label: "About the set (shown in Read More)", name: "setDescription", widget: "text", required: false }
+              - { label: 'SomaLab offering (e.g. "Yoga", "Contact dance")', name: "somaticOffering", widget: "string", required: false }
+              - { label: "SomaLab instructor name", name: "somaticInstructor", widget: "string", required: false }
+              - { label: "SomaLab instructor photo", name: "somaticInstructorPhoto", widget: "image", required: false }
+              - { label: "SomaLab instructor photo position (advanced)", name: "somaticInstructorPhotoPosition", widget: "string", required: false }
+              - { label: "SomaLab blurb (shown in Read More)", name: "somaticBlurb", widget: "text", required: false }

@@ -40,25 +40,8 @@
       <span class="week-banner-line"></span>
     </div>
 
-    <div class="featured">
-      <div class="featured-photo">
-        <img class="photo-img" src="assets/images/kalpa-hero.webp" alt="Kalpa">
-      </div>
-      <div class="featured-info">
-        <div class="featured-date">Thursday · July 16</div>
-        <div class="featured-name">Kalpa</div>
-        <div class="pill-row">
-          <a class="pill pill--link" href="https://www.google.com/maps/place/Tula+Movement+Arts" target="_blank" rel="noopener">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-            The Glow Pad
-            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-          </a>
-          <span class="pill">8–10pm</span>
-          <span class="pill">Live DJ set</span>
-        </div>
-        <p class="featured-desc">Kalpa weaves organic house and downtempo into a slow-rising journey built for barefoot movement — textured, spacious, and deeply felt.</p>
-        <button type="button" class="btn-primary" data-open-modal="kalpa" data-date-display="Thursday · July 16">Read more →</button>
-      </div>
+    <div class="featured" id="featured-slot">
+      <!-- populated by js/main.js from content/schedule.json (the week flagged "featured") -->
     </div>
   </section>
 
@@ -146,127 +129,8 @@
       <span class="timeline-time">9:45–10</span><span class="timeline-activity">Closing circle</span>
     </div>
 
-    <div class="schedule-list">
-
-      <div class="schedule-item">
-        <div class="schedule-date-label">This Thursday · July 16</div>
-        <div class="schedule-card" data-open-modal="kalpa" data-date-display="Thursday · July 16" tabindex="0" role="button">
-          <div class="schedule-card-photo">
-            <img class="photo-img" src="assets/images/kalpa-card.webp" alt="Kalpa" style="object-position:50% 72.5%">
-          </div>
-          <div class="schedule-card-body">
-            <div class="schedule-card-name">Kalpa</div>
-            <div class="schedule-card-type schedule-card-type--live">Live DJ set</div>
-            <p class="schedule-card-desc">Organic house and downtempo woven into a slow-rising journey built for barefoot movement — textured, spacious, and deeply felt.</p>
-            <div class="schedule-card-somalab"><span>SomaLab:</span> Embodied dance by Sol</div>
-          </div>
-          <div class="schedule-card-arrow" aria-hidden="true">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-          </div>
-        </div>
-      </div>
-
-      <div class="schedule-item">
-        <div class="schedule-date-label">July 23</div>
-        <div class="schedule-card" data-open-modal="amanda" data-date-display="Thursday · July 23" tabindex="0" role="button">
-          <div class="schedule-card-photo">
-            <img class="photo-img" src="assets/images/amanda-card.webp" alt="Amanda Ramirez">
-          </div>
-          <div class="schedule-card-body">
-            <div class="schedule-card-name">Amanda Ramirez</div>
-            <div class="schedule-card-type schedule-card-type--curated">Curated setlist</div>
-            <p class="schedule-card-desc">Warm, soulful setlists that hold the room gently and open space for the collective to arrive.</p>
-            <div class="schedule-card-somalab"><span>SomaLab:</span> Contact dance by Ryza</div>
-          </div>
-          <div class="schedule-card-arrow" aria-hidden="true">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-          </div>
-        </div>
-      </div>
-
-      <div class="schedule-item">
-        <div class="schedule-date-label">July 30</div>
-        <div class="schedule-card" data-open-modal="indigo" data-date-display="Thursday · July 30" tabindex="0" role="button">
-          <div class="schedule-card-photo">
-            <img class="photo-img" src="assets/images/indigo-card.webp" alt="Electric Indigo">
-          </div>
-          <div class="schedule-card-body">
-            <div class="schedule-card-name">Electric Indigo</div>
-            <div class="schedule-card-type schedule-card-type--live">Live DJ set</div>
-            <p class="schedule-card-desc">Pulsing, hypnotic electronic textures with a shimmer of the cosmic — hard to keep still through.</p>
-            <div class="schedule-card-somalab"><span>SomaLab:</span> Yoga by Mara</div>
-          </div>
-          <div class="schedule-card-arrow" aria-hidden="true">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-          </div>
-        </div>
-      </div>
-
-      <div class="schedule-item">
-        <div class="schedule-date-label">August 6</div>
-        <div class="schedule-card" data-open-modal="kalpa" data-date-display="Thursday · August 6" tabindex="0" role="button">
-          <div class="schedule-card-photo">
-            <img class="photo-img" src="assets/images/kalpa-card.webp" alt="Kalpa" style="object-position:50% 72.5%">
-          </div>
-          <div class="schedule-card-body">
-            <div class="schedule-card-name">Kalpa</div>
-            <div class="schedule-card-type schedule-card-type--live">Live DJ set</div>
-            <p class="schedule-card-desc">Organic house and downtempo woven into a slow-rising journey built for barefoot movement — textured, spacious, and deeply felt.</p>
-            <div class="schedule-card-somalab"><span>SomaLab:</span> Embodied dance by Sol</div>
-          </div>
-          <div class="schedule-card-arrow" aria-hidden="true">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-          </div>
-        </div>
-      </div>
-
-      <div class="schedule-item">
-        <div class="schedule-date-label">August 13</div>
-        <div class="schedule-card" data-open-modal="neoma" data-date-display="Thursday · August 13" tabindex="0" role="button">
-          <div class="schedule-card-photo">
-            <img class="photo-img" src="assets/images/neoma-card.webp" alt="DJ Neoma">
-          </div>
-          <div class="schedule-card-body">
-            <div class="schedule-card-name">DJ Neoma</div>
-            <div class="schedule-card-type schedule-card-type--live">Live DJ set</div>
-            <p class="schedule-card-desc">Global rhythms and bass-forward grooves rooted in dance floors around the world.</p>
-            <div class="schedule-card-somalab"><span>SomaLab:</span> Acrobatic dance by Theo</div>
-          </div>
-          <div class="schedule-card-arrow" aria-hidden="true">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-          </div>
-        </div>
-      </div>
-
-      <div class="schedule-item">
-        <div class="schedule-date-label">August 20</div>
-        <div class="schedule-card schedule-card--tba">
-          <div class="schedule-card-photo schedule-card-photo--tba">?</div>
-          <div class="schedule-card-body">
-            <div class="schedule-card-name schedule-card-name--tba">Artist to be announced</div>
-            <p class="schedule-card-desc schedule-card-desc--tba">The next guest in the lineup is still being confirmed — check back soon.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="schedule-item">
-        <div class="schedule-date-label">August 27</div>
-        <div class="schedule-card" data-open-modal="puma" data-date-display="Thursday · August 27" tabindex="0" role="button">
-          <div class="schedule-card-photo">
-            <img class="photo-img" src="assets/images/puma-card.webp" alt="Puma">
-          </div>
-          <div class="schedule-card-body">
-            <div class="schedule-card-name">Puma</div>
-            <div class="schedule-card-type schedule-card-type--curated">Curated setlist</div>
-            <p class="schedule-card-desc">Intuitive setlists that read the room and follow the collective pulse — feeling over formula.</p>
-            <div class="schedule-card-somalab"><span>SomaLab:</span> Yoga by Wren</div>
-          </div>
-          <div class="schedule-card-arrow" aria-hidden="true">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-          </div>
-        </div>
-      </div>
-
+    <div class="schedule-list" id="schedule-list">
+      <!-- populated by js/main.js from content/schedule.json -->
     </div>
   </section>
 

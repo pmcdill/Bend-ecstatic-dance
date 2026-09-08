@@ -1,67 +1,9 @@
 (() => {
   'use strict';
 
-  // ---------- artist content (shared between hero, schedule cards, and modal) ----------
-  const ARTISTS = {
-    kalpa: {
-      name: 'Kalpa',
-      typeLabel: 'Live DJ set',
-      photo: 'assets/images/kalpa-card.webp',
-      photoPosition: '50% 72.5%',
-      dj: 'Kalpa is a Bend-based DJ and movement facilitator drawn to organic, earthy sound. Blending live percussion textures with deep electronic grooves, they hold space for a floor to arrive, unwind, and let go together.',
-      set: 'A gentle opening wave, a slow build through tribal and organic house, a full-bodied peak, and a soft landing — a three-act arc from first breath to final stillness.',
-      somatic: 'Embodied dance',
-      somaticInstructor: 'Sol',
-      somaticInstructorPhoto: 'assets/images/sol-instructor.webp',
-      somaticInstructorPhotoStyle: { objectPosition: '50.5% 100%', transform: 'scale(1.85)', transformOrigin: '50.5% 100%' },
-      somaticBlurb: 'A somatic, sensation-led practice tuning into subtle movement and inner rhythm to help you arrive fully in the body.',
-    },
-    amanda: {
-      name: 'Amanda Ramirez',
-      typeLabel: 'Curated setlist',
-      photo: 'assets/images/amanda-card.webp',
-      dj: 'Amanda Ramirez is a longtime member of the Bend dance community who curates warm, soulful setlists rather than mixing live — an evening shaped like a story.',
-      set: 'Earthy, melodic openings that rise into radiant, full-hearted release, then settle gently back to the ground. Expect goosebumps.',
-      somatic: 'Contact dance',
-      somaticInstructor: 'Ryza',
-      somaticInstructorPhoto: 'assets/images/ryza-instructor.webp',
-      somaticBlurb: 'A guided contact-improvisation warm-up — explore weight-sharing, rolling points of contact, and moving in duet before the floor opens.',
-    },
-    indigo: {
-      name: 'Electric Indigo',
-      typeLabel: 'Live DJ set',
-      photo: 'assets/images/indigo-card.webp',
-      dj: 'Electric Indigo brings pulsing, hypnotic electronic textures with a shimmer of the cosmic — a DJ who loves a slow, patient build.',
-      set: 'Deep, driving grooves that arrive in waves: trance-tinged peaks, spacious breath-breaks, and a luminous comedown.',
-      somatic: 'Yoga',
-      somaticInstructor: 'Mara',
-      somaticInstructorPhoto: 'assets/images/mara-instructor.webp',
-      somaticInstructorPhotoStyle: { objectPosition: '39.3% 100%', transform: 'scale(2.18)', transformOrigin: '39.3% 100%' },
-      somaticBlurb: 'A gentle grounding yoga flow to open the hips, spine, and breath, easing body and mind onto the dance floor.',
-    },
-    neoma: {
-      name: 'DJ Neoma',
-      typeLabel: 'Live DJ set',
-      photo: 'assets/images/neoma-card.webp',
-      dj: 'DJ Neoma spins global rhythms and bass-forward grooves rooted in dance floors around the world, with an ear for the unexpected.',
-      set: 'Percussive, hip-shaking, and full of surprise — a set that keeps the body guessing and grinning all the way through.',
-      somatic: 'Acrobatic dance',
-      somaticInstructor: 'Theo',
-      somaticInstructorPhoto: null,
-      somaticBlurb: 'A playful acro-based warm-up building trust, balance, and partner flying — no experience needed, spotters provided.',
-    },
-    puma: {
-      name: 'Puma',
-      typeLabel: 'Curated setlist',
-      photo: 'assets/images/puma-card.webp',
-      dj: 'Puma crafts intuitive setlists that read the room and follow the collective pulse, favoring feeling over formula.',
-      set: 'A responsive, ever-shifting journey — no two moments the same, all of it built for letting go.',
-      somatic: 'Yoga',
-      somaticInstructor: 'Wren',
-      somaticInstructorPhoto: null,
-      somaticBlurb: 'A slow, restorative yoga sequence to soften tension and settle the nervous system ahead of the dance.',
-    },
-  };
+  // ---------- schedule/artist content, loaded from content/schedule.json ----------
+  // (that file is what Decap CMS at /admin edits — see admin/config.yml)
+  let WEEKS_BY_ID = {};
 
   // ---------- artist modal ----------
   const artistModal = document.getElementById('artist-modal');
@@ -94,21 +36,21 @@
     }
   }
 
-  function openArtistModal(key, dateDisplay) {
-    const artist = ARTISTS[key];
-    if (!artist) return;
-    modalDate.textContent = dateDisplay;
-    modalTypeBadge.textContent = artist.typeLabel;
-    modalName.textContent = artist.name;
-    modalTypeLabel.textContent = artist.typeLabel;
-    modalDj.textContent = artist.dj;
-    modalSet.textContent = artist.set;
+  function openArtistModal(id) {
+    const week = WEEKS_BY_ID[id];
+    if (!week || week.tba) return;
+    modalDate.textContent = week.dateDisplay || '';
+    modalTypeBadge.textContent = week.typeLabel || '';
+    modalName.textContent = week.name;
+    modalTypeLabel.textContent = week.typeLabel || '';
+    modalDj.textContent = week.bio || '';
+    modalSet.textContent = week.setDescription || '';
     modalSomalabLabel.textContent = 'SomaLab · 7pm · 45 mins';
-    modalSomalabInstructor.textContent = artist.somaticInstructor;
-    modalSomalabActivity.textContent = artist.somatic;
-    modalSomalabBlurb.textContent = artist.somaticBlurb;
-    setPhoto(modalPhotoImg, modalPhotoPlaceholder, artist.photo, artist.name, artist.photoPosition ? { objectPosition: artist.photoPosition } : null);
-    setPhoto(modalInstructorImg, modalInstructorPlaceholder, artist.somaticInstructorPhoto, artist.somaticInstructor, artist.somaticInstructorPhotoStyle);
+    modalSomalabInstructor.textContent = week.somaticInstructor || '';
+    modalSomalabActivity.textContent = week.somaticOffering || '';
+    modalSomalabBlurb.textContent = week.somaticBlurb || '';
+    setPhoto(modalPhotoImg, modalPhotoPlaceholder, week.photo, week.name, week.photoPosition ? { objectPosition: week.photoPosition } : null);
+    setPhoto(modalInstructorImg, modalInstructorPlaceholder, week.somaticInstructorPhoto, week.somaticInstructor, week.somaticInstructorPhotoPosition ? { objectPosition: week.somaticInstructorPhotoPosition } : null);
     artistModal.hidden = false;
   }
 
@@ -116,22 +58,188 @@
     artistModal.hidden = true;
   }
 
-  document.querySelectorAll('[data-open-modal]').forEach((el) => {
-    el.addEventListener('click', () => {
-      openArtistModal(el.dataset.openModal, el.dataset.dateDisplay);
-    });
+  function wireModalTrigger(el) {
+    el.addEventListener('click', () => openArtistModal(el.dataset.openModal));
     el.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
-        openArtistModal(el.dataset.openModal, el.dataset.dateDisplay);
+        openArtistModal(el.dataset.openModal);
       }
     });
-  });
+  }
 
   document.getElementById('artist-modal-close').addEventListener('click', closeArtistModal);
   artistModal.addEventListener('click', (e) => {
     if (e.target === artistModal) closeArtistModal();
   });
+
+  // ---------- hero + schedule rendering (from content/schedule.json) ----------
+  function photoImgEl(src, alt, position) {
+    const img = document.createElement('img');
+    img.className = 'photo-img';
+    img.src = src;
+    img.alt = alt || '';
+    if (position) img.style.objectPosition = position;
+    return img;
+  }
+
+  function renderFeatured(week) {
+    const slot = document.getElementById('featured-slot');
+    slot.innerHTML = '';
+    if (!week) return;
+
+    const photoDiv = document.createElement('div');
+    photoDiv.className = 'featured-photo';
+    photoDiv.appendChild(photoImgEl(week.featuredPhoto || week.photo, week.name, week.photoPosition));
+
+    const info = document.createElement('div');
+    info.className = 'featured-info';
+
+    const dateEl = document.createElement('div');
+    dateEl.className = 'featured-date';
+    dateEl.textContent = week.dateDisplay || '';
+    info.appendChild(dateEl);
+
+    const nameEl = document.createElement('div');
+    nameEl.className = 'featured-name';
+    nameEl.textContent = week.name;
+    info.appendChild(nameEl);
+
+    const pillRow = document.createElement('div');
+    pillRow.className = 'pill-row';
+    pillRow.innerHTML =
+      '<a class="pill pill--link" href="https://www.google.com/maps/place/Tula+Movement+Arts" target="_blank" rel="noopener">' +
+      '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>' +
+      'The Glow Pad' +
+      '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>' +
+      '</a>' +
+      '<span class="pill">8–10pm</span>';
+    const typePill = document.createElement('span');
+    typePill.className = 'pill';
+    typePill.textContent = week.typeLabel || '';
+    pillRow.appendChild(typePill);
+    info.appendChild(pillRow);
+
+    const desc = document.createElement('p');
+    desc.className = 'featured-desc';
+    desc.textContent = week.shortDescription || '';
+    info.appendChild(desc);
+
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'btn-primary';
+    btn.dataset.openModal = week.id;
+    btn.textContent = 'Read more →';
+    wireModalTrigger(btn);
+    info.appendChild(btn);
+
+    slot.appendChild(photoDiv);
+    slot.appendChild(info);
+  }
+
+  function renderScheduleList(weeks) {
+    const list = document.getElementById('schedule-list');
+    list.innerHTML = '';
+
+    weeks.forEach((week) => {
+      const item = document.createElement('div');
+      item.className = 'schedule-item';
+
+      const dateLabel = document.createElement('div');
+      dateLabel.className = 'schedule-date-label';
+      dateLabel.textContent = week.dateLabel || '';
+      item.appendChild(dateLabel);
+
+      const card = document.createElement('div');
+
+      if (week.tba) {
+        card.className = 'schedule-card schedule-card--tba';
+
+        const photo = document.createElement('div');
+        photo.className = 'schedule-card-photo schedule-card-photo--tba';
+        photo.textContent = '?';
+        card.appendChild(photo);
+
+        const body = document.createElement('div');
+        body.className = 'schedule-card-body';
+        const name = document.createElement('div');
+        name.className = 'schedule-card-name schedule-card-name--tba';
+        name.textContent = week.name || 'Artist to be announced';
+        const desc = document.createElement('p');
+        desc.className = 'schedule-card-desc schedule-card-desc--tba';
+        desc.textContent = week.shortDescription || '';
+        body.appendChild(name);
+        body.appendChild(desc);
+        card.appendChild(body);
+
+        item.appendChild(card);
+        list.appendChild(item);
+        return;
+      }
+
+      card.className = 'schedule-card';
+      card.tabIndex = 0;
+      card.setAttribute('role', 'button');
+      card.dataset.openModal = week.id;
+
+      const photo = document.createElement('div');
+      photo.className = 'schedule-card-photo';
+      photo.appendChild(photoImgEl(week.photo, week.name, week.photoPosition));
+      card.appendChild(photo);
+
+      const body = document.createElement('div');
+      body.className = 'schedule-card-body';
+
+      const name = document.createElement('div');
+      name.className = 'schedule-card-name';
+      name.textContent = week.name;
+      body.appendChild(name);
+
+      const type = document.createElement('div');
+      type.className = 'schedule-card-type ' + (week.typeLabel === 'Live DJ set' ? 'schedule-card-type--live' : 'schedule-card-type--curated');
+      type.textContent = week.typeLabel || '';
+      body.appendChild(type);
+
+      const desc = document.createElement('p');
+      desc.className = 'schedule-card-desc';
+      desc.textContent = week.shortDescription || '';
+      body.appendChild(desc);
+
+      const somalab = document.createElement('div');
+      somalab.className = 'schedule-card-somalab';
+      const somalabLabel = document.createElement('span');
+      somalabLabel.textContent = 'SomaLab:';
+      somalab.appendChild(somalabLabel);
+      somalab.appendChild(document.createTextNode(' ' + (week.somaticOffering || '') + ' by ' + (week.somaticInstructor || '')));
+      body.appendChild(somalab);
+
+      card.appendChild(body);
+
+      const arrow = document.createElement('div');
+      arrow.className = 'schedule-card-arrow';
+      arrow.setAttribute('aria-hidden', 'true');
+      arrow.innerHTML = '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>';
+      card.appendChild(arrow);
+
+      wireModalTrigger(card);
+      item.appendChild(card);
+      list.appendChild(item);
+    });
+  }
+
+  async function loadSchedule() {
+    try {
+      const res = await fetch('content/schedule.json', { cache: 'no-store' });
+      const data = await res.json();
+      const weeks = Array.isArray(data.weeks) ? data.weeks : [];
+      WEEKS_BY_ID = {};
+      weeks.forEach((w) => { WEEKS_BY_ID[w.id] = w; });
+      renderFeatured(weeks.find((w) => w.featured) || weeks[0]);
+      renderScheduleList(weeks);
+    } catch (err) {
+      console.error('Failed to load schedule content:', err);
+    }
+  }
 
   // ---------- calendar modal ----------
   const calendarModal = document.getElementById('calendar-modal');
@@ -317,4 +425,6 @@
   window.addEventListener('scroll', updateActiveSection, { passive: true });
   window.addEventListener('resize', updateActiveSection, { passive: true });
   updateActiveSection();
+
+  loadSchedule();
 })();
