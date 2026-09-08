@@ -43,9 +43,6 @@ a { color: inherit; }
 
 button { font-family: var(--sans); }
 
-@keyframes drift { 0% { transform: translate(0, 0); } 50% { transform: translate(18px, -24px); } 100% { transform: translate(0, 0); } }
-@keyframes driftb { 0% { transform: translate(0, 0); } 50% { transform: translate(-22px, 18px); } 100% { transform: translate(0, 0); } }
-@keyframes twinkle { 0%, 100% { opacity: .25; } 50% { opacity: .9; } }
 @keyframes edPulse { 0%, 100% { opacity: .45; } 50% { opacity: .95; } }
 @keyframes edFade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
 
@@ -58,34 +55,6 @@ button { font-family: var(--sans); }
   color: var(--cream);
   position: relative;
 }
-
-.bg-orb {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(6px);
-  pointer-events: none;
-}
-.bg-orb--a {
-  top: 120px; left: 80px; width: 220px; height: 220px;
-  background: radial-gradient(circle at 35% 35%, rgba(226, 183, 196, .35), transparent 70%);
-  animation: drift 19s ease-in-out infinite;
-}
-.bg-orb--b {
-  top: 640px; right: 70px; width: 280px; height: 280px;
-  filter: blur(8px);
-  background: radial-gradient(circle at 50% 50%, rgba(240, 200, 138, .22), transparent 70%);
-  animation: driftb 24s ease-in-out infinite;
-}
-.bg-star {
-  position: absolute;
-  border-radius: 50%;
-  background: #fff;
-  box-shadow: 0 0 8px #fff;
-  pointer-events: none;
-}
-.bg-star--1 { top: 70px; right: 210px; width: 5px; height: 5px; animation: twinkle 5s ease-in-out infinite; }
-.bg-star--2 { top: 150px; left: 420px; width: 4px; height: 4px; animation: twinkle 7s ease-in-out .8s infinite; }
-.bg-star--3 { top: 260px; right: 120px; width: 3px; height: 3px; background: var(--amber); box-shadow: 0 0 8px var(--amber); animation: twinkle 6s ease-in-out 1.4s infinite; }
 
 .divider {
   max-width: 120px;
@@ -755,6 +724,9 @@ button { font-family: var(--sans); }
 .voice-box {
   max-width: 660px;
   margin: 0 auto;
+  /* 180px covers every quote at >=480px wide; narrower viewports wrap the
+     longest quotes onto more lines and need more room — see the 640px
+     breakpoint below, sized from the actual tallest quote at 320px wide */
   min-height: 180px;
   display: flex;
   flex-direction: column;
@@ -880,6 +852,7 @@ button { font-family: var(--sans); }
 }
 
 .map-embed {
+  position: relative;
   flex: 1;
   min-width: 320px;
   border-radius: 18px;
@@ -888,12 +861,21 @@ button { font-family: var(--sans); }
   min-height: 360px;
   background: var(--bg-1);
 }
+.map-embed::after {
+  /* a light tint to blend the map into the dark page, instead of the old
+     color-inverting filter — that muddied street labels and inverted
+     Google's own branding along with everything else */
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(27, 19, 48, .18);
+  pointer-events: none;
+}
 .map-embed iframe {
   width: 100%;
   height: 100%;
   min-height: 360px;
   border: 0;
-  filter: invert(0.92) hue-rotate(180deg) brightness(0.9) contrast(0.9);
 }
 
 /* ---------- footer ---------- */
@@ -912,6 +894,20 @@ button { font-family: var(--sans); }
 
 /* ---------- responsive ---------- */
 
+/* Previously the only breakpoint was 640px, so everything from 641px to
+   ~950px got the desktop side-by-side .featured layout while still being
+   too narrow for it — .featured-info would shrink to as little as 320px
+   (measured), squeezing the 56px serif artist name into an uncomfortably
+   narrow column instead of the ~476px it was actually designed for. */
+@media (max-width: 900px) {
+  .featured {
+    flex-direction: column;
+    align-items: center;
+  }
+  .featured-photo { width: min(300px, 100%); }
+  .featured-info { min-width: 0; width: 100%; }
+}
+
 @media (max-width: 640px) {
   .nav { padding: 16px 22px; }
   .nav-links { gap: 18px; font-size: 11px; }
@@ -923,4 +919,5 @@ button { font-family: var(--sans); }
   .schedule, .details, .about { padding-left: 24px; padding-right: 24px; }
   .schedule-card-photo { width: 100%; height: 160px; }
   .modal-name { font-size: var(--fs-5); }
+  .voice-box { min-height: 280px; }
 }
