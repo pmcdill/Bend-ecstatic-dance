@@ -3,13 +3,73 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Bend Ecstatic Dance</title>
+<title>Bend Ecstatic Dance — Thursday Nights in Bend, Oregon</title>
 <meta name="description" content="Ecstatic dance in Bend, Oregon — every Thursday night at The Glow Pad, Tula Movement Arts. A substance-free, barefoot, freeform dance floor.">
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
+
+<!-- Open Graph / Twitter card -->
+<!-- TODO: swap og:image/twitter:image for a dedicated 1200x630 share image — the microfest banner is a placeholder and will look cropped/off-message once that one-off event has passed. -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Bend Ecstatic Dance — Thursday Nights in Bend, Oregon">
+<meta property="og:description" content="Ecstatic dance in Bend, Oregon — every Thursday night at The Glow Pad, Tula Movement Arts. A substance-free, barefoot, freeform dance floor.">
+<meta property="og:image" content="https://www.bendecstaticdance.com/assets/images/microfest-banner.webp">
+<meta property="og:url" content="https://www.bendecstaticdance.com/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Bend Ecstatic Dance — Thursday Nights in Bend, Oregon">
+<meta name="twitter:description" content="Ecstatic dance in Bend, Oregon — every Thursday night at The Glow Pad, Tula Movement Arts. A substance-free, barefoot, freeform dance floor.">
+<meta name="twitter:image" content="https://www.bendecstaticdance.com/assets/images/microfest-banner.webp">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Nunito+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/styles.css">
+
+<!-- Structured data for the recurring weekly event. Price/location/schedule
+     are stable week to week, so this is a static block rather than generated
+     from content/schedule.json — only the specific DJ booking changes there,
+     which isn't part of this markup. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Event",
+  "name": "Bend Ecstatic Dance",
+  "description": "A substance-free, barefoot, freeform dance floor — a live DJ set, a facilitated SomaLab movement session, and community, every Thursday night in Bend, Oregon.",
+  "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+  "eventStatus": "https://schema.org/EventScheduled",
+  "eventSchedule": {
+    "@type": "Schedule",
+    "byDay": "https://schema.org/Thursday",
+    "startTime": "18:45",
+    "endTime": "22:00",
+    "repeatFrequency": "P1W",
+    "scheduleTimezone": "America/Los_Angeles"
+  },
+  "location": {
+    "@type": "Place",
+    "name": "The Glow Pad at Tula Movement Arts",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Bend",
+      "addressRegion": "OR",
+      "addressCountry": "US"
+    }
+  },
+  "offers": {
+    "@type": "AggregateOffer",
+    "priceCurrency": "USD",
+    "lowPrice": "18",
+    "highPrice": "22",
+    "availability": "https://schema.org/InStock",
+    "url": "https://www.bendecstaticdance.com/#location"
+  },
+  "organizer": {
+    "@type": "Organization",
+    "name": "Bend Ecstatic Dance",
+    "url": "https://www.bendecstaticdance.com/",
+    "email": "mailto:ecstaticdancebend@gmail.com"
+  }
+}
+</script>
 </head>
 <body>
 
