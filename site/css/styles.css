@@ -43,8 +43,29 @@ a { color: inherit; }
 
 button { font-family: var(--sans); }
 
+/* One visible focus ring, applied everywhere — previously only .schedule-card
+   had explicit focus styling, so nav links, every button variant, the map
+   pill link, modal-close buttons, and the calendar's prev/next arrows all
+   fell back to the browser default outline (barely visible on this dark
+   palette). Modern browsers clip `outline` to an element's own border-radius
+   automatically, so this doesn't need per-component radius overrides. */
+:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 3px;
+}
+
 @keyframes edPulse { 0%, 100% { opacity: .45; } 50% { opacity: .95; } }
 @keyframes edFade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
 
 /* ---------- page shell ---------- */
 
@@ -259,7 +280,19 @@ button { font-family: var(--sans); }
   letter-spacing: .06em;
   color: var(--rose);
 }
-.pill--link { text-decoration: none; padding: 6px 14px; }
+.pill--link {
+  position: relative;
+  text-decoration: none;
+  padding: 6px 14px;
+}
+/* Invisible expanded hit area — the pill only renders ~28px tall, below the
+   44px minimum touch target, but visually growing it would look inconsistent
+   next to the plain (non-interactive) pills beside it in the same row. */
+.pill--link::after {
+  content: '';
+  position: absolute;
+  inset: -8px 0;
+}
 
 .btn-primary {
   display: inline-block;
@@ -441,8 +474,8 @@ button { font-family: var(--sans); }
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 36px;
-  height: 36px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   border: 1px solid rgba(226, 183, 196, .35);
   color: var(--cream);
@@ -625,12 +658,19 @@ button { font-family: var(--sans); }
 
 .schedule-card {
   display: flex;
+  width: 100%;
   gap: 30px;
   align-items: stretch;
   flex-wrap: wrap;
   border: 1px solid rgba(226, 183, 196, .18);
   border-radius: 20px;
   background: rgba(255, 255, 255, .03);
+  /* now a real <button> — resets the UA button-text color so its children
+     (e.g. .schedule-card-name, which has no color of its own) still inherit
+     the page's cream instead of the browser's default button text color */
+  color: var(--cream);
+  font: inherit;
+  text-align: left;
   padding: 26px 30px;
   cursor: pointer;
   transition: border-color .2s, background .2s, transform .2s, box-shadow .2s;

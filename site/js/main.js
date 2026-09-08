@@ -39,9 +39,58 @@
     return date.getFullYear() + '-' + date.getMonth() + '-' + date.getDate();
   }
 
+  // ---------- shared modal accessibility (focus trap, Escape-to-close,
+  // focus returned to whatever triggered the modal) — used by both the
+  // artist modal and the calendar modal below ----------
+  function getFocusable(container) {
+    return Array.from(container.querySelectorAll('a[href], button:not([disabled])'));
+  }
+
+  function makeModalController(overlayEl, innerEl, closeFn) {
+    let lastFocused = null;
+
+    document.addEventListener('keydown', (e) => {
+      if (overlayEl.hidden) return;
+      if (e.key === 'Escape') {
+        e.preventDefault();
+        closeFn();
+        return;
+      }
+      if (e.key !== 'Tab') return;
+      const focusable = getFocusable(innerEl);
+      if (!focusable.length) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      // Cycle Tab/Shift+Tab within the modal instead of letting focus
+      // escape to the page underneath.
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    });
+
+    return {
+      open() {
+        lastFocused = document.activeElement;
+        overlayEl.hidden = false;
+        const focusable = getFocusable(innerEl);
+        (focusable[0] || innerEl).focus();
+      },
+      close() {
+        overlayEl.hidden = true;
+        if (lastFocused && typeof lastFocused.focus === 'function') lastFocused.focus();
+        lastFocused = null;
+      },
+    };
+  }
+
   // ---------- artist modal ----------
   const artistModal = document.getElementById('artist-modal');
   const artistModalInner = artistModal.querySelector('.modal');
+  const artistModalCtl = makeModalController(artistModal, artistModalInner, closeArtistModal);
   const modalDate = document.getElementById('modal-date');
   const modalTypeBadge = document.getElementById('modal-type-badge');
   const modalName = document.getElementById('modal-name');
@@ -129,7 +178,7 @@
     setPhoto(modalPhotoImg, modalPhotoPlaceholder, week.photo, week.name);
     setPhoto(modalInstructorImg, modalInstructorPlaceholder, week.somaticInstructorPhoto, week.somaticInstructor);
     renderModalSocials(week);
-    artistModal.hidden = false;
+    artistModalCtl.open();
     // Reset scroll position — this dialog is reused across weeks, so without
     // this a modal opened after scrolling through a longer one starts scrolled.
     artistModal.scrollTop = 0;
@@ -137,17 +186,14 @@
   }
 
   function closeArtistModal() {
-    artistModal.hidden = true;
+    artistModalCtl.close();
   }
 
+  // Trigger elements are always real <button>s (see renderFeatured and
+  // renderScheduleList below), so the browser already fires 'click' on
+  // Enter/Space natively — no manual keydown handling needed here.
   function wireModalTrigger(el) {
     el.addEventListener('click', () => openArtistModal(el.dataset.openModal));
-    el.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        openArtistModal(el.dataset.openModal);
-      }
-    });
   }
 
   document.getElementById('artist-modal-close').addEventListener('click', closeArtistModal);
@@ -252,9 +298,10 @@
       dateLabel.textContent = week.dateLabel || '';
       item.appendChild(dateLabel);
 
-      const card = document.createElement('div');
-
       if (week.tba) {
+        // Not interactive — no artist confirmed yet, so this stays a plain
+        // display card rather than a button with nothing to activate.
+        const card = document.createElement('div');
         card.className = 'schedule-card schedule-card--tba';
 
         const photo = document.createElement('div');
@@ -279,9 +326,11 @@
         return;
       }
 
+      // A real <button> instead of a div with tabindex/role="button" — gets
+      // keyboard reachability and Enter/Space activation for free.
+      const card = document.createElement('button');
+      card.type = 'button';
       card.className = 'schedule-card';
-      card.tabIndex = 0;
-      card.setAttribute('role', 'button');
       card.dataset.openModal = week.id;
 
       const photo = document.createElement('div');
@@ -375,6 +424,7 @@
   // ---------- calendar modal ----------
   const calendarModal = document.getElementById('calendar-modal');
   const calendarModalInner = calendarModal.querySelector('.modal');
+  const calendarModalCtl = makeModalController(calendarModal, calendarModalInner, closeCalendarModal);
   const calMonthLabel = document.getElementById('cal-month-label');
   const calWeekdays = document.getElementById('cal-weekdays');
   const calCells = document.getElementById('cal-cells');
@@ -487,17 +537,21 @@
     renderCalendar();
   });
 
-  document.getElementById('open-calendar-btn').addEventListener('click', () => {
+  function openCalendarModal() {
     renderCalendar();
-    calendarModal.hidden = false;
+    calendarModalCtl.open();
     calendarModal.scrollTop = 0;
     calendarModalInner.scrollTop = 0;
-  });
-  document.getElementById('calendar-modal-close').addEventListener('click', () => {
-    calendarModal.hidden = true;
-  });
+  }
+
+  function closeCalendarModal() {
+    calendarModalCtl.close();
+  }
+
+  document.getElementById('open-calendar-btn').addEventListener('click', openCalendarModal);
+  document.getElementById('calendar-modal-close').addEventListener('click', closeCalendarModal);
   calendarModal.addEventListener('click', (e) => {
-    if (e.target === calendarModal) calendarModal.hidden = true;
+    if (e.target === calendarModal) closeCalendarModal();
   });
 
   // ---------- "what exactly is ecstatic dance" voice switcher ----------
