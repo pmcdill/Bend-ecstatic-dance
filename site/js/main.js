@@ -339,7 +339,7 @@
       WEEKS_BY_ID = {};
       weeks.forEach((w) => { WEEKS_BY_ID[w.id] = w; });
       renderFeatured(weeks[0]); // the first week in the list is always this week's feature
-      renderScheduleList(weeks);
+      renderScheduleList(weeks.slice(1)); // ...and is already shown there, so skip it in the list below
       buildCalendarData(weeks);
     } catch (err) {
       console.error('Failed to load schedule content:', err);
