@@ -218,6 +218,10 @@ button { font-family: var(--sans); }
   justify-content: center;
   gap: 18px;
 }
+/* Its own display:flex (equal specificity to the UA's [hidden]{display:none})
+   would otherwise win by cascade order and keep it visibly rendered even
+   when hidden — same class of bug as the .ph-photo placeholder fix earlier. */
+.week-banner[hidden] { display: none; }
 .week-banner-line { width: 44px; height: 1px; background: rgba(240, 200, 138, .5); }
 .week-banner-text {
   font-size: var(--fs-2);
@@ -237,6 +241,19 @@ button { font-family: var(--sans); }
   justify-content: center;
   flex-wrap: wrap;
 }
+
+/* Shown in #featured-slot / #schedule-list when there's nothing to render:
+   no JS, a failed fetch, or genuinely no upcoming dates booked. */
+.schedule-fallback {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 12px 0;
+  font-size: var(--fs-2);
+  line-height: 1.6;
+  color: rgba(247, 237, 230, .82);
+  text-align: center;
+}
+.schedule-fallback a { color: var(--amber); }
 .featured-photo {
   flex: none;
   width: 300px;

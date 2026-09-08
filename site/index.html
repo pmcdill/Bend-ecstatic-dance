@@ -95,14 +95,18 @@
 
     <button type="button" class="btn-primary hero-cta" id="add-to-calendar-btn">+ Add to calendar</button>
 
-    <div class="week-banner">
+    <div class="week-banner" id="week-banner">
       <span class="week-banner-line"></span>
       <span class="week-banner-text">This week's DJ</span>
       <span class="week-banner-line"></span>
     </div>
 
     <div class="featured" id="featured-slot">
-      <!-- populated by js/main.js from content/schedule.json (the week flagged "featured") -->
+      <!-- Populated by js/main.js from content/schedule.json (the week
+           flagged "featured"). This fallback stays visible if JavaScript
+           never runs, and is replaced by an error- or empty-state message
+           if it does run but the fetch fails or nothing is booked yet. -->
+      <p class="schedule-fallback">See this week's DJ on <a href="https://www.instagram.com/bendecstaticdance" target="_blank" rel="noopener">Instagram</a>, or check <a href="#location">Details</a> below for time and location.</p>
     </div>
 
     <div class="divider"></div>
@@ -208,7 +212,9 @@
 
     <h3 class="section-eyebrow section-eyebrow--center">Future artists</h3>
     <div class="schedule-list" id="schedule-list">
-      <!-- populated by js/main.js from content/schedule.json -->
+      <!-- Populated by js/main.js from content/schedule.json. This fallback
+           stays visible if JavaScript never runs. -->
+      <p class="schedule-fallback">See our <a href="https://www.instagram.com/bendecstaticdance" target="_blank" rel="noopener">Instagram</a> for upcoming dates.</p>
     </div>
   </section>
 

@@ -231,10 +231,29 @@
     container.appendChild(img);
   }
 
+  // Shared by the empty-state (fetch succeeded, nothing upcoming) and
+  // error-state (fetch failed) cases below.
+  function renderScheduleFallback(container, html) {
+    container.innerHTML = '';
+    const msg = document.createElement('p');
+    msg.className = 'schedule-fallback';
+    msg.innerHTML = html;
+    container.appendChild(msg);
+  }
+
   function renderFeatured(week) {
     const slot = document.getElementById('featured-slot');
+    const weekBanner = document.getElementById('week-banner');
     slot.innerHTML = '';
-    if (!week) return;
+
+    if (!week) {
+      // Nothing booked for the featured slot — the "This week's DJ" banner
+      // would otherwise sit directly over blank space.
+      weekBanner.hidden = true;
+      renderScheduleFallback(slot, 'No dates are booked yet — see our <a href="https://www.instagram.com/bendecstaticdance" target="_blank" rel="noopener">Instagram</a> for updates, or check <a href="#location">Details</a> below.');
+      return;
+    }
+    weekBanner.hidden = false;
 
     const photoDiv = document.createElement('div');
     photoDiv.className = 'featured-photo';
@@ -287,8 +306,15 @@
 
   function renderScheduleList(weeks) {
     const list = document.getElementById('schedule-list');
-    list.innerHTML = '';
 
+    if (!weeks.length) {
+      // No additional bookings beyond (or instead of) the featured week —
+      // otherwise the "Future artists" heading sits over blank space.
+      renderScheduleFallback(list, 'No additional dates booked yet — check back soon, or see our <a href="https://www.instagram.com/bendecstaticdance" target="_blank" rel="noopener">Instagram</a> for updates.');
+      return;
+    }
+
+    list.innerHTML = '';
     weeks.forEach((week) => {
       const item = document.createElement('div');
       item.className = 'schedule-item';
@@ -381,6 +407,7 @@
   async function loadSchedule() {
     try {
       const res = await fetch('content/schedule.json', { cache: 'no-store' });
+      if (!res.ok) throw new Error('content/schedule.json responded with ' + res.status);
       const data = await res.json();
       const weeks = Array.isArray(data.weeks) ? data.weeks : [];
       assignDateFields(weeks);
@@ -400,6 +427,9 @@
       buildCalendarData(shown);
     } catch (err) {
       console.error('Failed to load schedule content:', err);
+      document.getElementById('week-banner').hidden = true;
+      renderScheduleFallback(document.getElementById('featured-slot'), 'Couldn\'t load this week\'s schedule. Try refreshing, or see our <a href="https://www.instagram.com/bendecstaticdance" target="_blank" rel="noopener">Instagram</a> for updates.');
+      renderScheduleFallback(document.getElementById('schedule-list'), 'See our <a href="https://www.instagram.com/bendecstaticdance" target="_blank" rel="noopener">Instagram</a> for upcoming dates.');
     }
   }
 
