@@ -59,17 +59,22 @@
   const modalInstructorPlaceholder = document.getElementById('modal-instructor-placeholder');
 
   function setPhoto(imgEl, placeholderEl, src, alt, style) {
-    if (src) {
-      imgEl.src = src;
-      imgEl.alt = alt;
-      imgEl.removeAttribute('style');
-      Object.assign(imgEl.style, { objectPosition: '', transform: '', transformOrigin: '' }, style || {});
-      imgEl.hidden = false;
-      placeholderEl.hidden = true;
-    } else {
+    if (!src) {
       imgEl.hidden = true;
       placeholderEl.hidden = false;
+      return;
     }
+    imgEl.alt = alt;
+    imgEl.removeAttribute('style');
+    Object.assign(imgEl.style, { objectPosition: '', transform: '', transformOrigin: '' }, style || {});
+    // onerror covers a src that 404s (e.g. an uploaded photo later deleted
+    // from the CMS while still referenced) — falls back to the placeholder
+    // instead of the browser's broken-image icon.
+    imgEl.onload = () => { placeholderEl.hidden = true; imgEl.hidden = false; };
+    imgEl.onerror = () => { placeholderEl.hidden = false; imgEl.hidden = true; };
+    imgEl.hidden = true;
+    placeholderEl.hidden = true;
+    imgEl.src = src;
   }
 
   const SOCIAL_ICONS = {
@@ -148,12 +153,33 @@
   });
 
   // ---------- hero + schedule rendering (from content/schedule.json) ----------
-  function photoImgEl(src, alt) {
+  const PLACEHOLDER_PHOTO_SVG = '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"></rect><circle cx="12" cy="12" r="3.5"></circle><path d="M8 5l1.5-2h5L16 5"></path></svg><span>Photo</span>';
+
+  // Appends either the photo or a placeholder into `container` — including
+  // when `src` is set but the file 404s (e.g. an uploaded photo later
+  // deleted from the CMS while still referenced by a schedule entry), so a
+  // missing image never shows the browser's broken-image icon.
+  function appendPhoto(container, src, alt) {
+    const placeholder = document.createElement('div');
+    placeholder.className = 'ph-photo';
+    placeholder.setAttribute('aria-hidden', 'true');
+    placeholder.innerHTML = PLACEHOLDER_PHOTO_SVG;
+
+    if (!src) {
+      container.appendChild(placeholder);
+      return;
+    }
+
     const img = document.createElement('img');
     img.className = 'photo-img';
-    img.src = src;
     img.alt = alt || '';
-    return img;
+    img.hidden = true;
+    img.addEventListener('load', () => { placeholder.hidden = true; img.hidden = false; });
+    img.addEventListener('error', () => { placeholder.hidden = false; img.hidden = true; });
+    img.src = src;
+
+    container.appendChild(placeholder);
+    container.appendChild(img);
   }
 
   function renderFeatured(week) {
@@ -163,7 +189,7 @@
 
     const photoDiv = document.createElement('div');
     photoDiv.className = 'featured-photo';
-    photoDiv.appendChild(photoImgEl(week.photo, week.name));
+    appendPhoto(photoDiv, week.photo, week.name);
 
     const info = document.createElement('div');
     info.className = 'featured-info';
@@ -257,7 +283,7 @@
 
       const photo = document.createElement('div');
       photo.className = 'schedule-card-photo';
-      photo.appendChild(photoImgEl(week.photo, week.name));
+      appendPhoto(photo, week.photo, week.name);
       card.appendChild(photo);
 
       const body = document.createElement('div');
