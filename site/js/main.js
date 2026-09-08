@@ -5,6 +5,36 @@
   // (that file is what Decap CMS at /admin edits — see admin/config.yml)
   let WEEKS_BY_ID = {};
 
+  // Dates aren't stored in the CMS — the first week in the list is always
+  // this Thursday (rolling forward automatically with today's date), the
+  // second is next Thursday, and so on. Reordering the list in the CMS
+  // reorders which Thursday each week lands on.
+  const MONTH_NAMES = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+  function nextThursdayOnOrAfter(from) {
+    const d = new Date(from.getFullYear(), from.getMonth(), from.getDate());
+    d.setDate(d.getDate() + ((4 - d.getDay() + 7) % 7)); // 4 = Thursday
+    return d;
+  }
+
+  function weekDate(index) {
+    const d = nextThursdayOnOrAfter(new Date());
+    d.setDate(d.getDate() + index * 7);
+    return d;
+  }
+
+  function monthDay(date) {
+    return MONTH_NAMES[date.getMonth()] + ' ' + date.getDate();
+  }
+
+  function assignComputedDates(weeks) {
+    weeks.forEach((week, index) => {
+      const date = weekDate(index);
+      week.dateLabel = index === 0 ? ('This Thursday · ' + monthDay(date)) : monthDay(date);
+      week.dateDisplay = 'Thursday · ' + monthDay(date);
+    });
+  }
+
   // ---------- artist modal ----------
   const artistModal = document.getElementById('artist-modal');
   const artistModalInner = artistModal.querySelector('.modal');
@@ -37,6 +67,39 @@
     }
   }
 
+  const SOCIAL_ICONS = {
+    instagramUrl: {
+      label: 'Instagram',
+      svg: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.2" cy="6.8" r="0.6" fill="currentColor" stroke="none"></circle></svg>',
+    },
+    spotifyUrl: {
+      label: 'Spotify',
+      svg: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.5"></circle><path d="M7 15c3-1 7-1 10 1"></path><path d="M6.3 11.3c4-1.2 8.7-1 12.2 1"></path><path d="M5.7 7.6c4.6-1.5 10.2-1.2 13.8 1"></path></svg>',
+    },
+    soundcloudUrl: {
+      label: 'SoundCloud',
+      svg: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 17h11.5a4 4 0 0 0 .6-7.95A5.5 5.5 0 0 0 5.8 9.6 3.5 3.5 0 0 0 4.5 17z"></path><line x1="6.5" y1="12.5" x2="6.5" y2="17"></line><line x1="9" y1="10.5" x2="9" y2="17"></line></svg>',
+    },
+  };
+
+  function renderModalSocials(week) {
+    const el = document.getElementById('modal-socials');
+    el.innerHTML = '';
+    Object.keys(SOCIAL_ICONS).forEach((key) => {
+      const url = week[key];
+      if (!url) return;
+      const a = document.createElement('a');
+      a.className = 'modal-social-link';
+      a.href = url;
+      a.target = '_blank';
+      a.rel = 'noopener';
+      a.setAttribute('aria-label', SOCIAL_ICONS[key].label);
+      a.title = SOCIAL_ICONS[key].label;
+      a.innerHTML = SOCIAL_ICONS[key].svg;
+      el.appendChild(a);
+    });
+  }
+
   function openArtistModal(id) {
     const week = WEEKS_BY_ID[id];
     if (!week || week.tba) return;
@@ -50,9 +113,9 @@
     modalSomalabInstructor.textContent = week.somaticInstructor || '';
     modalSomalabActivity.textContent = week.somaticOffering || '';
     modalSomalabBlurb.textContent = week.somaticBlurb || '';
-    // Modal photo is always centered, regardless of a card's custom crop position.
-    setPhoto(modalPhotoImg, modalPhotoPlaceholder, week.photo, week.name, { objectPosition: 'center' });
-    setPhoto(modalInstructorImg, modalInstructorPlaceholder, week.somaticInstructorPhoto, week.somaticInstructor, week.somaticInstructorPhotoPosition ? { objectPosition: week.somaticInstructorPhotoPosition } : null);
+    setPhoto(modalPhotoImg, modalPhotoPlaceholder, week.photo, week.name);
+    setPhoto(modalInstructorImg, modalInstructorPlaceholder, week.somaticInstructorPhoto, week.somaticInstructor);
+    renderModalSocials(week);
     artistModal.hidden = false;
     // Reset scroll position — this dialog is reused across weeks, so without
     // this a modal opened after scrolling through a longer one starts scrolled.
@@ -80,12 +143,11 @@
   });
 
   // ---------- hero + schedule rendering (from content/schedule.json) ----------
-  function photoImgEl(src, alt, position) {
+  function photoImgEl(src, alt) {
     const img = document.createElement('img');
     img.className = 'photo-img';
     img.src = src;
     img.alt = alt || '';
-    if (position) img.style.objectPosition = position;
     return img;
   }
 
@@ -96,7 +158,7 @@
 
     const photoDiv = document.createElement('div');
     photoDiv.className = 'featured-photo';
-    photoDiv.appendChild(photoImgEl(week.featuredPhoto || week.photo, week.name, week.photoPosition));
+    photoDiv.appendChild(photoImgEl(week.photo, week.name));
 
     const info = document.createElement('div');
     info.className = 'featured-info';
@@ -190,7 +252,7 @@
 
       const photo = document.createElement('div');
       photo.className = 'schedule-card-photo';
-      photo.appendChild(photoImgEl(week.photo, week.name, week.photoPosition));
+      photo.appendChild(photoImgEl(week.photo, week.name));
       card.appendChild(photo);
 
       const body = document.createElement('div');
@@ -238,12 +300,28 @@
       const res = await fetch('content/schedule.json', { cache: 'no-store' });
       const data = await res.json();
       const weeks = Array.isArray(data.weeks) ? data.weeks : [];
+      assignComputedDates(weeks);
       WEEKS_BY_ID = {};
       weeks.forEach((w) => { WEEKS_BY_ID[w.id] = w; });
-      renderFeatured(weeks.find((w) => w.featured) || weeks[0]);
+      renderFeatured(weeks[0]); // the first week in the list is always this week's feature
       renderScheduleList(weeks);
     } catch (err) {
       console.error('Failed to load schedule content:', err);
+    }
+  }
+
+  // ---------- venue details (from content/details.json) ----------
+  async function loadDetails() {
+    try {
+      const res = await fetch('content/details.json', { cache: 'no-store' });
+      const details = await res.json();
+      document.getElementById('detail-when').textContent = details.when || '';
+      document.getElementById('detail-price').textContent = details.price || '';
+      document.getElementById('detail-ages').textContent = details.ages || '';
+      document.getElementById('detail-bring').textContent = details.bring || '';
+      document.getElementById('modal-footer-price').textContent = details.price || '';
+    } catch (err) {
+      console.error('Failed to load venue details:', err);
     }
   }
 
@@ -436,4 +514,5 @@
   updateActiveSection();
 
   loadSchedule();
+  loadDetails();
 })();

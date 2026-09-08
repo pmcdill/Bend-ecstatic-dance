@@ -21,22 +21,32 @@ collections:
           - label: "Weeks"
             name: "weeks"
             widget: "list"
-            summary: "{{fields.dateLabel}} — {{fields.name}}"
+            hint: "Order matters — the first week here is always this Thursday (today's date rolls forward automatically), the second is next Thursday, and so on. Reorder by dragging to move a week to a different Thursday."
+            summary: "{{fields.name}}"
             fields:
-              - { label: "Featured this week (shown big in the hero)", name: "featured", widget: "boolean", default: false }
               - { label: "TBA (no artist confirmed yet)", name: "tba", widget: "boolean", default: false }
-              - { label: 'Date label (shown above the card — e.g. "July 23" or "This Thursday · July 16")', name: "dateLabel", widget: "string" }
-              - { label: 'Date display (shown in the Read More popup — e.g. "Thursday · July 23")', name: "dateDisplay", widget: "string", required: false }
               - { label: "Artist / act name", name: "name", widget: "string" }
               - { label: "Set type", name: "typeLabel", widget: "select", options: ["Live DJ set", "Curated setlist"], required: false }
-              - { label: "Card photo", name: "photo", widget: "image", required: false }
-              - { label: 'Card photo position (advanced — CSS object-position, e.g. "50% 70%")', name: "photoPosition", widget: "string", required: false }
-              - { label: "Hero photo (only used when this week is Featured)", name: "featuredPhoto", widget: "image", required: false }
+              - { label: "Card photo (also used as the hero photo when this is the first week)", name: "photo", widget: "image", required: false }
               - { label: "Short description (shown on the hero + schedule card)", name: "shortDescription", widget: "text" }
               - { label: "About the DJ (shown in Read More)", name: "bio", widget: "text", required: false }
               - { label: "About the set (shown in Read More)", name: "setDescription", widget: "text", required: false }
               - { label: 'SomaLab offering (e.g. "Yoga", "Contact dance")', name: "somaticOffering", widget: "string", required: false }
               - { label: "SomaLab instructor name", name: "somaticInstructor", widget: "string", required: false }
               - { label: "SomaLab instructor photo", name: "somaticInstructorPhoto", widget: "image", required: false }
-              - { label: "SomaLab instructor photo position (advanced)", name: "somaticInstructorPhotoPosition", widget: "string", required: false }
               - { label: "SomaLab blurb (shown in Read More)", name: "somaticBlurb", widget: "text", required: false }
+              - { label: "Instagram link (optional)", name: "instagramUrl", widget: "string", required: false }
+              - { label: "Spotify link (optional)", name: "spotifyUrl", widget: "string", required: false }
+              - { label: "SoundCloud link (optional)", name: "soundcloudUrl", widget: "string", required: false }
+
+  - name: "details"
+    label: "Details"
+    files:
+      - name: "venue"
+        label: "Venue Details"
+        file: "site/content/details.json"
+        fields:
+          - { label: "When", name: "when", widget: "string" }
+          - { label: "Price", name: "price", widget: "string" }
+          - { label: "Ages", name: "ages", widget: "string" }
+          - { label: "Bring", name: "bring", widget: "string" }
