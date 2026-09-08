@@ -169,6 +169,14 @@ button { font-family: var(--sans); }
   gap: 26px;
   text-align: center;
 }
+.promo-eyebrow {
+  font-size: 12px;
+  letter-spacing: .34em;
+  text-transform: uppercase;
+  color: var(--amber);
+  font-weight: 600;
+  margin-bottom: -12px;
+}
 .promo-photo {
   width: 100%;
   border-radius: 16px;
