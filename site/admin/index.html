@@ -4,6 +4,10 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Content Manager — Bend Ecstatic Dance</title>
+  <!-- Pins relative fetches (config.yml, etc.) to /admin/ regardless of
+       whether the browser has a trailing slash on the URL — Vercel, unlike
+       Netlify, doesn't auto-redirect /admin to /admin/. -->
+  <base href="/admin/" />
 </head>
 <body>
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
