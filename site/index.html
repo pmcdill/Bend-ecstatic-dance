@@ -97,36 +97,7 @@
   <section id="top" class="hero">
     <div class="eyebrow">Bend, Oregon</div>
     <h1 class="hero-title">Bend Ecstatic Dance</h1>
-
-    <div class="promo-banner">
-      <div class="promo-inner">
-        <div class="promo-eyebrow">Special event</div>
-        <div class="promo-photo">
-          <img src="assets/images/microfest-banner.webp" alt="Luminous Soul Dance Microfest — Fitzy, Rabellion, Kalpa, and Matthew Honeyheart. Cacao, live music, DJs, live art, elixirs, and more. Presented by Bend Ecstatic Dance.">
-        </div>
-        <div class="promo-info">
-          <div class="promo-meta">Thursday, October 1 · High Desert Music Hall</div>
-          <p class="promo-desc">A sober, conversation-free dance floor at an elite venue — immersive movement, professional sound, and community.</p>
-          <a class="btn-primary" href="https://events.ticketleap.com/tickets/rabellion-events/cacao-dance-microfest-rabellion-kalpa-fitzy-matthew-honeyheart" target="_blank" rel="noopener">Get tickets →</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="divider"></div>
-
-    <div class="section-eyebrow-wrap">
-      <div class="section-eyebrow">Schedule</div>
-      <div class="schedule-subhead">Every Thursday</div>
-    </div>
-
-    <div class="timeline">
-      <span class="timeline-time">7–7:45</span><span class="timeline-activity">SomaLab</span>
-      <span class="timeline-time">8–8:15</span><span class="timeline-activity">Opening circle</span>
-      <span class="timeline-time">8:15–9:45</span><span class="timeline-activity">Ecstatic dance</span>
-      <span class="timeline-time">9:45–10</span><span class="timeline-activity">Closing circle</span>
-    </div>
-
-    <div class="timeline-note">$22–18 sliding scale. (Payment includes both the Dance and SomaLab experiences.)</div>
+    <p class="hero-summary">Every Thursday · 8–10pm · The Glow Pad at Tula Movement Arts · $18–22 sliding scale</p>
 
     <div class="week-banner">
       <span class="week-banner-line"></span>
@@ -136,6 +107,20 @@
 
     <div class="featured" id="featured-slot">
       <!-- populated by js/main.js from content/schedule.json (the week flagged "featured") -->
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- one-off event at a different venue — kept secondary to the recurring
+         Thursday night above; see the Schedule section for the weekly detail. -->
+    <div class="promo-card">
+      <div class="promo-card-eyebrow">Special event · different venue</div>
+      <div class="promo-card-photo">
+        <img src="assets/images/microfest-banner.webp" alt="Luminous Soul Dance Microfest — Fitzy, Rabellion, Kalpa, and Matthew Honeyheart. Cacao, live music, DJs, live art, elixirs, and more. Presented by Bend Ecstatic Dance.">
+      </div>
+      <div class="promo-card-meta">Thursday, October 1 · High Desert Music Hall</div>
+      <p class="promo-card-desc">A sober, conversation-free dance floor at an elite venue — immersive movement, professional sound, and community.</p>
+      <a class="btn-primary" href="https://events.ticketleap.com/tickets/rabellion-events/cacao-dance-microfest-rabellion-kalpa-fitzy-matthew-honeyheart" target="_blank" rel="noopener">Get tickets →</a>
     </div>
   </section>
 
@@ -211,7 +196,21 @@
 
   <!-- schedule -->
   <section id="artists" class="schedule">
-    <div class="section-eyebrow section-eyebrow--center">Future artists</div>
+    <div class="section-eyebrow-wrap">
+      <h2 class="section-eyebrow">Schedule</h2>
+      <div class="schedule-subhead">Every Thursday</div>
+    </div>
+
+    <div class="timeline">
+      <span class="timeline-time">7–7:45</span><span class="timeline-activity">SomaLab</span>
+      <span class="timeline-time">8–8:15</span><span class="timeline-activity">Opening circle</span>
+      <span class="timeline-time">8:15–9:45</span><span class="timeline-activity">Ecstatic dance</span>
+      <span class="timeline-time">9:45–10</span><span class="timeline-activity">Closing circle</span>
+    </div>
+
+    <div class="timeline-note">$22–18 sliding scale. (Payment includes both the Dance and SomaLab experiences.)</div>
+
+    <h3 class="section-eyebrow section-eyebrow--center">Future artists</h3>
     <div class="schedule-list" id="schedule-list">
       <!-- populated by js/main.js from content/schedule.json -->
     </div>
@@ -220,7 +219,20 @@
   <!-- about -->
   <section id="about" class="about">
     <div class="about-inner">
-      <div class="section-eyebrow">What exactly is ecstatic dance?</div>
+      <h2 class="section-eyebrow">What exactly is ecstatic dance?</h2>
+
+      <!-- DRAFT COPY — flagged for review, see chat -->
+      <p class="about-lede">Ecstatic dance is a freeform movement practice: you move however your body wants to a live DJ's music, with no set steps, no partner, and no talking on the floor.</p>
+      <p class="about-lede">It's substance-free and welcoming to every skill level — the point isn't to look a certain way, it's to let your body move without judgment or performance.</p>
+
+      <div class="agreements">
+        <div class="agreement-item"><div class="agreement-title">No shoes</div><div class="agreement-sub">Bare feet or soft soles</div></div>
+        <div class="agreement-item"><div class="agreement-title">No talking</div><div class="agreement-sub">Let the body speak</div></div>
+        <div class="agreement-item"><div class="agreement-title">No phones</div><div class="agreement-sub">Fully present, together</div></div>
+        <div class="agreement-item"><div class="agreement-title">Substance-free</div><div class="agreement-sub">No alcohol, sober dance floor</div></div>
+      </div>
+
+      <div class="divider"></div>
 
       <div class="voice-box">
         <div class="voice-loading" id="voice-loading" hidden>
@@ -237,24 +249,15 @@
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 3 21 3 21 8"></polyline><line x1="4" y1="20" x2="21" y2="3"></line><polyline points="21 16 21 21 16 21"></polyline><line x1="15" y1="15" x2="21" y2="21"></line><line x1="4" y1="4" x2="9" y2="9"></line></svg>
         Ask someone else
       </button>
-
-      <div class="divider"></div>
-
-      <div class="agreements">
-        <div class="agreement-item"><div class="agreement-title">No shoes</div><div class="agreement-sub">Bare feet or soft soles</div></div>
-        <div class="agreement-item"><div class="agreement-title">No talking</div><div class="agreement-sub">Let the body speak</div></div>
-        <div class="agreement-item"><div class="agreement-title">No phones</div><div class="agreement-sub">Fully present, together</div></div>
-        <div class="agreement-item"><div class="agreement-title">Substance-free</div><div class="agreement-sub">No alcohol, sober dance floor</div></div>
-      </div>
     </div>
   </section>
 
   <!-- details -->
   <section id="location" class="details">
-    <div class="section-eyebrow section-eyebrow--center">Details</div>
+    <h2 class="section-eyebrow section-eyebrow--center">Details</h2>
     <div class="details-grid">
       <div class="details-info">
-        <h2 class="venue-title">The Glow Pad</h2>
+        <h3 class="venue-title">The Glow Pad</h3>
         <p class="venue-sub">at Tula Movement Arts · Bend, Oregon</p>
 
         <div class="info-rows" id="details-info-rows">
