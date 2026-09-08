@@ -8,6 +8,24 @@
   --amber: #f0c88a;
   --serif: 'Cormorant Garamond', serif;
   --sans: 'Nunito Sans', sans-serif;
+
+  /* ---------- type scale ----------
+     Six steps covering every reading-text size on the site (buttons, labels,
+     paragraphs, headings). --fs-hero is a deliberate, documented exception:
+     the single hero <h1> is the site's one true "display" size and sits
+     outside the 6-step scale rather than forcing every other heading up to
+     match it. Decorative single-glyph sizes (icon-style ×/‹/› characters,
+     the "?" placeholder mark) aren't part of this scale — those are icon
+     sizing, not typography. */
+  --fs-1: 13px; /* micro: labels, eyebrows, meta, footer */
+  --fs-2: 16px; /* body: paragraphs, buttons, nav */
+  --fs-3: 18px; /* lede: hero summary, about intro, timeline */
+  --fs-4: 24px; /* sub-heading / emphasis */
+  --fs-5: 40px; /* section heading */
+  --fs-6: 56px; /* display: featured/modal names */
+  --fs-hero: 76px; /* hero <h1> only — see note above */
+
+  --tracking-eyebrow: .18em;
 }
 
 * { box-sizing: border-box; }
@@ -97,7 +115,7 @@ button { font-family: var(--sans); }
   text-decoration: none;
   font-family: var(--serif);
   font-weight: 500;
-  font-size: 22px;
+  font-size: var(--fs-4);
   letter-spacing: .06em;
   color: var(--cream);
 }
@@ -105,7 +123,7 @@ button { font-family: var(--sans); }
 .nav-links {
   display: flex;
   gap: 30px;
-  font-size: 13px;
+  font-size: var(--fs-1);
   letter-spacing: .09em;
   text-transform: uppercase;
 }
@@ -133,8 +151,8 @@ button { font-family: var(--sans); }
 }
 
 .eyebrow {
-  font-size: 14px;
-  letter-spacing: .34em;
+  font-size: var(--fs-2);
+  letter-spacing: var(--tracking-eyebrow);
   text-transform: uppercase;
   color: var(--rose);
   font-weight: 600;
@@ -144,14 +162,15 @@ button { font-family: var(--sans); }
 .hero-title {
   font-family: var(--serif);
   font-weight: 300;
-  font-size: 76px;
+  /* fluid between the old 48px mobile / 76px desktop fixed sizes, see phase-3 notes */
+  font-size: clamp(3rem, 6vw + 1rem, var(--fs-hero));
   line-height: 1.02;
   margin: 0;
   letter-spacing: .01em;
 }
 
 .hero-summary {
-  font-size: 17px;
+  font-size: var(--fs-3);
   color: var(--cream);
   margin: 22px 0 0;
 }
@@ -174,8 +193,8 @@ button { font-family: var(--sans); }
   text-align: center;
 }
 .promo-card-eyebrow {
-  font-size: 12px;
-  letter-spacing: .34em;
+  font-size: var(--fs-1);
+  letter-spacing: var(--tracking-eyebrow);
   text-transform: uppercase;
   color: var(--amber);
   font-weight: 600;
@@ -189,9 +208,9 @@ button { font-family: var(--sans); }
   margin-bottom: 16px;
 }
 .promo-card-photo img { width: 100%; display: block; }
-.promo-card-meta { font-size: 13px; letter-spacing: .06em; color: rgba(247, 237, 230, .7); margin-bottom: 12px; }
+.promo-card-meta { font-size: var(--fs-1); letter-spacing: .06em; color: rgba(247, 237, 230, .7); margin-bottom: 12px; }
 .promo-card-desc {
-  font-size: 14px;
+  font-size: var(--fs-2);
   line-height: 1.65;
   color: rgba(247, 237, 230, .82);
   margin: 0 0 20px;
@@ -211,8 +230,8 @@ button { font-family: var(--sans); }
 }
 .week-banner-line { width: 44px; height: 1px; background: rgba(240, 200, 138, .5); }
 .week-banner-text {
-  font-size: 16px;
-  letter-spacing: .4em;
+  font-size: var(--fs-2);
+  letter-spacing: var(--tracking-eyebrow);
   text-transform: uppercase;
   color: var(--amber);
   font-weight: 700;
@@ -238,20 +257,20 @@ button { font-family: var(--sans); }
 }
 .featured-info { flex: 1; min-width: 320px; }
 .featured-date {
-  font-size: 12px;
-  letter-spacing: .34em;
+  font-size: var(--fs-1);
+  letter-spacing: var(--tracking-eyebrow);
   text-transform: uppercase;
   color: var(--amber);
 }
 .featured-name {
   font-family: var(--serif);
   font-weight: 400;
-  font-size: 56px;
+  font-size: var(--fs-6);
   line-height: .98;
   margin: 8px 0 16px;
 }
 .featured-desc {
-  font-size: 15px;
+  font-size: var(--fs-2);
   line-height: 1.7;
   color: rgba(247, 237, 230, .82);
   font-weight: 400;
@@ -267,7 +286,7 @@ button { font-family: var(--sans); }
   padding: 6px 15px;
   border-radius: 30px;
   border: 1px solid rgba(226, 183, 196, .3);
-  font-size: 12px;
+  font-size: var(--fs-1);
   letter-spacing: .06em;
   color: var(--rose);
 }
@@ -281,7 +300,7 @@ button { font-family: var(--sans); }
   background: var(--amber);
   color: var(--bg-2);
   font-weight: 700;
-  font-size: 14px;
+  font-size: var(--fs-2);
   letter-spacing: .04em;
   border: none;
   text-decoration: none;
@@ -298,7 +317,7 @@ button { font-family: var(--sans); }
   background: transparent;
   border: 1px solid rgba(226, 183, 196, .4);
   color: var(--cream);
-  font-size: 13px;
+  font-size: var(--fs-1);
   font-weight: 600;
   letter-spacing: .04em;
 }
@@ -314,7 +333,7 @@ button { font-family: var(--sans); }
   background: transparent;
   border: 1px solid rgba(226, 183, 196, .4);
   color: var(--cream);
-  font-size: 13px;
+  font-size: var(--fs-1);
   font-weight: 600;
   letter-spacing: .04em;
 }
@@ -332,10 +351,12 @@ button { font-family: var(--sans); }
   gap: 8px;
   background: rgba(255, 255, 255, .03);
   border: 1px dashed rgba(226, 183, 196, .35);
-  color: rgba(247, 237, 230, .5);
+  /* was .5 — failed WCAG AA (~3.7:1) against the modal's own bg-2/bg-3
+     background; .65 clears 4.5:1 at the darker bg-3 end */
+  color: rgba(247, 237, 230, .65);
 }
 .ph-photo svg { opacity: .8; }
-.ph-photo span { font-size: 12px; letter-spacing: .06em; }
+.ph-photo span { font-size: var(--fs-1); letter-spacing: .06em; }
 .ph-photo--circle { border-radius: 50%; }
 
 .photo-img { width: 100%; height: 100%; object-fit: cover; display: block; }
@@ -385,15 +406,15 @@ button { font-family: var(--sans); }
 }
 
 .label {
-  font-size: 12px;
-  letter-spacing: .28em;
+  font-size: var(--fs-1);
+  letter-spacing: var(--tracking-eyebrow);
   text-transform: uppercase;
   color: var(--rose);
   margin-bottom: 10px;
 }
 
 .modal-text {
-  font-size: 15px;
+  font-size: var(--fs-2);
   line-height: 1.75;
   color: rgba(247, 237, 230, .82);
   font-weight: 400;
@@ -419,9 +440,9 @@ button { font-family: var(--sans); }
 #artist-modal .modal-close { position: absolute; top: 16px; right: 16px; }
 .modal-photo-caption { position: absolute; left: 32px; bottom: 18px; }
 .modal-photo-meta { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
-.modal-date { font-size: 12px; letter-spacing: .32em; text-transform: uppercase; color: var(--amber); }
+.modal-date { font-size: var(--fs-1); letter-spacing: var(--tracking-eyebrow); text-transform: uppercase; color: var(--amber); }
 .modal-type-badge {
-  font-size: 12px;
+  font-size: var(--fs-1);
   letter-spacing: .14em;
   text-transform: uppercase;
   padding: 3px 11px;
@@ -430,7 +451,7 @@ button { font-family: var(--sans); }
   border: 1px solid rgba(226, 183, 196, .4);
   color: var(--cream);
 }
-.modal-name { font-family: var(--serif); font-size: 52px; line-height: 1; margin-top: 6px; }
+.modal-name { font-family: var(--serif); font-size: var(--fs-6); line-height: 1; margin-top: 6px; }
 
 .modal-body { padding: 30px 34px 34px; }
 
@@ -443,8 +464,8 @@ button { font-family: var(--sans); }
   overflow: hidden;
   border: 1px solid rgba(226, 183, 196, .3);
 }
-.somalab-instructor { font-family: var(--serif); font-size: 24px; color: var(--amber); }
-.somalab-activity { font-size: 12px; color: rgba(247, 237, 230, .6); margin-top: 2px; }
+.somalab-instructor { font-family: var(--serif); font-size: var(--fs-4); color: var(--amber); }
+.somalab-activity { font-size: var(--fs-1); color: rgba(247, 237, 230, .6); margin-top: 2px; }
 
 .modal-socials { display: flex; gap: 12px; margin: 0 0 24px; }
 .modal-social-link {
@@ -465,7 +486,7 @@ button { font-family: var(--sans); }
   flex-wrap: wrap;
   padding-top: 20px;
   border-top: 1px solid rgba(226, 183, 196, .16);
-  font-size: 13px;
+  font-size: var(--fs-1);
   color: rgba(247, 237, 230, .7);
 }
 .modal-footer-key { color: var(--amber); }
@@ -494,7 +515,7 @@ button { font-family: var(--sans); }
   line-height: 1;
 }
 .cal-nav-btn:disabled { cursor: default; border-color: rgba(226, 183, 196, .12); color: rgba(247, 237, 230, .25); }
-.cal-month { font-family: var(--serif); font-weight: 400; font-size: 34px; line-height: 1; }
+.cal-month { font-family: var(--serif); font-weight: 400; font-size: var(--fs-5); line-height: 1; }
 
 .cal-grid {
   display: grid;
@@ -504,10 +525,11 @@ button { font-family: var(--sans); }
 .cal-grid--weekdays { margin-bottom: 6px; }
 .cal-weekday {
   text-align: center;
-  font-size: 12px;
+  font-size: var(--fs-1);
   letter-spacing: .14em;
   text-transform: uppercase;
-  color: rgba(247, 237, 230, .45);
+  /* was .45 — failed WCAG AA (~3.7:1) against the modal's own background */
+  color: rgba(247, 237, 230, .65);
   padding-bottom: 4px;
 }
 .cal-cell {
@@ -520,8 +542,14 @@ button { font-family: var(--sans); }
   justify-content: flex-start;
   border: 1px solid transparent;
 }
-.cal-cell-num { font-size: 13px; font-weight: 400; color: rgba(247, 237, 230, .55); line-height: 1; }
-.cal-cell-name { display: none; font-size: 12px; line-height: 1.15; text-align: center; margin-top: 5px; }
+.cal-cell-num {
+  font-size: var(--fs-1);
+  font-weight: 400;
+  /* was .55 — failed WCAG AA (~4.1:1) against the modal's own background */
+  color: rgba(247, 237, 230, .65);
+  line-height: 1;
+}
+.cal-cell-name { display: none; font-size: var(--fs-1); line-height: 1.15; text-align: center; margin-top: 5px; }
 
 .cal-cell--event { background: rgba(240, 200, 138, .1); border-color: rgba(240, 200, 138, .4); }
 .cal-cell--event.cal-cell--now { background: rgba(240, 200, 138, .24); border-color: rgba(240, 200, 138, .7); }
@@ -530,7 +558,12 @@ button { font-family: var(--sans); }
 
 .cal-cell--tba { background: rgba(255, 255, 255, .02); border: 1px dashed rgba(226, 183, 196, .4); }
 .cal-cell--tba .cal-cell-num { font-weight: 600; color: rgba(226, 183, 196, .8); }
-.cal-cell--tba .cal-cell-name { display: block; color: rgba(247, 237, 230, .5); font-weight: 500; }
+.cal-cell--tba .cal-cell-name {
+  display: block;
+  /* was .5 — failed WCAG AA (~3.7:1) against the modal's own background */
+  color: rgba(247, 237, 230, .65);
+  font-weight: 500;
+}
 
 .cal-cell--thu .cal-cell-num { color: rgba(247, 237, 230, .85); font-weight: 600; }
 
@@ -541,7 +574,7 @@ button { font-family: var(--sans); }
   margin-top: 22px;
   padding-top: 18px;
   border-top: 1px solid rgba(226, 183, 196, .16);
-  font-size: 12px;
+  font-size: var(--fs-1);
   color: rgba(247, 237, 230, .7);
 }
 .cal-legend-item { display: flex; align-items: center; gap: 8px; }
@@ -564,8 +597,8 @@ button { font-family: var(--sans); }
   /* explicit margin (not just margin-bottom) since this class is now also
      applied to h2/h3 elements, which carry their own UA-stylesheet margin */
   margin: 0 0 32px;
-  font-size: 16px;
-  letter-spacing: .34em;
+  font-size: var(--fs-2);
+  letter-spacing: var(--tracking-eyebrow);
   text-transform: uppercase;
   color: var(--rose);
   font-weight: 600;
@@ -573,7 +606,7 @@ button { font-family: var(--sans); }
 .section-eyebrow--center { text-align: center; }
 .section-eyebrow-wrap .section-eyebrow { margin-bottom: 14px; }
 .schedule-subhead {
-  font-size: 13px;
+  font-size: var(--fs-1);
   letter-spacing: .16em;
   text-transform: uppercase;
   color: rgba(247, 237, 230, .6);
@@ -587,8 +620,10 @@ button { font-family: var(--sans); }
   grid-template-columns: auto auto;
   column-gap: 16px;
   row-gap: 8px;
-  font-size: 18px;
-  color: rgba(247, 237, 230, .6);
+  font-size: var(--fs-3);
+  /* was .6 alpha — this is exact set times, some of the most
+     decision-relevant text on the page, so it gets full contrast */
+  color: var(--cream);
 }
 .timeline-time { text-align: right; color: var(--amber); font-variant-numeric: tabular-nums; }
 .timeline-activity { text-align: left; }
@@ -596,9 +631,11 @@ button { font-family: var(--sans); }
   max-width: 380px;
   margin: 0 auto 48px;
   text-align: center;
-  font-size: 13px;
+  font-size: var(--fs-1);
   line-height: 1.6;
-  color: rgba(247, 237, 230, .55);
+  /* was .55 alpha — this is the price, arguably the single most
+     decision-relevant line on the page, so it gets full contrast */
+  color: var(--cream);
 }
 
 .schedule-list {
@@ -610,7 +647,7 @@ button { font-family: var(--sans); }
 }
 .schedule-item { display: flex; flex-direction: column; gap: 10px; }
 .schedule-date-label {
-  font-size: 13px;
+  font-size: var(--fs-1);
   letter-spacing: .18em;
   text-transform: uppercase;
   color: var(--rose);
@@ -648,12 +685,12 @@ button { font-family: var(--sans); }
 .schedule-card-name {
   font-family: var(--serif);
   font-weight: 400;
-  font-size: 40px;
+  font-size: var(--fs-5);
   line-height: 1;
   margin-bottom: 14px;
 }
 .schedule-card-type {
-  font-size: 13px;
+  font-size: var(--fs-1);
   letter-spacing: .08em;
   text-transform: uppercase;
   margin-bottom: 16px;
@@ -661,14 +698,14 @@ button { font-family: var(--sans); }
 .schedule-card-type--live { color: var(--amber); }
 .schedule-card-type--curated { color: var(--rose); }
 .schedule-card-desc {
-  font-size: 14px;
+  font-size: var(--fs-2);
   line-height: 1.65;
   color: rgba(247, 237, 230, .82);
   font-weight: 400;
   margin: 0 0 14px;
   max-width: 500px;
 }
-.schedule-card-somalab { font-size: 13px; letter-spacing: .05em; color: rgba(247, 237, 230, .62); }
+.schedule-card-somalab { font-size: var(--fs-1); letter-spacing: .05em; color: rgba(247, 237, 230, .62); }
 .schedule-card-somalab span { color: var(--rose); }
 .schedule-card-arrow { flex: none; align-self: flex-start; margin-top: 12px; color: rgba(226, 183, 196, .55); }
 
@@ -703,13 +740,13 @@ button { font-family: var(--sans); }
   scroll-margin-top: 80px;
 }
 .about-inner { max-width: 940px; margin: 0 auto; text-align: center; }
-.about .section-eyebrow { font-size: 14px; }
+.about .section-eyebrow { font-size: var(--fs-1); }
 .about .divider { margin-bottom: 40px; }
 
 .about-lede {
   max-width: 680px;
   margin: 0 auto 16px;
-  font-size: 17px;
+  font-size: var(--fs-3);
   line-height: 1.7;
   color: rgba(247, 237, 230, .82);
 }
@@ -743,22 +780,22 @@ button { font-family: var(--sans); }
 .voice-loading-text {
   font-family: var(--serif);
   font-style: italic;
-  font-size: 22px;
+  font-size: var(--fs-4);
   color: rgba(247, 237, 230, .7);
   animation: edPulse 1.6s ease-in-out infinite;
 }
 .voice-quote {
   font-family: var(--serif);
   font-weight: 300;
-  font-size: 29px;
+  font-size: var(--fs-4);
   line-height: 1.5;
   margin: 0;
   color: var(--cream);
   animation: edFade .6s ease;
 }
 .voice-attribution {
-  font-size: 14px;
-  letter-spacing: .2em;
+  font-size: var(--fs-2);
+  letter-spacing: var(--tracking-eyebrow);
   text-transform: uppercase;
   color: var(--amber);
   margin-top: 6px;
@@ -766,8 +803,8 @@ button { font-family: var(--sans); }
 
 .agreements { display: flex; justify-content: center; gap: 48px; margin-top: 52px; flex-wrap: wrap; }
 .agreement-item { text-align: center; }
-.agreement-title { font-family: var(--serif); font-size: 20px; color: var(--amber); }
-.agreement-sub { font-size: 13px; color: rgba(247, 237, 230, .6); margin-top: 4px; }
+.agreement-title { font-family: var(--serif); font-size: var(--fs-4); color: var(--amber); }
+.agreement-sub { font-size: var(--fs-1); color: rgba(247, 237, 230, .6); margin-top: 4px; }
 
 /* ---------- details ---------- */
 
@@ -788,24 +825,24 @@ button { font-family: var(--sans); }
   margin: 0 auto;
 }
 .details-info { flex: 1; min-width: 300px; }
-.venue-title { font-family: var(--serif); font-weight: 300; font-size: 40px; margin: 0 0 6px; }
-.venue-sub { font-size: 15px; line-height: 1.7; color: rgba(247, 237, 230, .82); margin: 0 0 26px; }
+.venue-title { font-family: var(--serif); font-weight: 300; font-size: var(--fs-5); margin: 0 0 6px; }
+.venue-sub { font-size: var(--fs-2); line-height: 1.7; color: rgba(247, 237, 230, .82); margin: 0 0 26px; }
 
 .info-rows { display: flex; flex-direction: column; gap: 16px; margin-bottom: 28px; }
 .info-row { display: flex; gap: 18px; align-items: baseline; }
 .info-label {
   flex: none;
   width: 78px;
-  font-size: 12px;
+  font-size: var(--fs-1);
   letter-spacing: .16em;
   text-transform: uppercase;
   color: var(--amber);
 }
-.info-value { font-size: 15px; color: rgba(247, 237, 230, .82); }
+.info-value { font-size: var(--fs-2); color: rgba(247, 237, 230, .82); }
 
 .maps-link {
   text-decoration: none;
-  font-size: 14px;
+  font-size: var(--fs-2);
   letter-spacing: .05em;
   color: var(--amber);
   border-bottom: 1px solid rgba(240, 200, 138, .5);
@@ -818,19 +855,19 @@ button { font-family: var(--sans); }
   align-items: center;
   gap: 18px;
   flex-wrap: wrap;
-  font-size: 15px;
+  font-size: var(--fs-2);
   color: rgba(247, 237, 230, .82);
 }
 
 .connect-block { margin-top: 32px; padding-top: 26px; border-top: 1px solid rgba(226, 183, 196, .14); }
 .connect-label {
-  font-size: 12px;
+  font-size: var(--fs-1);
   letter-spacing: .16em;
   text-transform: uppercase;
   color: var(--amber);
   margin-bottom: 12px;
 }
-.connect-email { display: block; text-decoration: none; font-size: 16px; color: var(--cream); margin-bottom: 16px; }
+.connect-email { display: block; text-decoration: none; font-size: var(--fs-2); color: var(--cream); margin-bottom: 16px; }
 .connect-socials { display: flex; gap: 14px; }
 .btn-social {
   text-decoration: none;
@@ -838,7 +875,7 @@ button { font-family: var(--sans); }
   border-radius: 30px;
   border: 1px solid rgba(226, 183, 196, .35);
   color: var(--cream);
-  font-size: 13px;
+  font-size: var(--fs-1);
   letter-spacing: .05em;
 }
 
@@ -866,9 +903,11 @@ button { font-family: var(--sans); }
   z-index: 2;
   text-align: center;
   padding: 26px;
-  font-size: 12px;
+  font-size: var(--fs-1);
   letter-spacing: .1em;
-  color: rgba(247, 237, 230, .4);
+  /* was .4 — badly failed WCAG AA (~2.6:1); the footer always sits against
+     the darkest end of the page gradient */
+  color: rgba(247, 237, 230, .7);
 }
 
 /* ---------- responsive ---------- */
@@ -878,10 +917,10 @@ button { font-family: var(--sans); }
   .nav-links { gap: 18px; font-size: 11px; }
   .nav-logo { width: 26px; height: 26px; }
   .hero { padding: 48px 24px 64px; }
-  .hero-title { font-size: 48px; }
-  .featured-name { font-size: 40px; }
+  /* .hero-title no longer needs a mobile override — it's fluid via clamp() */
+  .featured-name { font-size: var(--fs-5); }
   .promo-card { padding: 22px 20px; }
   .schedule, .details, .about { padding-left: 24px; padding-right: 24px; }
   .schedule-card-photo { width: 100%; height: 160px; }
-  .modal-name { font-size: 36px; }
+  .modal-name { font-size: var(--fs-5); }
 }
