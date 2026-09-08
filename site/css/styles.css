@@ -91,6 +91,9 @@ button { font-family: var(--sans); }
   border-bottom: 1px solid rgba(226, 183, 196, .12);
 }
 .nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
   text-decoration: none;
   font-family: var(--serif);
   font-weight: 500;
@@ -98,6 +101,7 @@ button { font-family: var(--sans); }
   letter-spacing: .06em;
   color: var(--cream);
 }
+.nav-logo { width: 34px; height: 34px; flex: none; }
 .nav-links {
   display: flex;
   gap: 30px;
@@ -803,6 +807,7 @@ button { font-family: var(--sans); }
 @media (max-width: 640px) {
   .nav { padding: 16px 22px; }
   .nav-links { gap: 18px; font-size: 11px; }
+  .nav-logo { width: 26px; height: 26px; }
   .hero { padding: 48px 24px 64px; }
   .hero-title { font-size: 48px; }
   .featured-name { font-size: 40px; }
