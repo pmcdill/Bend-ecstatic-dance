@@ -577,7 +577,7 @@ button { font-family: var(--sans); }
 
 .timeline {
   width: max-content;
-  margin: 0 auto 48px;
+  margin: 0 auto 16px;
   display: grid;
   grid-template-columns: auto auto;
   column-gap: 16px;
@@ -587,6 +587,14 @@ button { font-family: var(--sans); }
 }
 .timeline-time { text-align: right; color: var(--amber); font-variant-numeric: tabular-nums; }
 .timeline-activity { text-align: left; }
+.timeline-note {
+  max-width: 380px;
+  margin: 0 auto 48px;
+  text-align: center;
+  font-size: 13px;
+  line-height: 1.6;
+  color: rgba(247, 237, 230, .55);
+}
 
 .schedule-list {
   display: flex;
