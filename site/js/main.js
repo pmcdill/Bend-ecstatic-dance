@@ -30,9 +30,14 @@
   function assignComputedDates(weeks) {
     weeks.forEach((week, index) => {
       const date = weekDate(index);
+      week._date = date;
       week.dateLabel = index === 0 ? ('This Thursday · ' + monthDay(date)) : monthDay(date);
       week.dateDisplay = 'Thursday · ' + monthDay(date);
     });
+  }
+
+  function dateKey(date) {
+    return date.getFullYear() + '-' + date.getMonth() + '-' + date.getDate();
   }
 
   // ---------- artist modal ----------
@@ -305,6 +310,7 @@
       weeks.forEach((w) => { WEEKS_BY_ID[w.id] = w; });
       renderFeatured(weeks[0]); // the first week in the list is always this week's feature
       renderScheduleList(weeks);
+      buildCalendarData(weeks);
     } catch (err) {
       console.error('Failed to load schedule content:', err);
     }
@@ -334,23 +340,48 @@
   const calPrevBtn = document.getElementById('cal-prev');
   const calNextBtn = document.getElementById('cal-next');
 
-  const MONTHS = [
-    { y: 2026, m: 6, label: 'July 2026' },
-    { y: 2026, m: 7, label: 'August 2026' },
-  ];
-  const EVENTS = {
-    '2026-6-16': 'Kalpa',
-    '2026-6-23': 'Amanda Ramirez',
-    '2026-6-30': 'Electric Indigo',
-    '2026-7-6': 'Kalpa',
-    '2026-7-13': 'DJ Neoma',
-    '2026-7-27': 'Puma',
-  };
-  const TBA_DATES = { '2026-7-20': true };
-  const THIS_WEEK_KEY = '2026-6-16';
+  // Populated from the live schedule (see buildCalendarData) instead of being
+  // hardcoded, so the calendar always spans exactly the Thursdays currently
+  // in content/schedule.json — whatever those roll forward to.
+  let CAL_MONTHS = [];
+  let CAL_EVENTS = {};
+  let CAL_THIS_WEEK_KEY = '';
   const WEEKDAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
   let calMonthIndex = 0;
+
+  function buildCalendarData(weeks) {
+    if (!weeks.length) {
+      const now = new Date();
+      CAL_MONTHS = [{ y: now.getFullYear(), m: now.getMonth(), label: MONTH_NAMES[now.getMonth()] + ' ' + now.getFullYear() }];
+      CAL_EVENTS = {};
+      CAL_THIS_WEEK_KEY = '';
+      calMonthIndex = 0;
+      return;
+    }
+
+    const start = weeks[0]._date;
+    const end = weeks[weeks.length - 1]._date;
+    const months = [];
+    let y = start.getFullYear();
+    let m = start.getMonth();
+    const endY = end.getFullYear();
+    const endM = end.getMonth();
+    while (y < endY || (y === endY && m <= endM)) {
+      months.push({ y, m, label: MONTH_NAMES[m] + ' ' + y });
+      m += 1;
+      if (m > 11) { m = 0; y += 1; }
+    }
+    CAL_MONTHS = months;
+
+    const events = {};
+    weeks.forEach((week) => {
+      events[dateKey(week._date)] = { tba: !!week.tba, name: week.tba ? 'TBA' : week.name };
+    });
+    CAL_EVENTS = events;
+    CAL_THIS_WEEK_KEY = dateKey(weeks[0]._date);
+    calMonthIndex = 0;
+  }
 
   WEEKDAYS.forEach((w) => {
     const el = document.createElement('div');
@@ -360,10 +391,10 @@
   });
 
   function renderCalendar() {
-    const cm = MONTHS[calMonthIndex];
+    const cm = CAL_MONTHS[calMonthIndex];
     calMonthLabel.textContent = cm.label;
     calPrevBtn.disabled = calMonthIndex === 0;
-    calNextBtn.disabled = calMonthIndex === MONTHS.length - 1;
+    calNextBtn.disabled = calMonthIndex === CAL_MONTHS.length - 1;
 
     calCells.innerHTML = '';
     const firstDow = new Date(cm.y, cm.m, 1).getDay();
@@ -378,16 +409,15 @@
     for (let d = 1; d <= daysIn; d++) {
       const key = cm.y + '-' + cm.m + '-' + d;
       const isThu = new Date(cm.y, cm.m, d).getDay() === 4;
-      const ev = EVENTS[key];
-      const isTba = TBA_DATES[key];
-      const isNow = key === THIS_WEEK_KEY;
+      const ev = CAL_EVENTS[key];
+      const isNow = key === CAL_THIS_WEEK_KEY;
 
       const cell = document.createElement('div');
       cell.className = 'cal-cell';
-      if (ev) {
+      if (ev && !ev.tba) {
         cell.classList.add('cal-cell--event');
         if (isNow) cell.classList.add('cal-cell--now');
-      } else if (isTba) {
+      } else if (ev && ev.tba) {
         cell.classList.add('cal-cell--tba');
       } else if (isThu) {
         cell.classList.add('cal-cell--thu');
@@ -400,7 +430,7 @@
 
       const name = document.createElement('div');
       name.className = 'cal-cell-name';
-      name.textContent = ev || (isTba ? 'TBA' : '');
+      name.textContent = ev ? ev.name : '';
       cell.appendChild(name);
 
       calCells.appendChild(cell);
@@ -412,7 +442,7 @@
     renderCalendar();
   });
   calNextBtn.addEventListener('click', () => {
-    calMonthIndex = Math.min(MONTHS.length - 1, calMonthIndex + 1);
+    calMonthIndex = Math.min(CAL_MONTHS.length - 1, calMonthIndex + 1);
     renderCalendar();
   });
 
