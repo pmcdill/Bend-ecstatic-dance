@@ -5,33 +5,32 @@
   // (that file is what Decap CMS at /admin edits — see admin/config.yml)
   let WEEKS_BY_ID = {};
 
-  // Dates aren't stored in the CMS — the first week in the list is always
-  // this Thursday (rolling forward automatically with today's date), the
-  // second is next Thursday, and so on. Reordering the list in the CMS
-  // reorders which Thursday each week lands on.
+  // Each week entry carries its own explicit `date` (set via the CMS date
+  // picker) instead of being inferred from its position in the list — so
+  // bookings don't need to be back-to-back Thursdays. The site sorts all
+  // entries by date and shows whichever booked date comes up next as
+  // "This week's DJ," then the next three after that.
   const MONTH_NAMES = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
-  function nextThursdayOnOrAfter(from) {
-    const d = new Date(from.getFullYear(), from.getMonth(), from.getDate());
-    d.setDate(d.getDate() + ((4 - d.getDay() + 7) % 7)); // 4 = Thursday
-    return d;
+  function parseISODate(str) {
+    const [y, m, d] = str.split('-').map(Number);
+    return new Date(y, m - 1, d);
   }
 
-  function weekDate(index) {
-    const d = nextThursdayOnOrAfter(new Date());
-    d.setDate(d.getDate() + index * 7);
-    return d;
+  function startOfToday() {
+    const now = new Date();
+    return new Date(now.getFullYear(), now.getMonth(), now.getDate());
   }
 
   function monthDay(date) {
     return MONTH_NAMES[date.getMonth()] + ' ' + date.getDate();
   }
 
-  function assignComputedDates(weeks) {
-    weeks.forEach((week, index) => {
-      const date = weekDate(index);
+  function assignDateFields(weeks) {
+    weeks.forEach((week) => {
+      const date = parseISODate(week.date);
       week._date = date;
-      week.dateLabel = index === 0 ? ('This Thursday · ' + monthDay(date)) : monthDay(date);
+      week.dateLabel = monthDay(date);
       week.dateDisplay = 'Thursday · ' + monthDay(date);
     });
   }
@@ -335,12 +334,21 @@
       const res = await fetch('content/schedule.json', { cache: 'no-store' });
       const data = await res.json();
       const weeks = Array.isArray(data.weeks) ? data.weeks : [];
-      assignComputedDates(weeks);
+      assignDateFields(weeks);
+      weeks.sort((a, b) => a._date - b._date);
       WEEKS_BY_ID = {};
       weeks.forEach((w) => { WEEKS_BY_ID[w.id] = w; });
-      renderFeatured(weeks[0]); // the first week in the list is always this week's feature
-      renderScheduleList(weeks.slice(1)); // ...and is already shown there, so skip it in the list below
-      buildCalendarData(weeks);
+
+      // Only ever show the next booked date as "This week's DJ" plus the
+      // next three after it — never more than 4, and never a date that's
+      // already passed.
+      const today = startOfToday();
+      const upcoming = weeks.filter((w) => w._date.getTime() >= today.getTime());
+      const shown = upcoming.slice(0, 4);
+
+      renderFeatured(shown[0]);
+      renderScheduleList(shown.slice(1));
+      buildCalendarData(shown);
     } catch (err) {
       console.error('Failed to load schedule content:', err);
     }
