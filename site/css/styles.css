@@ -156,6 +156,8 @@ button { font-family: var(--sans); }
   margin: 22px 0 0;
 }
 
+.hero-cta { margin-top: 28px; }
+
 .hero > .divider {
   margin-bottom: 40px;
 }
