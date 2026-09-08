@@ -7,6 +7,7 @@
 
   // ---------- artist modal ----------
   const artistModal = document.getElementById('artist-modal');
+  const artistModalInner = artistModal.querySelector('.modal');
   const modalDate = document.getElementById('modal-date');
   const modalTypeBadge = document.getElementById('modal-type-badge');
   const modalName = document.getElementById('modal-name');
@@ -53,6 +54,10 @@
     setPhoto(modalPhotoImg, modalPhotoPlaceholder, week.photo, week.name, { objectPosition: 'center' });
     setPhoto(modalInstructorImg, modalInstructorPlaceholder, week.somaticInstructorPhoto, week.somaticInstructor, week.somaticInstructorPhotoPosition ? { objectPosition: week.somaticInstructorPhotoPosition } : null);
     artistModal.hidden = false;
+    // Reset scroll position — this dialog is reused across weeks, so without
+    // this a modal opened after scrolling through a longer one starts scrolled.
+    artistModal.scrollTop = 0;
+    artistModalInner.scrollTop = 0;
   }
 
   function closeArtistModal() {
@@ -244,6 +249,7 @@
 
   // ---------- calendar modal ----------
   const calendarModal = document.getElementById('calendar-modal');
+  const calendarModalInner = calendarModal.querySelector('.modal');
   const calMonthLabel = document.getElementById('cal-month-label');
   const calWeekdays = document.getElementById('cal-weekdays');
   const calCells = document.getElementById('cal-cells');
@@ -335,6 +341,8 @@
   document.getElementById('open-calendar-btn').addEventListener('click', () => {
     renderCalendar();
     calendarModal.hidden = false;
+    calendarModal.scrollTop = 0;
+    calendarModalInner.scrollTop = 0;
   });
   document.getElementById('calendar-modal-close').addEventListener('click', () => {
     calendarModal.hidden = true;
