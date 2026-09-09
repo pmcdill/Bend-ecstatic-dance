@@ -136,7 +136,7 @@ button { font-family: var(--sans); }
   position: relative;
   z-index: 2;
   text-align: center;
-  padding: 64px 60px 92px;
+  padding: 80px 60px;
   scroll-margin-top: 80px;
 }
 
@@ -170,7 +170,7 @@ button { font-family: var(--sans); }
 .promo-section {
   position: relative;
   z-index: 2;
-  padding: 64px 60px;
+  padding: 80px 60px;
 }
 
 .promo-card {
@@ -607,7 +607,7 @@ button { font-family: var(--sans); }
 .schedule {
   position: relative;
   z-index: 2;
-  padding: 90px 60px 90px;
+  padding: 80px 60px;
   scroll-margin-top: 80px;
 }
 
@@ -759,7 +759,7 @@ button { font-family: var(--sans); }
 .about {
   position: relative;
   z-index: 2;
-  padding: 64px 60px;
+  padding: 80px 60px;
   background: rgba(255, 255, 255, .04);
   border-top: 1px solid rgba(226, 183, 196, .12);
   border-bottom: 1px solid rgba(226, 183, 196, .12);
@@ -830,7 +830,7 @@ button { font-family: var(--sans); }
 .details {
   position: relative;
   z-index: 2;
-  padding: 72px 60px;
+  padding: 80px 60px;
   scroll-margin-top: 80px;
 }
 .details .section-eyebrow { margin-bottom: 28px; }
@@ -959,11 +959,10 @@ button { font-family: var(--sans); }
   .nav { padding: 16px 22px; }
   .nav-links { gap: 18px; font-size: 11px; }
   .nav-logo { width: 26px; height: 26px; }
-  .hero { padding: 48px 24px 64px; }
   /* .hero-title no longer needs a mobile override — it's fluid via clamp() */
   .featured-name { font-size: var(--fs-5); }
   .promo-card { padding: 22px 20px; }
-  .schedule, .details, .about, .promo-section { padding-left: 24px; padding-right: 24px; }
+  .hero, .schedule, .details, .about, .promo-section { padding: 48px 24px; }
   .schedule-card-photo { width: 100%; height: 160px; }
   .modal-name { font-size: var(--fs-5); }
   .voice-box { min-height: 280px; }
