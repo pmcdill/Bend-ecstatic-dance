@@ -174,19 +174,19 @@ button { font-family: var(--sans); }
 }
 
 .promo-card {
-  max-width: 640px;
+  max-width: 900px;
   margin: 0 auto;
-  padding: 26px 30px;
-  border: 1px solid rgba(226, 183, 196, .18);
+  padding: 36px 40px;
   border-radius: 20px;
-  background: rgba(255, 255, 255, .03);
+  background: var(--cream);
+  box-shadow: 0 24px 60px rgba(8, 5, 26, .35);
   text-align: center;
 }
 .promo-card-eyebrow {
   font-size: var(--fs-1);
   letter-spacing: var(--tracking-eyebrow);
   text-transform: uppercase;
-  color: var(--amber);
+  color: var(--bg-2);
   font-weight: 600;
   margin-bottom: 16px;
 }
@@ -198,11 +198,11 @@ button { font-family: var(--sans); }
   margin-bottom: 16px;
 }
 .promo-card-photo img { width: 100%; display: block; }
-.promo-card-meta { font-size: var(--fs-1); letter-spacing: .06em; color: rgba(247, 237, 230, .7); margin-bottom: 12px; }
+.promo-card-meta { font-size: var(--fs-1); letter-spacing: .06em; color: rgba(58, 31, 61, .7); margin-bottom: 12px; }
 .promo-card-desc {
   font-size: var(--fs-2);
   line-height: 1.65;
-  color: rgba(247, 237, 230, .82);
+  color: rgba(58, 31, 61, .75);
   margin: 0 0 20px;
 }
 
