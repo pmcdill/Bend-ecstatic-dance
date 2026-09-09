@@ -165,8 +165,6 @@ button { font-family: var(--sans); }
   margin: 22px 0 0;
 }
 
-.hero-cta { margin-top: 28px; }
-
 /* ---------- special-event promo (secondary, below the weekly schedule) ---------- */
 
 .promo-section {
