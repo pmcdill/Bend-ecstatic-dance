@@ -182,7 +182,7 @@ button { font-family: var(--sans); }
 }
 
 .promo-card {
-  max-width: 900px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 36px 40px;
   border-radius: 20px;
@@ -202,11 +202,20 @@ button { font-family: var(--sans); }
   width: 100%;
   border-radius: 14px;
   overflow: hidden;
-  box-shadow: 0 14px 34px rgba(8, 5, 26, .45);
   margin-bottom: 16px;
 }
 .promo-card-photo img { width: 100%; display: block; }
-.promo-card-meta { font-size: var(--fs-1); letter-spacing: .06em; color: rgba(58, 31, 61, .7); margin-bottom: 12px; }
+/* matches the .featured-date / .modal-date "date meta" pattern elsewhere
+   on the page (uppercase, letter-spaced, accent color) — bg-4 instead of
+   amber since amber measures ~1.4:1 against this card's cream background */
+.promo-card-meta {
+  font-size: var(--fs-1);
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+  color: var(--bg-4);
+  font-weight: 600;
+  margin-bottom: 12px;
+}
 .promo-card-desc {
   font-size: var(--fs-2);
   line-height: 1.65;
