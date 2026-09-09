@@ -136,8 +136,15 @@ button { font-family: var(--sans); }
   position: relative;
   z-index: 2;
   text-align: center;
-  padding: 80px 60px;
+  padding: 80px 60px 0;
   scroll-margin-top: 80px;
+}
+
+/* the divider's own top margin (not .hero's padding) governs the gap above
+   it, since it's the last child — see the schedule/promo-section overrides
+   below for the matching bottom-side halves of each 60px gap */
+.hero > .divider {
+  margin: 60px auto 0;
 }
 
 .eyebrow {
@@ -170,7 +177,8 @@ button { font-family: var(--sans); }
 .promo-section {
   position: relative;
   z-index: 2;
-  padding: 80px 60px;
+  /* top 60px pairs with .schedule's 0 bottom padding for a 60px total gap */
+  padding: 60px 60px 80px;
 }
 
 .promo-card {
@@ -607,7 +615,10 @@ button { font-family: var(--sans); }
 .schedule {
   position: relative;
   z-index: 2;
-  padding: 80px 60px;
+  /* top: pairs with .hero's divider margin for a 60px gap around the
+     divider above; bottom: pairs with .promo-section's top padding for a
+     60px gap to the special-event card below */
+  padding: 60px 60px 0;
   scroll-margin-top: 80px;
 }
 
@@ -624,13 +635,6 @@ button { font-family: var(--sans); }
 }
 .section-eyebrow--center { text-align: center; }
 .section-eyebrow-wrap .section-eyebrow { margin-bottom: 14px; }
-.schedule-subhead {
-  font-size: var(--fs-1);
-  letter-spacing: .16em;
-  text-transform: uppercase;
-  color: rgba(247, 237, 230, .6);
-  margin-bottom: 32px;
-}
 
 .timeline {
   width: max-content;
@@ -962,7 +966,10 @@ button { font-family: var(--sans); }
   /* .hero-title no longer needs a mobile override — it's fluid via clamp() */
   .featured-name { font-size: var(--fs-5); }
   .promo-card { padding: 22px 20px; }
-  .hero, .schedule, .details, .about, .promo-section { padding: 48px 24px; }
+  .hero { padding: 48px 24px 0; }
+  .schedule { padding: 60px 24px 0; }
+  .promo-section { padding: 60px 24px 48px; }
+  .details, .about { padding: 48px 24px; }
   .schedule-card-photo { width: 100%; height: 160px; }
   .modal-name { font-size: var(--fs-5); }
   .voice-box { min-height: 280px; }
