@@ -671,6 +671,9 @@ button { font-family: var(--sans); }
 }
 
 .section-eyebrow-wrap { text-align: center; margin-bottom: 40px; }
+/* target of the "Schedule" nav link, which lives inside .hero rather than
+   its own section — needs its own offset for the sticky nav */
+#schedule { scroll-margin-top: 80px; }
 .section-eyebrow {
   /* explicit margin (not just margin-bottom) since this class is now also
      applied to h2/h3 elements, which carry their own UA-stylesheet margin */
