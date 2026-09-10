@@ -157,11 +157,12 @@ button { font-family: var(--sans); }
   scroll-margin-top: 80px;
 }
 
-/* the divider's own top margin (not .hero's padding) governs the gap above
-   it, since it's the last child — see the schedule/promo-section overrides
-   below for the matching bottom-side halves of each 60px gap */
+/* separates the time-labels block from the "Schedule" heading below it */
 .hero > .divider {
   margin: 60px auto 0;
+}
+.hero > .divider + .section-eyebrow-wrap {
+  margin-top: 60px;
 }
 
 .eyebrow {
@@ -641,11 +642,14 @@ button { font-family: var(--sans); }
 .schedule {
   position: relative;
   z-index: 2;
-  /* top: pairs with .hero's divider margin for a 60px gap around the
-     divider above; bottom: pairs with .promo-section's top padding for a
-     60px gap to the special-event card below */
+  /* top: gap from the hero above; the divider added at the end of this
+     section (see .schedule > .divider) pairs its own top margin with
+     .promo-section's top padding for a 60px gap on each side of it */
   padding: 60px 60px 0;
   scroll-margin-top: 80px;
+}
+.schedule > .divider {
+  margin: 60px auto 0;
 }
 
 .section-eyebrow-wrap { text-align: center; margin-bottom: 40px; }
