@@ -675,7 +675,7 @@ button { font-family: var(--sans); }
 }
 .timeline-col:first-child { border-left: none; }
 .timeline-time {
-  font-size: var(--fs-5);
+  font-size: var(--fs-4);
   font-weight: 600;
   color: var(--amber);
   font-variant-numeric: tabular-nums;
@@ -1033,7 +1033,6 @@ button { font-family: var(--sans); }
     row-gap: 24px;
   }
   .timeline-col:nth-child(3) { border-left: none; }
-  .timeline-time { font-size: var(--fs-4); }
   .schedule { padding: 60px 24px 0; }
   .promo-section { padding: 60px 24px 48px; }
   .details, .about { padding: 48px 24px; }
