@@ -78,10 +78,28 @@ button { font-family: var(--sans); }
 }
 
 .divider {
-  max-width: 120px;
-  height: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  max-width: 260px;
   margin: 52px auto 0;
-  background: rgba(226, 183, 196, .25);
+}
+.divider-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(240, 200, 138, .7));
+}
+.divider-line--end {
+  background: linear-gradient(90deg, rgba(240, 200, 138, .7), transparent);
+}
+.divider-mark {
+  flex: none;
+  font-size: 20px;
+  line-height: 1;
+  color: var(--amber);
+  text-shadow: 0 0 10px rgba(240, 200, 138, .8);
+  animation: edPulse 2.4s ease-in-out infinite;
 }
 
 /* ---------- nav ---------- */
