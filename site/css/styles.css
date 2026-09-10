@@ -110,6 +110,23 @@ button { font-family: var(--sans); }
   color: var(--cream);
 }
 .nav-logo { width: 34px; height: 34px; flex: none; }
+
+/* hidden on desktop — see the <=640px breakpoint for the mobile menu button */
+.nav-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: transparent;
+  border: 1px solid rgba(226, 183, 196, .3);
+  color: var(--cream);
+  cursor: pointer;
+  flex: none;
+}
+.nav-toggle-icon[hidden] { display: none; }
+
 .nav-links {
   display: flex;
   gap: 30px;
@@ -970,7 +987,30 @@ button { font-family: var(--sans); }
 
 @media (max-width: 640px) {
   .nav { padding: 16px 22px; }
-  .nav-links { gap: 18px; font-size: 11px; }
+  .nav-toggle { display: inline-flex; }
+  .nav-links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 30;
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 4px 22px 16px;
+    background: rgba(27, 19, 48, .97);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(226, 183, 196, .12);
+    font-size: 11px;
+  }
+  .nav-links.is-open { display: flex; }
+  .nav-link {
+    padding: 14px 2px;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+  }
   .nav-logo { width: 26px; height: 26px; }
   /* .hero-title no longer needs a mobile override — it's fluid via clamp() */
   .featured-name { font-size: var(--fs-5); }

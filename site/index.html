@@ -80,7 +80,11 @@
       <img src="assets/images/logo.png" alt="" class="nav-logo">
       Bend Ecstatic Dance
     </a>
-    <nav class="nav-links" aria-label="Section navigation">
+    <button type="button" class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">
+      <svg class="nav-toggle-icon nav-toggle-icon--open" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+      <svg class="nav-toggle-icon nav-toggle-icon--close" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" hidden><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+    </button>
+    <nav class="nav-links" id="nav-links" aria-label="Section navigation">
       <a href="#artists" class="nav-link" data-nav="artists">Schedule</a>
       <a href="#about" class="nav-link" data-nav="about">About</a>
       <a href="#location" class="nav-link" data-nav="location">Details</a>

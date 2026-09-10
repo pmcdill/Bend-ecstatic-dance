@@ -668,6 +668,63 @@
   window.addEventListener('resize', updateActiveSection, { passive: true });
   updateActiveSection();
 
+  // ---------- mobile nav menu (condenses .nav-links into a toggle button
+  // + dropdown below 640px — see the matching CSS breakpoint) ----------
+  const navToggle = document.getElementById('nav-toggle');
+  const navLinksEl = document.getElementById('nav-links');
+  const navToggleOpenIcon = navToggle.querySelector('.nav-toggle-icon--open');
+  const navToggleCloseIcon = navToggle.querySelector('.nav-toggle-icon--close');
+
+  // Toggling the `hidden` property (rather than the attribute directly)
+  // doesn't work on <svg> elements in this browser — the property setter
+  // silently fails to reflect to the actual attribute, so [hidden] never
+  // matches and the element stays visible. Use the attribute methods
+  // instead, which work correctly for SVG.
+  function openNavMenu() {
+    navLinksEl.classList.add('is-open');
+    navToggle.setAttribute('aria-expanded', 'true');
+    navToggle.setAttribute('aria-label', 'Close menu');
+    navToggleOpenIcon.setAttribute('hidden', '');
+    navToggleCloseIcon.removeAttribute('hidden');
+  }
+
+  function closeNavMenu() {
+    navLinksEl.classList.remove('is-open');
+    navToggle.setAttribute('aria-expanded', 'false');
+    navToggle.setAttribute('aria-label', 'Open menu');
+    navToggleOpenIcon.removeAttribute('hidden');
+    navToggleCloseIcon.setAttribute('hidden', '');
+  }
+
+  navToggle.addEventListener('click', () => {
+    if (navLinksEl.classList.contains('is-open')) closeNavMenu();
+    else openNavMenu();
+  });
+
+  // Clicking a link both navigates and closes the menu.
+  navLinksEl.querySelectorAll('.nav-link').forEach((link) => {
+    link.addEventListener('click', closeNavMenu);
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!navLinksEl.classList.contains('is-open')) return;
+    if (navLinksEl.contains(e.target) || navToggle.contains(e.target)) return;
+    closeNavMenu();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && navLinksEl.classList.contains('is-open')) {
+      closeNavMenu();
+      navToggle.focus();
+    }
+  });
+
+  // Resizing past the mobile breakpoint (e.g. rotating a tablet) shouldn't
+  // leave the menu stuck open once it's no longer rendered as a dropdown.
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 640 && navLinksEl.classList.contains('is-open')) closeNavMenu();
+  });
+
   loadSchedule();
   loadDetails();
 })();
