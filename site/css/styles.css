@@ -663,22 +663,34 @@ button { font-family: var(--sans); }
 .section-eyebrow-wrap .section-eyebrow { margin-bottom: 14px; }
 
 .timeline {
-  width: max-content;
-  margin: 0 auto 16px;
+  max-width: 820px;
+  margin: 32px auto 0;
   display: grid;
-  grid-template-columns: auto auto;
-  column-gap: 16px;
-  row-gap: 8px;
-  font-size: var(--fs-3);
-  /* was .6 alpha — this is exact set times, some of the most
-     decision-relevant text on the page, so it gets full contrast */
-  color: var(--cream);
+  grid-template-columns: repeat(4, 1fr);
 }
-.timeline-time { text-align: right; color: var(--amber); font-variant-numeric: tabular-nums; }
-.timeline-activity { text-align: left; }
+.timeline-col {
+  padding: 0 18px;
+  text-align: center;
+  border-left: 1px solid rgba(240, 200, 138, .25);
+}
+.timeline-col:first-child { border-left: none; }
+.timeline-time {
+  font-size: var(--fs-5);
+  font-weight: 600;
+  color: var(--amber);
+  font-variant-numeric: tabular-nums;
+}
+.timeline-activity {
+  margin-top: 6px;
+  font-size: var(--fs-1);
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+  /* muted against the hero's --bg-1 background — passes WCAG AA (6.18:1) */
+  color: rgba(247, 237, 230, .6);
+}
 .timeline-note {
   max-width: 380px;
-  margin: 0 auto 48px;
+  margin: 20px auto 0;
   text-align: center;
   font-size: var(--fs-1);
   line-height: 1.6;
@@ -1016,6 +1028,12 @@ button { font-family: var(--sans); }
   .featured-name { font-size: var(--fs-5); }
   .promo-card { padding: 22px 20px; }
   .hero { padding: 48px 24px 0; }
+  .timeline {
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 24px;
+  }
+  .timeline-col:nth-child(3) { border-left: none; }
+  .timeline-time { font-size: var(--fs-4); }
   .schedule { padding: 60px 24px 0; }
   .promo-section { padding: 60px 24px 48px; }
   .details, .about { padding: 48px 24px; }
