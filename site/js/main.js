@@ -12,9 +12,15 @@
   // "This week's DJ," then the next three after that.
   const MONTH_NAMES = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
+  // Returns null (rather than throwing) for a missing/malformed date, so one
+  // incomplete CMS entry can be skipped instead of taking down the whole
+  // schedule fetch — see the filter in loadSchedule below.
   function parseISODate(str) {
+    if (typeof str !== 'string') return null;
     const [y, m, d] = str.split('-').map(Number);
-    return new Date(y, m - 1, d);
+    if (!y || !m || !d) return null;
+    const date = new Date(y, m - 1, d);
+    return Number.isNaN(date.getTime()) ? null : date;
   }
 
   function startOfToday() {
@@ -30,8 +36,8 @@
     weeks.forEach((week) => {
       const date = parseISODate(week.date);
       week._date = date;
-      week.dateLabel = monthDay(date);
-      week.dateDisplay = 'Thursday · ' + monthDay(date);
+      week.dateLabel = date ? monthDay(date) : '';
+      week.dateDisplay = date ? 'Thursday · ' + monthDay(date) : '';
     });
   }
 
@@ -409,11 +415,26 @@
       const res = await fetch('content/schedule.json', { cache: 'no-store' });
       if (!res.ok) throw new Error('content/schedule.json responded with ' + res.status);
       const data = await res.json();
-      const weeks = Array.isArray(data.weeks) ? data.weeks : [];
-      assignDateFields(weeks);
+      const allWeeks = Array.isArray(data.weeks) ? data.weeks : [];
+      assignDateFields(allWeeks);
+
+      // A CMS entry saved without a date can't be placed in the schedule —
+      // skip it (rather than letting it break every other entry) and warn
+      // so the gap gets noticed and fixed at the source.
+      const weeks = allWeeks.filter((w) => w._date);
+      if (weeks.length !== allWeeks.length) {
+        const skipped = allWeeks.filter((w) => !w._date).map((w) => w.name || '(unnamed)');
+        console.warn('Schedule: skipping entr' + (skipped.length === 1 ? 'y' : 'ies') + ' missing a valid date:', skipped);
+      }
+
       weeks.sort((a, b) => a._date - b._date);
       WEEKS_BY_ID = {};
-      weeks.forEach((w) => { WEEKS_BY_ID[w.id] = w; });
+      weeks.forEach((w, i) => {
+        // Fall back to a positional id for entries the CMS saved without
+        // one, so they don't all collide under the same "undefined" key.
+        if (!w.id) w.id = 'week-' + i;
+        WEEKS_BY_ID[w.id] = w;
+      });
 
       // Only ever show the next booked date as "This week's DJ" plus the
       // next three after it — never more than 4, and never a date that's
