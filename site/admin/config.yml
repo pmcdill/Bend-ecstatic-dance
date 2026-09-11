@@ -24,7 +24,7 @@ collections:
             hint: "Add one entry per Thursday you've booked — order in this list doesn't matter, the site sorts by date automatically. It's fine to leave gaps (e.g. add an artist 4 weeks out with nothing booked yet for 3 weeks out). The site always shows whichever booked date comes up next as \"This week's DJ,\" then the next three after that."
             summary: "{{fields.date}} — {{fields.name}}"
             fields:
-              - { label: "Date (the Thursday this artist is playing)", name: "date", widget: "date", date_format: "YYYY-MM-DD", time_format: false, required: true }
+              - { label: "Date (the Thursday this artist is playing)", name: "date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, required: true }
               - { label: "TBA (no artist confirmed yet)", name: "tba", widget: "boolean", default: false }
               - { label: "Artist / act name", name: "name", widget: "string" }
               - { label: "Set type", name: "typeLabel", widget: "select", options: ["Live DJ set", "Curated setlist"], required: false }
