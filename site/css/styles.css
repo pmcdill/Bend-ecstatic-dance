@@ -336,6 +336,7 @@ button { font-family: var(--sans); }
   font-weight: 400;
   margin: 0 0 22px;
   max-width: 540px;
+  white-space: pre-line;
 }
 
 .pill-row { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 18px; }
@@ -491,6 +492,10 @@ button { font-family: var(--sans); }
   color: rgba(247, 237, 230, .82);
   font-weight: 400;
   margin: 0 0 24px;
+  /* preserves the line/paragraph breaks organizers type into the CMS's
+     multi-line text fields, which textContent keeps in the DOM but the
+     default white-space:normal otherwise collapses away */
+  white-space: pre-line;
 }
 
 .modal-divider { height: 1px; background: rgba(226, 183, 196, .16); margin: 0 0 24px; }
@@ -797,6 +802,7 @@ button { font-family: var(--sans); }
   font-weight: 400;
   margin: 0 0 14px;
   max-width: 500px;
+  white-space: pre-line;
 }
 .schedule-card-somalab { font-size: var(--fs-1); letter-spacing: .05em; color: rgba(247, 237, 230, .62); }
 .schedule-card-somalab span { color: var(--rose); }
