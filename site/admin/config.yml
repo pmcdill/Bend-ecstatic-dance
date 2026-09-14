@@ -52,3 +52,18 @@ collections:
           - { label: "Price", name: "price", widget: "string" }
           - { label: "Ages", name: "ages", widget: "string" }
           - { label: "Bring", name: "bring", widget: "string" }
+
+  - name: "special_event"
+    label: "Special Event"
+    files:
+      - name: "event"
+        label: "Special Event Banner"
+        file: "site/content/special-event.json"
+        hint: "This powers the one-off promo banner below the weekly schedule (e.g. a special dance night at a different venue). Leave every field below empty to remove that banner from the site entirely."
+        fields:
+          - { label: "Banner photo", name: "photo", widget: "image", required: false }
+          - { label: "Banner photo alt text (for screen readers)", name: "photoAlt", widget: "string", required: false }
+          - { label: "Date & venue (e.g. \"Thursday, October 1 · High Desert Music Hall\")", name: "meta", widget: "string", required: false }
+          - { label: "Description", name: "description", widget: "text", required: false }
+          - { label: "Show a \"Get tickets\" button", name: "showTicketButton", widget: "boolean", default: true }
+          - { label: "Ticket link (only used when the toggle above is on)", name: "ticketUrl", widget: "string", required: false }

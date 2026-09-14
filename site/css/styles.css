@@ -241,6 +241,14 @@ button { font-family: var(--sans); }
   margin-bottom: 16px;
 }
 .promo-card-photo img { width: 100%; display: block; }
+/* .ph-photo's default palette is designed for this page's dark sections —
+   rgba(58,31,61,x) here is the same dark-on-cream tone as .promo-card-desc,
+   so the "no photo yet" placeholder stays legible on this card's light bg */
+.promo-card-photo .ph-photo {
+  background: rgba(58, 31, 61, .04);
+  border-color: rgba(58, 31, 61, .25);
+  color: rgba(58, 31, 61, .75);
+}
 /* matches the .featured-date / .modal-date "date meta" pattern elsewhere
    on the page (uppercase, letter-spaced, accent color) — bg-4 instead of
    amber since amber measures ~1.4:1 against this card's cream background */
@@ -378,6 +386,10 @@ button { font-family: var(--sans); }
   border: none;
   text-decoration: none;
 }
+/* its own display:inline-block (equal specificity to the UA's
+   [hidden]{display:none}) would otherwise win by cascade origin and keep
+   it visible even when hidden — same class of bug as .week-banner[hidden] */
+.btn-primary[hidden] { display: none; }
 
 .btn-ghost {
   margin-top: 22px;

@@ -472,6 +472,33 @@
     }
   }
 
+  // ---------- special event promo (from content/special-event.json) ----------
+  // The banner stays hidden (its default state in the markup) unless the
+  // CMS entry actually has something in it — so an untouched/blanked-out
+  // entry just removes the section instead of showing an empty card.
+  async function loadSpecialEvent() {
+    try {
+      const res = await fetch('content/special-event.json', { cache: 'no-store' });
+      const event = await res.json();
+      const hasContent = Boolean((event.photo || '').trim() || (event.meta || '').trim() || (event.description || '').trim());
+      if (!hasContent) return;
+
+      document.getElementById('special-event-meta').textContent = event.meta || '';
+      document.getElementById('special-event-desc').textContent = event.description || '';
+      appendPhoto(document.getElementById('special-event-photo'), event.photo, event.photoAlt || '');
+
+      const ticketLink = document.getElementById('special-event-ticket-link');
+      if (event.showTicketButton && (event.ticketUrl || '').trim()) {
+        ticketLink.href = event.ticketUrl;
+        ticketLink.hidden = false;
+      }
+
+      document.getElementById('special-event').hidden = false;
+    } catch (err) {
+      console.error('Failed to load special event content:', err);
+    }
+  }
+
   // ---------- calendar modal ----------
   const calendarModal = document.getElementById('calendar-modal');
   const calendarModalInner = calendarModal.querySelector('.modal');
@@ -748,4 +775,5 @@
 
   loadSchedule();
   loadDetails();
+  loadSpecialEvent();
 })();

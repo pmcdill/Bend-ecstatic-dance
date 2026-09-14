@@ -235,16 +235,17 @@
   </section>
 
   <!-- special event: a one-off at a different venue, kept secondary to and
-       below the regular weekly schedule above -->
-  <section id="special-event" class="promo-section">
+       below the regular weekly schedule above. Populated from
+       content/special-event.json — hidden by default (and left hidden if
+       that file has no content in it) so this section only ever appears
+       when there's an actual event to promote. -->
+  <section id="special-event" class="promo-section" hidden>
     <div class="promo-card">
       <div class="promo-card-eyebrow">Special event</div>
-      <div class="promo-card-photo">
-        <img src="assets/images/microfest-banner.webp" alt="Luminous Soul Dance Microfest — Fitzy, Rabellion, Kalpa, and Matthew Honeyheart. Cacao, live music, DJs, live art, elixirs, and more. Presented by Bend Ecstatic Dance.">
-      </div>
-      <div class="promo-card-meta">Thursday, October 1 · High Desert Music Hall</div>
-      <p class="promo-card-desc">A sober, conversation-free dance floor at an elite venue — immersive movement, professional sound, and community.</p>
-      <a class="btn-primary" href="https://events.ticketleap.com/tickets/rabellion-events/cacao-dance-microfest-rabellion-kalpa-fitzy-matthew-honeyheart" target="_blank" rel="noopener">Get tickets →</a>
+      <div class="promo-card-photo" id="special-event-photo"></div>
+      <div class="promo-card-meta" id="special-event-meta"></div>
+      <p class="promo-card-desc" id="special-event-desc"></p>
+      <a class="btn-primary" id="special-event-ticket-link" href="#" target="_blank" rel="noopener" hidden>Get tickets →</a>
     </div>
   </section>
 
