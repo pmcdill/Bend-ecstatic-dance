@@ -102,8 +102,12 @@
   const modalName = document.getElementById('modal-name');
   const modalTypeLabel = document.getElementById('modal-type-label');
   const modalDj = document.getElementById('modal-dj');
+  const modalSetLabel = document.getElementById('modal-set-label');
   const modalSet = document.getElementById('modal-set');
+  const modalSocials = document.getElementById('modal-socials');
+  const modalSomalabDivider = document.getElementById('modal-somalab-divider');
   const modalSomalabLabel = document.getElementById('modal-somalab-label');
+  const modalSomalabRow = document.getElementById('modal-somalab-row');
   const modalSomalabInstructor = document.getElementById('modal-somalab-instructor');
   const modalSomalabActivity = document.getElementById('modal-somalab-activity');
   const modalSomalabBlurb = document.getElementById('modal-somalab-blurb');
@@ -152,8 +156,7 @@
   };
 
   function renderModalSocials(week) {
-    const el = document.getElementById('modal-socials');
-    el.innerHTML = '';
+    modalSocials.innerHTML = '';
     Object.keys(SOCIAL_ICONS).forEach((key) => {
       const url = week[key];
       if (!url) return;
@@ -165,8 +168,11 @@
       a.setAttribute('aria-label', SOCIAL_ICONS[key].label);
       a.title = SOCIAL_ICONS[key].label;
       a.innerHTML = SOCIAL_ICONS[key].svg;
-      el.appendChild(a);
+      modalSocials.appendChild(a);
     });
+    // No CMS content to hide behind here — an empty container would still
+    // take up its own margin/gap even with nothing inside it.
+    modalSocials.hidden = modalSocials.children.length === 0;
   }
 
   function openArtistModal(id) {
@@ -175,9 +181,26 @@
     modalDate.textContent = week.dateDisplay || '';
     modalTypeBadge.textContent = week.typeLabel || '';
     modalName.textContent = week.name;
+
+    // Each of these is a CMS field paired with its own label/section — if
+    // the organizer left it blank, hide the whole thing rather than showing
+    // a heading over empty space.
+    const hasBio = Boolean(week.bio);
+    modalTypeLabel.hidden = !hasBio;
+    modalDj.hidden = !hasBio;
     modalTypeLabel.textContent = week.typeLabel || '';
     modalDj.textContent = week.bio || '';
+
+    const hasSetDesc = Boolean(week.setDescription);
+    modalSetLabel.hidden = !hasSetDesc;
+    modalSet.hidden = !hasSetDesc;
     modalSet.textContent = week.setDescription || '';
+
+    const hasSomalab = Boolean(week.somaticInstructor || week.somaticOffering || week.somaticBlurb);
+    modalSomalabDivider.hidden = !hasSomalab;
+    modalSomalabLabel.hidden = !hasSomalab;
+    modalSomalabRow.hidden = !hasSomalab;
+    modalSomalabBlurb.hidden = !hasSomalab;
     modalSomalabLabel.textContent = 'SomaLab · 7pm · 45 mins';
     modalSomalabInstructor.textContent = week.somaticInstructor || '';
     modalSomalabActivity.textContent = week.somaticOffering || '';
@@ -268,6 +291,8 @@
     }
     weekBanner.hidden = false;
 
+    const hasTicket = Boolean(week.showTicketButton && week.ticketUrl);
+
     const photoDiv = document.createElement('div');
     photoDiv.className = 'featured-photo';
     appendPhoto(photoDiv, week.photo, week.name);
@@ -294,29 +319,25 @@
       '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>' +
       '</a>' +
       '<span class="pill">8–10pm</span>';
-    const typePill = document.createElement('span');
-    typePill.className = 'pill';
-    typePill.textContent = week.typeLabel || '';
-    pillRow.appendChild(typePill);
+    if (week.typeLabel) {
+      const typePill = document.createElement('span');
+      typePill.className = 'pill';
+      typePill.textContent = week.typeLabel;
+      pillRow.appendChild(typePill);
+    }
     info.appendChild(pillRow);
 
-    const desc = document.createElement('p');
-    desc.className = 'featured-desc';
-    desc.textContent = week.shortDescription || '';
-    info.appendChild(desc);
+    if (week.shortDescription) {
+      const desc = document.createElement('p');
+      desc.className = 'featured-desc';
+      desc.textContent = week.shortDescription;
+      info.appendChild(desc);
+    }
 
     const actions = document.createElement('div');
     actions.className = 'featured-actions';
 
-    const btn = document.createElement('button');
-    btn.type = 'button';
-    btn.className = 'btn-primary';
-    btn.dataset.openModal = week.id;
-    btn.textContent = 'Read more →';
-    wireModalTrigger(btn);
-    actions.appendChild(btn);
-
-    if (week.showTicketButton && week.ticketUrl) {
+    if (hasTicket) {
       const ticketLink = document.createElement('a');
       ticketLink.className = 'btn-primary';
       ticketLink.href = week.ticketUrl;
@@ -324,6 +345,22 @@
       ticketLink.rel = 'noopener';
       ticketLink.textContent = 'Get tickets →';
       actions.appendChild(ticketLink);
+
+      const readMoreBtn = document.createElement('button');
+      readMoreBtn.type = 'button';
+      readMoreBtn.className = 'btn-outline';
+      readMoreBtn.dataset.openModal = week.id;
+      readMoreBtn.textContent = 'Read more';
+      wireModalTrigger(readMoreBtn);
+      actions.appendChild(readMoreBtn);
+    } else {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'btn-primary';
+      btn.dataset.openModal = week.id;
+      btn.textContent = 'Read more →';
+      wireModalTrigger(btn);
+      actions.appendChild(btn);
     }
 
     info.appendChild(actions);
@@ -350,6 +387,13 @@
       const dateLabel = document.createElement('div');
       dateLabel.className = 'schedule-date-label';
       dateLabel.textContent = week.dateLabel || '';
+      if (week.isSpecialEvent) {
+        dateLabel.appendChild(document.createTextNode(' · '));
+        const badge = document.createElement('span');
+        badge.className = 'schedule-date-label-badge';
+        badge.textContent = 'Special event';
+        dateLabel.appendChild(badge);
+      }
       item.appendChild(dateLabel);
 
       if (week.tba) {
@@ -368,11 +412,13 @@
         const name = document.createElement('div');
         name.className = 'schedule-card-name schedule-card-name--tba';
         name.textContent = week.name || 'Artist to be announced';
-        const desc = document.createElement('p');
-        desc.className = 'schedule-card-desc schedule-card-desc--tba';
-        desc.textContent = week.shortDescription || '';
         body.appendChild(name);
-        body.appendChild(desc);
+        if (week.shortDescription) {
+          const desc = document.createElement('p');
+          desc.className = 'schedule-card-desc schedule-card-desc--tba';
+          desc.textContent = week.shortDescription;
+          body.appendChild(desc);
+        }
         card.appendChild(body);
 
         item.appendChild(card);
@@ -385,10 +431,11 @@
       // Normally the whole card is a real <button> (gets keyboard reachability
       // and Enter/Space activation for free). But an <a> ticket link can't
       // legally nest inside a <button>, so when a ticket link is present the
-      // clickable "open modal" area becomes an inner button instead, and the
-      // ticket link sits beside it as a sibling — see .schedule-card-wrap.
+      // clickable "open modal" area becomes an inner button (holding just the
+      // body + arrow) instead, with the photo — and the ticket link directly
+      // under it — living outside it as a sibling column. See .schedule-card-wrap.
       const card = document.createElement(hasTicket ? 'div' : 'button');
-      card.className = hasTicket ? 'schedule-card-wrap' : 'schedule-card';
+      card.className = (hasTicket ? 'schedule-card-wrap' : 'schedule-card') + (week.isSpecialEvent ? ' schedule-card--special' : '');
       const trigger = hasTicket ? document.createElement('button') : card;
       if (hasTicket) {
         trigger.type = 'button';
@@ -399,7 +446,15 @@
       const photo = document.createElement('div');
       photo.className = 'schedule-card-photo';
       appendPhoto(photo, week.photo, week.name);
-      trigger.appendChild(photo);
+
+      let photoCol = null;
+      if (hasTicket) {
+        photoCol = document.createElement('div');
+        photoCol.className = 'schedule-card-photo-col';
+        photoCol.appendChild(photo);
+      } else {
+        trigger.appendChild(photo);
+      }
 
       const body = document.createElement('div');
       body.className = 'schedule-card-body';
@@ -409,23 +464,31 @@
       name.textContent = week.name;
       body.appendChild(name);
 
-      const type = document.createElement('div');
-      type.className = 'schedule-card-type ' + (week.typeLabel === 'Live DJ set' ? 'schedule-card-type--live' : 'schedule-card-type--curated');
-      type.textContent = week.typeLabel || '';
-      body.appendChild(type);
+      if (week.typeLabel) {
+        const type = document.createElement('div');
+        type.className = 'schedule-card-type ' + (week.typeLabel === 'Live DJ set' ? 'schedule-card-type--live' : 'schedule-card-type--curated');
+        type.textContent = week.typeLabel;
+        body.appendChild(type);
+      }
 
-      const desc = document.createElement('p');
-      desc.className = 'schedule-card-desc';
-      desc.textContent = week.shortDescription || '';
-      body.appendChild(desc);
+      if (week.shortDescription) {
+        const desc = document.createElement('p');
+        desc.className = 'schedule-card-desc';
+        desc.textContent = week.shortDescription;
+        body.appendChild(desc);
+      }
 
-      const somalab = document.createElement('div');
-      somalab.className = 'schedule-card-somalab';
-      const somalabLabel = document.createElement('span');
-      somalabLabel.textContent = 'SomaLab:';
-      somalab.appendChild(somalabLabel);
-      somalab.appendChild(document.createTextNode(' ' + (week.somaticOffering || '') + ' by ' + (week.somaticInstructor || '')));
-      body.appendChild(somalab);
+      if (week.somaticOffering || week.somaticInstructor) {
+        const somalab = document.createElement('div');
+        somalab.className = 'schedule-card-somalab';
+        const somalabLabel = document.createElement('span');
+        somalabLabel.textContent = 'SomaLab:';
+        somalab.appendChild(somalabLabel);
+        let somalabText = ' ' + (week.somaticOffering || '');
+        if (week.somaticInstructor) somalabText += ' by ' + week.somaticInstructor;
+        somalab.appendChild(document.createTextNode(somalabText));
+        body.appendChild(somalab);
+      }
 
       trigger.appendChild(body);
 
@@ -438,14 +501,16 @@
       wireModalTrigger(trigger);
 
       if (hasTicket) {
-        card.appendChild(trigger);
         const ticketLink = document.createElement('a');
         ticketLink.className = 'btn-primary schedule-card-ticket-link';
         ticketLink.href = week.ticketUrl;
         ticketLink.target = '_blank';
         ticketLink.rel = 'noopener';
         ticketLink.textContent = 'Get tickets →';
-        card.appendChild(ticketLink);
+        photoCol.appendChild(ticketLink);
+
+        card.appendChild(photoCol);
+        card.appendChild(trigger);
       }
 
       item.appendChild(card);
@@ -512,33 +577,6 @@
       document.getElementById('modal-footer-price').textContent = details.price || '';
     } catch (err) {
       console.error('Failed to load venue details:', err);
-    }
-  }
-
-  // ---------- special event promo (from content/special-event.json) ----------
-  // The banner stays hidden (its default state in the markup) unless the
-  // CMS entry actually has something in it — so an untouched/blanked-out
-  // entry just removes the section instead of showing an empty card.
-  async function loadSpecialEvent() {
-    try {
-      const res = await fetch('content/special-event.json', { cache: 'no-store' });
-      const event = await res.json();
-      const hasContent = Boolean((event.photo || '').trim() || (event.meta || '').trim() || (event.description || '').trim());
-      if (!hasContent) return;
-
-      document.getElementById('special-event-meta').textContent = event.meta || '';
-      document.getElementById('special-event-desc').textContent = event.description || '';
-      appendPhoto(document.getElementById('special-event-photo'), event.photo, event.photoAlt || '');
-
-      const ticketLink = document.getElementById('special-event-ticket-link');
-      if (event.showTicketButton && (event.ticketUrl || '').trim()) {
-        ticketLink.href = event.ticketUrl;
-        ticketLink.hidden = false;
-      }
-
-      document.getElementById('special-event').hidden = false;
-    } catch (err) {
-      console.error('Failed to load special event content:', err);
     }
   }
 
@@ -818,5 +856,4 @@
 
   loadSchedule();
   loadDetails();
-  loadSpecialEvent();
 })();

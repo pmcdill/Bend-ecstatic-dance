@@ -208,64 +208,6 @@ button { font-family: var(--sans); }
   margin: 22px 0 0;
 }
 
-/* ---------- special-event promo (secondary, below the weekly schedule) ---------- */
-
-.promo-section {
-  position: relative;
-  z-index: 2;
-  /* top 60px pairs with .schedule's 0 bottom padding for a 60px total gap */
-  padding: 60px 60px 80px;
-}
-
-.promo-card {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 36px 40px;
-  border-radius: 20px;
-  background: var(--cream);
-  box-shadow: 0 24px 60px rgba(8, 5, 26, .35);
-  text-align: center;
-}
-.promo-card-eyebrow {
-  font-size: var(--fs-1);
-  letter-spacing: var(--tracking-eyebrow);
-  text-transform: uppercase;
-  color: var(--bg-2);
-  font-weight: 600;
-  margin-bottom: 16px;
-}
-.promo-card-photo {
-  width: 100%;
-  border-radius: 14px;
-  overflow: hidden;
-  margin-bottom: 16px;
-}
-.promo-card-photo img { width: 100%; display: block; }
-/* .ph-photo's default palette is designed for this page's dark sections —
-   rgba(58,31,61,x) here is the same dark-on-cream tone as .promo-card-desc,
-   so the "no photo yet" placeholder stays legible on this card's light bg */
-.promo-card-photo .ph-photo {
-  background: rgba(58, 31, 61, .04);
-  border-color: rgba(58, 31, 61, .25);
-  color: rgba(58, 31, 61, .75);
-}
-/* matches the .featured-date / .modal-date "date meta" pattern elsewhere
-   on the page (uppercase, letter-spaced, accent color) — bg-4 instead of
-   amber since amber measures ~1.4:1 against this card's cream background */
-.promo-card-meta {
-  font-size: var(--fs-1);
-  letter-spacing: var(--tracking-eyebrow);
-  text-transform: uppercase;
-  color: var(--bg-4);
-  font-weight: 600;
-  margin-bottom: 12px;
-}
-.promo-card-desc {
-  font-size: var(--fs-2);
-  line-height: 1.65;
-  color: rgba(58, 31, 61, .75);
-  margin: 0 0 20px;
-}
 
 .week-banner {
   max-width: 820px;
@@ -499,6 +441,8 @@ button { font-family: var(--sans); }
   margin-bottom: 10px;
 }
 
+.modal-ticket-link { margin-bottom: 22px; }
+
 .modal-text {
   font-size: var(--fs-2);
   line-height: 1.75;
@@ -546,6 +490,7 @@ button { font-family: var(--sans); }
 .modal-body { padding: 30px 34px 34px; }
 
 .somalab-row { display: flex; align-items: center; gap: 16px; margin-bottom: 10px; }
+.somalab-row[hidden] { display: none; }
 .modal-instructor-photo {
   flex: none;
   width: 64px;
@@ -558,6 +503,7 @@ button { font-family: var(--sans); }
 .somalab-activity { font-size: var(--fs-1); color: rgba(247, 237, 230, .6); margin-top: 2px; }
 
 .modal-socials { display: flex; gap: 12px; margin: 0 0 24px; }
+.modal-socials[hidden] { display: none; }
 .modal-social-link {
   display: inline-flex;
   align-items: center;
@@ -679,8 +625,8 @@ button { font-family: var(--sans); }
   position: relative;
   z-index: 2;
   /* top: gap from the hero above; the divider added at the end of this
-     section (see .schedule > .divider) pairs its own top margin with
-     .promo-section's top padding for a 60px gap on each side of it */
+     section (see .schedule > .divider) closes it off before the next
+     section (#about) begins */
   padding: 60px 60px 0;
   scroll-margin-top: 80px;
 }
@@ -757,6 +703,7 @@ button { font-family: var(--sans); }
   color: var(--rose);
   padding-left: 4px;
 }
+.schedule-date-label-badge { color: var(--amber); }
 
 .schedule-card {
   display: flex;
@@ -786,15 +733,17 @@ button { font-family: var(--sans); }
 
 /* Used instead of .schedule-card when a "Get tickets" link is present —
    an <a> can't legally nest inside the <button> .schedule-card otherwise
-   is, so this wraps a separate .schedule-card-trigger button (which
-   carries the same clickable "open modal" row .schedule-card used to be)
-   alongside the ticket link as its sibling. Same visual card container,
-   just with the interactive parts split into two instead of one. */
+   is, so this wraps a .schedule-card-photo-col (photo + ticket link,
+   stacked) alongside a separate .schedule-card-trigger button (body +
+   arrow — the clickable "open modal" part) as its sibling. Same visual
+   card container as .schedule-card, just split into two interactive
+   pieces instead of one. */
 .schedule-card-wrap {
   display: flex;
-  flex-direction: column;
-  gap: 22px;
   width: 100%;
+  gap: 30px;
+  align-items: stretch;
+  flex-wrap: wrap;
   border: 1px solid rgba(226, 183, 196, .18);
   border-radius: 20px;
   background: rgba(255, 255, 255, .03);
@@ -807,9 +756,24 @@ button { font-family: var(--sans); }
   transform: translateY(-3px);
   box-shadow: 0 16px 40px rgba(8, 5, 26, .4);
 }
+.schedule-card-photo-col {
+  display: flex;
+  flex-direction: column;
+  width: 150px;
+  gap: 12px;
+  flex: none;
+}
+/* stretches to the 150px photo's width (the column's own width, via the
+   default align-items: stretch) and shrinks to fit within it */
+.schedule-card-photo-col .schedule-card-ticket-link {
+  font-size: var(--fs-1);
+  padding: 10px 0;
+  text-align: center;
+}
 .schedule-card-trigger {
   display: flex;
-  width: 100%;
+  flex: 1;
+  min-width: 280px;
   gap: 30px;
   align-items: stretch;
   flex-wrap: wrap;
@@ -822,7 +786,6 @@ button { font-family: var(--sans); }
   text-align: left;
   cursor: pointer;
 }
-.schedule-card-ticket-link { align-self: flex-start; }
 .schedule-card-photo {
   flex: none;
   width: 150px;
@@ -879,6 +842,32 @@ button { font-family: var(--sans); }
 }
 .schedule-card-name--tba { color: rgba(247, 237, 230, .7); margin-bottom: 10px; line-height: 1.05; }
 .schedule-card-desc--tba { color: rgba(247, 237, 230, .55); margin: 0; }
+
+/* A week whose slot is filled by a special ticketed event instead of a
+   regular DJ night — same card, styled to stand out like the site's other
+   light-on-cream surfaces (dark-on-cream tones reused from that pattern). */
+.schedule-card--special {
+  background: var(--cream);
+  color: rgba(58, 31, 61, .9);
+}
+.schedule-card--special:hover,
+.schedule-card--special:focus-visible,
+.schedule-card--special:focus-within {
+  background: var(--cream);
+  border-color: rgba(58, 31, 61, .3);
+  box-shadow: 0 16px 40px rgba(8, 5, 26, .3);
+}
+.schedule-card--special .schedule-card-desc { color: rgba(58, 31, 61, .75); }
+.schedule-card--special .schedule-card-type--live,
+.schedule-card--special .schedule-card-type--curated { color: var(--bg-4); }
+.schedule-card--special .schedule-card-somalab { color: rgba(58, 31, 61, .62); }
+.schedule-card--special .schedule-card-somalab span { color: var(--bg-4); }
+.schedule-card--special .schedule-card-arrow { color: rgba(58, 31, 61, .5); }
+.schedule-card--special .ph-photo {
+  background: rgba(58, 31, 61, .04);
+  border-color: rgba(58, 31, 61, .25);
+  color: rgba(58, 31, 61, .75);
+}
 
 /* ---------- about ---------- */
 
@@ -1110,7 +1099,6 @@ button { font-family: var(--sans); }
   .nav-logo { width: 26px; height: 26px; }
   /* .hero-title no longer needs a mobile override — it's fluid via clamp() */
   .featured-name { font-size: var(--fs-5); }
-  .promo-card { padding: 22px 20px; }
   .hero { padding: 48px 24px 0; }
   .timeline {
     grid-template-columns: repeat(2, 1fr);
@@ -1118,7 +1106,6 @@ button { font-family: var(--sans); }
   }
   .timeline-col:nth-child(3) { border-left: none; }
   .schedule { padding: 60px 24px 0; }
-  .promo-section { padding: 60px 24px 48px; }
   .details, .about { padding: 48px 24px; }
   .schedule-card-photo { width: 100%; height: 160px; }
   .modal-name { font-size: var(--fs-5); }

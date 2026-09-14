@@ -169,15 +169,15 @@
         </div>
       </div>
       <div class="modal-body">
+        <a class="btn-primary modal-ticket-link" id="modal-ticket-link" href="#" target="_blank" rel="noopener" hidden>Get tickets →</a>
         <div class="label" id="modal-type-label"></div>
         <p class="modal-text" id="modal-dj"></p>
-        <div class="label">About the set</div>
+        <div class="label" id="modal-set-label">About the set</div>
         <p class="modal-text" id="modal-set"></p>
         <div class="modal-socials" id="modal-socials"></div>
-        <a class="btn-primary modal-ticket-link" id="modal-ticket-link" href="#" target="_blank" rel="noopener" hidden>Get tickets →</a>
-        <div class="modal-divider"></div>
+        <div class="modal-divider" id="modal-somalab-divider"></div>
         <div class="label" id="modal-somalab-label"></div>
-        <div class="somalab-row">
+        <div class="somalab-row" id="modal-somalab-row">
           <div class="modal-instructor-photo">
             <div class="ph-photo ph-photo--circle" id="modal-instructor-placeholder" aria-hidden="true">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 20c0-4 3.5-7 8-7s8 3 8 7"></path></svg>
@@ -232,21 +232,6 @@
       <span class="divider-line"></span>
       <span class="divider-mark">✦</span>
       <span class="divider-line divider-line--end"></span>
-    </div>
-  </section>
-
-  <!-- special event: a one-off at a different venue, kept secondary to and
-       below the regular weekly schedule above. Populated from
-       content/special-event.json — hidden by default (and left hidden if
-       that file has no content in it) so this section only ever appears
-       when there's an actual event to promote. -->
-  <section id="special-event" class="promo-section" hidden>
-    <div class="promo-card">
-      <div class="promo-card-eyebrow">Special event</div>
-      <div class="promo-card-photo" id="special-event-photo"></div>
-      <div class="promo-card-meta" id="special-event-meta"></div>
-      <p class="promo-card-desc" id="special-event-desc"></p>
-      <a class="btn-primary" id="special-event-ticket-link" href="#" target="_blank" rel="noopener" hidden>Get tickets →</a>
     </div>
   </section>
 
