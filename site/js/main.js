@@ -107,6 +107,7 @@
   const modalSomalabInstructor = document.getElementById('modal-somalab-instructor');
   const modalSomalabActivity = document.getElementById('modal-somalab-activity');
   const modalSomalabBlurb = document.getElementById('modal-somalab-blurb');
+  const modalTicketLink = document.getElementById('modal-ticket-link');
   const modalPhotoImg = document.getElementById('modal-photo-img');
   const modalPhotoPlaceholder = document.getElementById('modal-photo-placeholder');
   const modalInstructorImg = document.getElementById('modal-instructor-img');
@@ -184,6 +185,12 @@
     setPhoto(modalPhotoImg, modalPhotoPlaceholder, week.photo, week.name);
     setPhoto(modalInstructorImg, modalInstructorPlaceholder, week.somaticInstructorPhoto, week.somaticInstructor);
     renderModalSocials(week);
+    if (week.showTicketButton && week.ticketUrl) {
+      modalTicketLink.href = week.ticketUrl;
+      modalTicketLink.hidden = false;
+    } else {
+      modalTicketLink.hidden = true;
+    }
     artistModalCtl.open();
     // Reset scroll position — this dialog is reused across weeks, so without
     // this a modal opened after scrolling through a longer one starts scrolled.
@@ -298,13 +305,28 @@
     desc.textContent = week.shortDescription || '';
     info.appendChild(desc);
 
+    const actions = document.createElement('div');
+    actions.className = 'featured-actions';
+
     const btn = document.createElement('button');
     btn.type = 'button';
     btn.className = 'btn-primary';
     btn.dataset.openModal = week.id;
     btn.textContent = 'Read more →';
     wireModalTrigger(btn);
-    info.appendChild(btn);
+    actions.appendChild(btn);
+
+    if (week.showTicketButton && week.ticketUrl) {
+      const ticketLink = document.createElement('a');
+      ticketLink.className = 'btn-primary';
+      ticketLink.href = week.ticketUrl;
+      ticketLink.target = '_blank';
+      ticketLink.rel = 'noopener';
+      ticketLink.textContent = 'Get tickets →';
+      actions.appendChild(ticketLink);
+    }
+
+    info.appendChild(actions);
 
     slot.appendChild(photoDiv);
     slot.appendChild(info);
@@ -358,17 +380,26 @@
         return;
       }
 
-      // A real <button> instead of a div with tabindex/role="button" — gets
-      // keyboard reachability and Enter/Space activation for free.
-      const card = document.createElement('button');
-      card.type = 'button';
-      card.className = 'schedule-card';
-      card.dataset.openModal = week.id;
+      const hasTicket = Boolean(week.showTicketButton && week.ticketUrl);
+
+      // Normally the whole card is a real <button> (gets keyboard reachability
+      // and Enter/Space activation for free). But an <a> ticket link can't
+      // legally nest inside a <button>, so when a ticket link is present the
+      // clickable "open modal" area becomes an inner button instead, and the
+      // ticket link sits beside it as a sibling — see .schedule-card-wrap.
+      const card = document.createElement(hasTicket ? 'div' : 'button');
+      card.className = hasTicket ? 'schedule-card-wrap' : 'schedule-card';
+      const trigger = hasTicket ? document.createElement('button') : card;
+      if (hasTicket) {
+        trigger.type = 'button';
+        trigger.className = 'schedule-card-trigger';
+      }
+      trigger.dataset.openModal = week.id;
 
       const photo = document.createElement('div');
       photo.className = 'schedule-card-photo';
       appendPhoto(photo, week.photo, week.name);
-      card.appendChild(photo);
+      trigger.appendChild(photo);
 
       const body = document.createElement('div');
       body.className = 'schedule-card-body';
@@ -396,15 +427,27 @@
       somalab.appendChild(document.createTextNode(' ' + (week.somaticOffering || '') + ' by ' + (week.somaticInstructor || '')));
       body.appendChild(somalab);
 
-      card.appendChild(body);
+      trigger.appendChild(body);
 
       const arrow = document.createElement('div');
       arrow.className = 'schedule-card-arrow';
       arrow.setAttribute('aria-hidden', 'true');
       arrow.innerHTML = '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>';
-      card.appendChild(arrow);
+      trigger.appendChild(arrow);
 
-      wireModalTrigger(card);
+      wireModalTrigger(trigger);
+
+      if (hasTicket) {
+        card.appendChild(trigger);
+        const ticketLink = document.createElement('a');
+        ticketLink.className = 'btn-primary schedule-card-ticket-link';
+        ticketLink.href = week.ticketUrl;
+        ticketLink.target = '_blank';
+        ticketLink.rel = 'noopener';
+        ticketLink.textContent = 'Get tickets →';
+        card.appendChild(ticketLink);
+      }
+
       item.appendChild(card);
       list.appendChild(item);
     });

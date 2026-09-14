@@ -40,6 +40,8 @@ collections:
               - { label: "Instagram link (optional)", name: "instagramUrl", widget: "string", required: false }
               - { label: "Spotify link (optional)", name: "spotifyUrl", widget: "string", required: false }
               - { label: "SoundCloud link (optional)", name: "soundcloudUrl", widget: "string", required: false }
+              - { label: "Show a \"Get tickets\" button (for a special ticketed event filling this slot)", name: "showTicketButton", widget: "boolean", default: false }
+              - { label: "Ticket link (only used when the toggle above is on)", name: "ticketUrl", widget: "string", required: false }
 
   - name: "details"
     label: "Details"
