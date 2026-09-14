@@ -844,29 +844,18 @@ button { font-family: var(--sans); }
 .schedule-card-desc--tba { color: rgba(247, 237, 230, .55); margin: 0; }
 
 /* A week whose slot is filled by a special ticketed event instead of a
-   regular DJ night — same card, styled to stand out like the site's other
-   light-on-cream surfaces (dark-on-cream tones reused from that pattern). */
+   regular DJ night — same card and text colors as a regular card, just
+   a subtle amber wash + border to call attention without going stark. */
 .schedule-card--special {
-  background: var(--cream);
-  color: rgba(58, 31, 61, .9);
+  background: rgba(240, 200, 138, .1);
+  border-color: rgba(240, 200, 138, .4);
 }
 .schedule-card--special:hover,
 .schedule-card--special:focus-visible,
 .schedule-card--special:focus-within {
-  background: var(--cream);
-  border-color: rgba(58, 31, 61, .3);
-  box-shadow: 0 16px 40px rgba(8, 5, 26, .3);
-}
-.schedule-card--special .schedule-card-desc { color: rgba(58, 31, 61, .75); }
-.schedule-card--special .schedule-card-type--live,
-.schedule-card--special .schedule-card-type--curated { color: var(--bg-4); }
-.schedule-card--special .schedule-card-somalab { color: rgba(58, 31, 61, .62); }
-.schedule-card--special .schedule-card-somalab span { color: var(--bg-4); }
-.schedule-card--special .schedule-card-arrow { color: rgba(58, 31, 61, .5); }
-.schedule-card--special .ph-photo {
-  background: rgba(58, 31, 61, .04);
-  border-color: rgba(58, 31, 61, .25);
-  color: rgba(58, 31, 61, .75);
+  background: rgba(240, 200, 138, .16);
+  border-color: rgba(240, 200, 138, .55);
+  box-shadow: 0 16px 40px rgba(8, 5, 26, .4);
 }
 
 /* ---------- about ---------- */
