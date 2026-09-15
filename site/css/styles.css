@@ -844,17 +844,20 @@ button { font-family: var(--sans); }
 .schedule-card-desc--tba { color: rgba(247, 237, 230, .55); margin: 0; }
 
 /* A week whose slot is filled by a special ticketed event instead of a
-   regular DJ night — same card and text colors as a regular card, just
-   a subtle amber wash + border to call attention without going stark. */
+   regular DJ night — same card and text colors as a regular card, just a
+   rose wash + border to call attention. Rose rather than amber, since
+   amber is already what a regular card's own hover state uses — a rose
+   tint keeps this card visually distinct in both its resting and hover
+   states instead of just looking permanently "hovered." */
 .schedule-card--special {
-  background: rgba(240, 200, 138, .1);
-  border-color: rgba(240, 200, 138, .4);
+  background: rgba(226, 183, 196, .12);
+  border-color: rgba(226, 183, 196, .5);
 }
 .schedule-card--special:hover,
 .schedule-card--special:focus-visible,
 .schedule-card--special:focus-within {
-  background: rgba(240, 200, 138, .16);
-  border-color: rgba(240, 200, 138, .55);
+  background: rgba(226, 183, 196, .18);
+  border-color: rgba(226, 183, 196, .65);
   box-shadow: 0 16px 40px rgba(8, 5, 26, .4);
 }
 
