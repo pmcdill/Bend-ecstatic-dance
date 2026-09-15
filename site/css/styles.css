@@ -844,21 +844,35 @@ button { font-family: var(--sans); }
 .schedule-card-desc--tba { color: rgba(247, 237, 230, .55); margin: 0; }
 
 /* A week whose slot is filled by a special ticketed event instead of a
-   regular DJ night — same card and text colors as a regular card, just a
-   rose wash + border to call attention. Rose rather than amber, since
-   amber is already what a regular card's own hover state uses — a rose
-   tint keeps this card visually distinct in both its resting and hover
-   states instead of just looking permanently "hovered." */
+   regular DJ night. A muted, dusty rose-gray (cream blended with --bg-2)
+   instead of a flat white/cream — light enough to pop against the dark
+   cards around it without being stark. Needs its own dark text pass
+   since it's a light card sitting in an otherwise all-dark section. */
 .schedule-card--special {
-  background: rgba(226, 183, 196, .12);
-  border-color: rgba(226, 183, 196, .5);
+  background: #b5a5ab;
+  border-color: rgba(58, 31, 61, .3);
+  /* inherited by .schedule-card-name and anything else that doesn't set
+     its own color below — everything else here has an explicit color
+     already, tuned for a dark card, so gets its own override instead */
+  color: rgba(58, 31, 61, .95);
 }
 .schedule-card--special:hover,
 .schedule-card--special:focus-visible,
 .schedule-card--special:focus-within {
-  background: rgba(226, 183, 196, .18);
-  border-color: rgba(226, 183, 196, .65);
-  box-shadow: 0 16px 40px rgba(8, 5, 26, .4);
+  background: #b5a5ab;
+  border-color: rgba(58, 31, 61, .45);
+  box-shadow: 0 16px 40px rgba(8, 5, 26, .35);
+}
+.schedule-card--special .schedule-card-desc { color: rgba(58, 31, 61, .75); }
+.schedule-card--special .schedule-card-type--live,
+.schedule-card--special .schedule-card-type--curated { color: var(--bg-4); }
+.schedule-card--special .schedule-card-somalab { color: rgba(58, 31, 61, .62); }
+.schedule-card--special .schedule-card-somalab span { color: var(--bg-4); }
+.schedule-card--special .schedule-card-arrow { color: rgba(58, 31, 61, .5); }
+.schedule-card--special .ph-photo {
+  background: rgba(58, 31, 61, .06);
+  border-color: rgba(58, 31, 61, .3);
+  color: rgba(58, 31, 61, .75);
 }
 
 /* ---------- about ---------- */
