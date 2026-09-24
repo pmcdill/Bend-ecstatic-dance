@@ -1,25 +1,6 @@
 {
   "weeks": [
     {
-      "shortDescription": "Dawn believes that dance is a powerful conduit to joy, and a prayer in motion that allows you to shed the weight of the world and dance your way into ecstatic connection with the Divine. Let the beat guide you, the melody envelop you, and the dance set your spirit free.",
-      "somaticOffering": "Contact Beyond Contact",
-      "bio": "Dawn describes her style as “World Beats & Power Ballads,” and creates transformative journeys through deep tribal rhythms interwoven with the soaring vocals and melodies, mixed with a little funk. She loves creating sonic landscapes that sync you to the primal pulse of the Earth, and get you tapped in to the collective heartbeat of everyone else on the dancefloor.\n\nBorn and raised in the foothills of Mt. Shasta, Dawn Michaela has become a beloved regular at ecstatic dances throughout Northern California and is so excited to make her Oregon debut in Bend. She is known for creating dance journeys that feel both ancient and electric, weaving primal tribal beats, chants from around the world, deep electronic bass, and medicine frequencies with soaring vocals and heart-opening melodies—splashed with just enough funk to light the dance floor on fire. The result is what feels like a ceremonial dance party.\n\nBefore she is a DJ, she is a devoted dancer herself, and you can feel that in the way she builds every journey. Each set is created with an incredible amount of intention—to create a sonic space that holds you from start to finish, activates something deep in your spirit, and pulls you into your heart. It will be earthy, wild, playful, and primal, so come ready to sweat and leave it all on the dance floor!",
-      "soundcloudUrl": "https://on.soundcloud.com/3bLCK1jRc3O7qEIPm8",
-      "name": "Dj Dawn Michaela",
-      "isSpecialEvent": false,
-      "date": "2026-09-17",
-      "photo": "/assets/images/uploads/sept-17.png",
-      "tba": false,
-      "somaticInstructorPhoto": "/assets/images/uploads/img_6093.jpeg",
-      "setDescription": "",
-      "typeLabel": "Live DJ set",
-      "somaticInstructor": "Elise",
-      "showTicketButton": false,
-      "id": "puma-2026-08-27",
-      "instagramUrl": "https://www.instagram.com/dawnmichaela_?stkn=aThoMmlrNmIxb3k0",
-      "somaticBlurb": "Finding Pause\nRest, reset, reconnection. Giving space and breath as the opportunity to deepen our connection with ourselves and others. In this somatic journey we will be exploring how contact dance can be a meditation and an opportunity to heal. A little over 2 years ago I was trained by Van Legakis in the magical land of Lake Atitlan, Guatemala in the art of Contact Beyond Contact. Contact Beyond Contact (CBC) is a profound somatic framework that integrates contemporary dance, authentic touch, and holistic healing modalities to heal intersubjective relationships, build psychological safety, and expand collective human consciousness. With my background working in mental health, addiction recovery, bodywork, reiki, and a lifelong passion for improv dance, i immediately fell in love with practicing contact dance this way. I’m very excited to keep continuing to share what is so unique about this approach. I also teach private lessons and use this as part of my framework for helpful is connect with others with confidence, break through our old patterns, and bravely express our most authentic selves while in deep connection with others."
-    },
-    {
       "shortDescription": "Dj Feather from Eugene embodies the natural heart of sound and trance. With his ultra genuine nature and easy flowing moods we've been ready for his entrance into our dance.\n\nphoto by Kylor Melton",
       "somaticOffering": "Story dancing and stretch lab",
       "bio": "Feather is channeling aerodynamic rhythms that lift and drift the room on a collective updraft. Celebrated for an uncanny instinct for unearthing obscure, global frequencies, we could chart a course between deep, resonant bass and the syncopated snap of UK and West Coast tech house. Weightless transitions in soaring momentum unfold an immersive sonic ceremony.\n",
@@ -58,6 +39,19 @@
       "websiteUrl": "https://www.deladydj.com/",
       "typeLabel": "Live DJ set",
       "showTicketButton": false
+    },
+    {
+      "shortDescription": "Shakti Rising weaves a diverse full spectrum journey of yummy, conscious, fun, sexy, activating, deep & High Vibe & Next Level musical musings ~ Tribal & World Beats/Bass, Temple/Medicine Bass, Trap, Organic infused Electronic, Sacred Soundscapes, Sultry, Soulful, Live & Elemental Infusions to Initiate opening, release, healing, expansion, inspiration, playfulness, transmutation of dense energy and ultimately transcending into heart opening realms of blissfull ecstatic liberation. Let’s go deep & get LiT in embodiment & commUnity !!",
+      "bio": "DJ Shakti Rising, aka Sitara, born & raised in NE Portland, Oregon, birthed and produced the wonderful Unity Ecstatic Dance Ashland for 4.5 years, an amazing era of next generation Ecstatic Dance in Ashland OR. Sitara has been a dancer since she can remember & has been devoted to music and dance for the last 35+ years. She has been in the worldwide network of Ecstatic Dance for over 18 years, a foundational practice for her self care, channeling energy in a healthy way, personal growth, transformations, joy and building community. ",
+      "soundcloudUrl": "www.soundcloud.com/shaktiblissrising",
+      "name": "Dj Shakti Rising",
+      "isSpecialEvent": false,
+      "date": "2026-10-15",
+      "photo": "/assets/images/uploads/1000020173.jpg",
+      "tba": false,
+      "websiteUrl": "https://www.facebook.com/sitarashaktirising/",
+      "showTicketButton": false,
+      "instagramUrl": "https://www.instagram.com/sitara_shakti/"
     }
   ]
 }
