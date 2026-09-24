@@ -52,6 +52,16 @@
       "websiteUrl": "https://www.facebook.com/sitarashaktirising/",
       "showTicketButton": false,
       "instagramUrl": "https://www.instagram.com/sitara_shakti/"
+    },
+    {
+      "tba": false,
+      "showTicketButton": false,
+      "isSpecialEvent": false,
+      "date": "2026-10-22",
+      "name": "SetList by Amari",
+      "typeLabel": "Curated setlist",
+      "photo": "/assets/images/uploads/untitled-design.png",
+      "shortDescription": "Amari is pure fire and sweet water swaddling in exalted steam mode. She's made many top quality and well loved sets for Bend Ecstatic Dance and is one of our most dedicated and consistent dancers. Her intuition and guidance for creating the sound journey is one of the finest treats to find yourself in the room with"
     }
   ]
 }
