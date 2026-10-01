@@ -312,13 +312,25 @@
 
     const pillRow = document.createElement('div');
     pillRow.className = 'pill-row';
-    pillRow.innerHTML =
-      '<a class="pill pill--link" href="https://maps.app.goo.gl/8AXYxkABnHr6uPQFA" target="_blank" rel="noopener">' +
-      '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>' +
-      'The Glow Pad' +
-      '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>' +
-      '</a>' +
-      '<span class="pill">8–10pm</span>';
+
+    // Defaults match the regular weekly night — a week can override either
+    // (or both) when a special event fills its slot at a different venue
+    // or time. Built with DOM methods (not innerHTML) so venueName/timeLabel
+    // go through textContent rather than being interpolated into markup.
+    const venuePin = document.createElement('a');
+    venuePin.className = 'pill pill--link';
+    venuePin.href = week.venueUrl || 'https://maps.app.goo.gl/8AXYxkABnHr6uPQFA';
+    venuePin.target = '_blank';
+    venuePin.rel = 'noopener';
+    venuePin.innerHTML = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>';
+    venuePin.appendChild(document.createTextNode(week.venueName || 'The Glow Pad'));
+    venuePin.insertAdjacentHTML('beforeend', '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>');
+    pillRow.appendChild(venuePin);
+
+    const timePill = document.createElement('span');
+    timePill.className = 'pill';
+    timePill.textContent = week.timeLabel || '8–10pm';
+    pillRow.appendChild(timePill);
     if (week.typeLabel) {
       const typePill = document.createElement('span');
       typePill.className = 'pill';
