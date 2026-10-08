@@ -624,10 +624,10 @@ button { font-family: var(--sans); }
 .schedule {
   position: relative;
   z-index: 2;
-  /* top: gap from the hero above; the divider added at the end of this
-     section (see .schedule > .divider) closes it off before the next
-     section (#about) begins */
-  padding: 60px 60px 0;
+  /* bottom: its own cushion of dark background before the #about section's
+     lighter background begins — without this, that color change happens
+     right at the last card's edge with no breathing room on this side */
+  padding: 60px 60px 80px;
   scroll-margin-top: 80px;
 }
 .schedule > .divider {
@@ -1111,7 +1111,7 @@ button { font-family: var(--sans); }
     row-gap: 24px;
   }
   .timeline-col:nth-child(3) { border-left: none; }
-  .schedule { padding: 60px 24px 0; }
+  .schedule { padding: 60px 24px 48px; }
   .details, .about { padding: 48px 24px; }
   .schedule-card-photo { width: 100%; height: 160px; }
   .modal-name { font-size: var(--fs-5); }
