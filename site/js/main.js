@@ -524,12 +524,34 @@
       if (week.somaticOffering || week.somaticInstructor) {
         const somalab = document.createElement('div');
         somalab.className = 'schedule-card-somalab';
-        const somalabLabel = document.createElement('span');
-        somalabLabel.textContent = 'SomaLab:';
-        somalab.appendChild(somalabLabel);
-        let somalabText = ' ' + (week.somaticOffering || '');
-        if (week.somaticInstructor) somalabText += ' by ' + week.somaticInstructor;
-        somalab.appendChild(document.createTextNode(somalabText));
+
+        const somalabPhoto = document.createElement('div');
+        somalabPhoto.className = 'schedule-card-somalab-photo';
+        appendPhoto(somalabPhoto, week.somaticInstructorPhoto, week.somaticInstructor);
+        somalab.appendChild(somalabPhoto);
+
+        const somalabBody = document.createElement('div');
+        somalabBody.className = 'schedule-card-somalab-body';
+
+        const somalabEyebrow = document.createElement('div');
+        somalabEyebrow.className = 'schedule-card-somalab-eyebrow';
+        somalabEyebrow.textContent = 'SomaLab';
+        somalabBody.appendChild(somalabEyebrow);
+
+        const somalabText = document.createElement('div');
+        somalabText.className = 'schedule-card-somalab-text';
+        if (week.somaticOffering) {
+          const offeringEl = document.createElement('strong');
+          offeringEl.textContent = week.somaticOffering;
+          somalabText.appendChild(offeringEl);
+        }
+        if (week.somaticInstructor) {
+          if (week.somaticOffering) somalabText.appendChild(document.createTextNode(' with '));
+          somalabText.appendChild(document.createTextNode(week.somaticInstructor));
+        }
+        somalabBody.appendChild(somalabText);
+
+        somalab.appendChild(somalabBody);
         body.appendChild(somalab);
       }
 
