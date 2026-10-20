@@ -296,11 +296,6 @@
     const hasTicket = Boolean(week.showTicketButton && week.ticketUrl);
     const hasSomalab = Boolean(week.somaticInstructor || week.somaticOffering);
 
-    const musicEyebrow = document.createElement('div');
-    musicEyebrow.className = 'offering-eyebrow';
-    musicEyebrow.textContent = 'Music';
-    slot.appendChild(musicEyebrow);
-
     const photoDiv = document.createElement('div');
     photoDiv.className = 'featured-photo';
     appendPhoto(photoDiv, week.photo, week.name);
@@ -353,36 +348,36 @@
     slot.appendChild(info);
 
     if (hasSomalab) {
-      const somalabBlock = document.createElement('div');
-      somalabBlock.className = 'somalab-block';
-
-      const somalabEyebrow = document.createElement('div');
-      somalabEyebrow.className = 'offering-eyebrow';
-      somalabEyebrow.textContent = 'SomaLab';
-      somalabBlock.appendChild(somalabEyebrow);
+      const somalabCard = document.createElement('div');
+      somalabCard.className = 'somalab-card';
 
       const somalabPhotoDiv = document.createElement('div');
-      somalabPhotoDiv.className = 'somalab-photo';
+      somalabPhotoDiv.className = 'somalab-card-photo';
       appendPhoto(somalabPhotoDiv, week.somaticInstructorPhoto, week.somaticInstructor);
-      somalabBlock.appendChild(somalabPhotoDiv);
+      somalabCard.appendChild(somalabPhotoDiv);
 
-      const somalabInfo = document.createElement('div');
-      somalabInfo.className = 'somalab-info';
+      const somalabBody = document.createElement('div');
+      somalabBody.className = 'somalab-card-body';
+
+      const somalabEyebrow = document.createElement('div');
+      somalabEyebrow.className = 'somalab-card-eyebrow';
+      somalabEyebrow.textContent = 'SomaLab · 7pm · 45 mins';
+      somalabBody.appendChild(somalabEyebrow);
 
       const somalabName = document.createElement('div');
-      somalabName.className = 'somalab-name';
+      somalabName.className = 'somalab-card-name';
       somalabName.textContent = week.somaticInstructor || '';
-      somalabInfo.appendChild(somalabName);
+      somalabBody.appendChild(somalabName);
 
       if (week.somaticOffering) {
-        const somalabDesc = document.createElement('p');
-        somalabDesc.className = 'somalab-desc';
+        const somalabDesc = document.createElement('div');
+        somalabDesc.className = 'somalab-card-desc';
         somalabDesc.textContent = week.somaticOffering;
-        somalabInfo.appendChild(somalabDesc);
+        somalabBody.appendChild(somalabDesc);
       }
 
-      somalabBlock.appendChild(somalabInfo);
-      slot.appendChild(somalabBlock);
+      somalabCard.appendChild(somalabBody);
+      slot.appendChild(somalabCard);
     }
 
     const actions = document.createElement('div');
