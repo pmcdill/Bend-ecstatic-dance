@@ -280,18 +280,26 @@
   function renderFeatured(week) {
     const slot = document.getElementById('featured-slot');
     const weekBanner = document.getElementById('week-banner');
+    const weekBannerDate = document.getElementById('week-banner-date');
     slot.innerHTML = '';
 
     if (!week) {
-      // Nothing booked for the featured slot — the "This week's DJ" banner
-      // would otherwise sit directly over blank space.
+      // Nothing booked for the featured slot — the "This week's offerings"
+      // banner would otherwise sit directly over blank space.
       weekBanner.hidden = true;
       renderScheduleFallback(slot, 'No dates are booked yet — see our <a href="https://www.instagram.com/bendecstaticdance" target="_blank" rel="noopener">Instagram</a> for updates, or check <a href="#location">Details</a> below.');
       return;
     }
     weekBanner.hidden = false;
+    weekBannerDate.textContent = week.dateDisplay || '';
 
     const hasTicket = Boolean(week.showTicketButton && week.ticketUrl);
+    const hasSomalab = Boolean(week.somaticInstructor || week.somaticOffering);
+
+    const musicEyebrow = document.createElement('div');
+    musicEyebrow.className = 'offering-eyebrow';
+    musicEyebrow.textContent = 'Music';
+    slot.appendChild(musicEyebrow);
 
     const photoDiv = document.createElement('div');
     photoDiv.className = 'featured-photo';
@@ -299,11 +307,6 @@
 
     const info = document.createElement('div');
     info.className = 'featured-info';
-
-    const dateEl = document.createElement('div');
-    dateEl.className = 'featured-date';
-    dateEl.textContent = week.dateDisplay || '';
-    info.appendChild(dateEl);
 
     const nameEl = document.createElement('div');
     nameEl.className = 'featured-name';
@@ -346,8 +349,44 @@
       info.appendChild(desc);
     }
 
+    slot.appendChild(photoDiv);
+    slot.appendChild(info);
+
+    if (hasSomalab) {
+      const somalabBlock = document.createElement('div');
+      somalabBlock.className = 'somalab-block';
+
+      const somalabEyebrow = document.createElement('div');
+      somalabEyebrow.className = 'offering-eyebrow';
+      somalabEyebrow.textContent = 'SomaLab';
+      somalabBlock.appendChild(somalabEyebrow);
+
+      const somalabPhotoDiv = document.createElement('div');
+      somalabPhotoDiv.className = 'somalab-photo';
+      appendPhoto(somalabPhotoDiv, week.somaticInstructorPhoto, week.somaticInstructor);
+      somalabBlock.appendChild(somalabPhotoDiv);
+
+      const somalabInfo = document.createElement('div');
+      somalabInfo.className = 'somalab-info';
+
+      const somalabName = document.createElement('div');
+      somalabName.className = 'somalab-name';
+      somalabName.textContent = week.somaticInstructor || '';
+      somalabInfo.appendChild(somalabName);
+
+      if (week.somaticOffering) {
+        const somalabDesc = document.createElement('p');
+        somalabDesc.className = 'somalab-desc';
+        somalabDesc.textContent = week.somaticOffering;
+        somalabInfo.appendChild(somalabDesc);
+      }
+
+      somalabBlock.appendChild(somalabInfo);
+      slot.appendChild(somalabBlock);
+    }
+
     const actions = document.createElement('div');
-    actions.className = 'featured-actions';
+    actions.className = 'offerings-actions';
 
     if (hasTicket) {
       const ticketLink = document.createElement('a');
@@ -375,10 +414,7 @@
       actions.appendChild(btn);
     }
 
-    info.appendChild(actions);
-
-    slot.appendChild(photoDiv);
-    slot.appendChild(info);
+    slot.appendChild(actions);
   }
 
   function renderScheduleList(weeks) {

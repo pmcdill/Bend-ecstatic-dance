@@ -217,14 +217,15 @@ button { font-family: var(--sans); }
   border-top: 1px solid rgba(240, 200, 138, .25);
   border-bottom: 1px solid rgba(240, 200, 138, .25);
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 18px;
+  gap: 10px;
 }
 /* Its own display:flex (equal specificity to the UA's [hidden]{display:none})
    would otherwise win by cascade order and keep it visibly rendered even
    when hidden — same class of bug as the .ph-photo placeholder fix earlier. */
 .week-banner[hidden] { display: none; }
+.week-banner-row { display: flex; align-items: center; justify-content: center; gap: 18px; }
 .week-banner-line { width: 44px; height: 1px; background: rgba(240, 200, 138, .5); }
 .week-banner-text {
   font-size: var(--fs-2);
@@ -233,16 +234,21 @@ button { font-family: var(--sans); }
   color: var(--amber);
   font-weight: 700;
 }
+.week-banner-date {
+  font-size: var(--fs-1);
+  letter-spacing: .04em;
+  color: rgba(247, 237, 230, .65);
+}
 
+.featured, .somalab-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .featured {
   max-width: 820px;
   margin: 40px auto 0;
-  display: flex;
-  gap: 44px;
-  align-items: center;
-  text-align: left;
-  justify-content: center;
-  flex-wrap: wrap;
+  gap: 0;
 }
 
 /* Shown in #featured-slot / #schedule-list when there's nothing to render:
@@ -257,40 +263,81 @@ button { font-family: var(--sans); }
   text-align: center;
 }
 .schedule-fallback a { color: var(--amber); }
-.featured-photo {
+/* Shared "title" token above each photo in the featured block (Music,
+   SomaLab) — same class for both so they read as one text profile. */
+.offering-eyebrow {
+  font-size: var(--fs-1);
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+  color: var(--amber);
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+.featured-photo, .somalab-photo {
   flex: none;
+}
+.featured-photo {
   width: 300px;
   height: 300px;
   border-radius: 20px;
   overflow: hidden;
   box-shadow: 0 18px 44px rgba(8, 5, 26, .5);
 }
-.featured-info { flex: 1; min-width: 320px; }
-.featured-date {
-  font-size: var(--fs-1);
-  letter-spacing: var(--tracking-eyebrow);
-  text-transform: uppercase;
-  color: var(--amber);
+.somalab-photo {
+  width: 160px;
+  height: 160px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 14px 34px rgba(8, 5, 26, .45);
+}
+.featured-info, .somalab-info {
+  max-width: 400px;
+  width: 100%;
+  margin: 24px auto 0;
+  text-align: center;
 }
 .featured-name {
   font-family: var(--serif);
   font-weight: 400;
   font-size: var(--fs-6);
   line-height: .98;
-  margin: 8px 0 16px;
+  margin: 0 0 16px;
 }
 .featured-desc {
   font-size: var(--fs-2);
   line-height: 1.7;
   color: rgba(247, 237, 230, .82);
   font-weight: 400;
+  text-align: justify;
   margin: 0 0 22px;
-  max-width: 540px;
   white-space: pre-line;
 }
-.featured-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+.somalab-name {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: var(--fs-5);
+  line-height: 1.02;
+  margin: 0 0 16px;
+}
+.somalab-desc {
+  font-size: var(--fs-2);
+  line-height: 1.6;
+  color: rgba(247, 237, 230, .82);
+  text-align: justify;
+  margin: 0 0 22px;
+}
+/* gap to the divider above comes from .featured-desc's own bottom margin
+   (via collapse), not an added margin here */
+.somalab-block {
+  margin-top: 0;
+  padding-top: 48px;
+  border-top: 1px solid rgba(226, 183, 196, .16);
+}
+/* gap to the button comes from .featured-desc's/.somalab-desc's own bottom
+   margin above, not an added margin here */
+.offerings-actions { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; margin-top: 0; }
 
-.pill-row { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 18px; }
+.pill-row { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 18px; justify-content: center; }
 .pill {
   display: inline-flex;
   align-items: center;
@@ -1062,18 +1109,9 @@ button { font-family: var(--sans); }
 
 /* ---------- responsive ---------- */
 
-/* Previously the only breakpoint was 640px, so everything from 641px to
-   ~950px got the desktop side-by-side .featured layout while still being
-   too narrow for it — .featured-info would shrink to as little as 320px
-   (measured), squeezing the 56px serif artist name into an uncomfortably
-   narrow column instead of the ~476px it was actually designed for. */
 @media (max-width: 900px) {
-  .featured {
-    flex-direction: column;
-    align-items: center;
-  }
   .featured-photo { width: min(300px, 100%); }
-  .featured-info { min-width: 0; width: 100%; }
+  .somalab-photo { width: min(160px, 100%); }
 }
 
 @media (max-width: 640px) {
