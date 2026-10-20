@@ -521,8 +521,13 @@
         body.appendChild(desc);
       }
 
+      // A full-width row below the photo+body row (not nested inside .schedule-card-body)
+      // so the divider spans the whole card and the avatar sits flush with the
+      // photo's left edge, not indented under the text column. See the
+      // `flex: 1 0 100%` append onto `card` below.
+      let somalab = null;
       if (week.somaticOffering || week.somaticInstructor) {
-        const somalab = document.createElement('div');
+        somalab = document.createElement('div');
         somalab.className = 'schedule-card-somalab';
 
         const somalabPhoto = document.createElement('div');
@@ -538,21 +543,24 @@
         somalabEyebrow.textContent = 'SomaLab';
         somalabBody.appendChild(somalabEyebrow);
 
-        const somalabText = document.createElement('div');
-        somalabText.className = 'schedule-card-somalab-text';
         if (week.somaticOffering) {
-          const offeringEl = document.createElement('strong');
-          offeringEl.textContent = week.somaticOffering;
-          somalabText.appendChild(offeringEl);
+          const title = document.createElement('div');
+          title.className = 'schedule-card-somalab-title';
+          title.textContent = week.somaticOffering;
+          somalabBody.appendChild(title);
         }
+
         if (week.somaticInstructor) {
-          if (week.somaticOffering) somalabText.appendChild(document.createTextNode(' with '));
-          somalabText.appendChild(document.createTextNode(week.somaticInstructor));
+          const instructor = document.createElement('div');
+          instructor.className = 'schedule-card-somalab-instructor';
+          instructor.appendChild(document.createTextNode('Led by '));
+          const instructorName = document.createElement('strong');
+          instructorName.textContent = week.somaticInstructor;
+          instructor.appendChild(instructorName);
+          somalabBody.appendChild(instructor);
         }
-        somalabBody.appendChild(somalabText);
 
         somalab.appendChild(somalabBody);
-        body.appendChild(somalab);
       }
 
       trigger.appendChild(body);
@@ -576,6 +584,9 @@
 
         card.appendChild(photoCol);
         card.appendChild(trigger);
+        if (somalab) card.appendChild(somalab);
+      } else if (somalab) {
+        card.appendChild(somalab);
       }
 
       item.appendChild(card);

@@ -869,37 +869,44 @@ button { font-family: var(--sans); }
   max-width: 500px;
   white-space: pre-line;
 }
-/* Scaled-down version of .somalab-card (featured section) so the same
-   "SomaLab is a supporting detail" treatment carries into the list cards. */
+/* A full-width row below the photo+body row — not a nested box — so the
+   divider spans the entire card and the avatar sits flush with the photo's
+   left edge. `flex: 1 0 100%` forces it onto its own line within the
+   card's own wrap:wrap flex layout, rather than being squeezed into the
+   same row as the photo/body/arrow. */
 .schedule-card-somalab {
+  flex: 1 0 100%;
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin-top: 6px;
-  padding: 10px 14px;
-  max-width: 500px;
-  border-radius: 12px;
-  background: rgba(226, 183, 196, .06);
-  border: 1px solid rgba(226, 183, 196, .18);
+  gap: 16px;
+  margin-top: 22px;
+  padding-top: 22px;
+  border-top: 1px solid rgba(226, 183, 196, .16);
 }
 .schedule-card-somalab-photo {
   flex: none;
-  width: 44px;
-  height: 44px;
-  border-radius: 8px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
   overflow: hidden;
 }
 .schedule-card-somalab-body { flex: 1; min-width: 0; }
 .schedule-card-somalab-eyebrow {
-  font-size: 10px;
-  letter-spacing: .1em;
+  font-size: 11px;
+  letter-spacing: .12em;
   text-transform: uppercase;
   color: var(--rose);
   font-weight: 700;
+  margin-bottom: 4px;
+}
+.schedule-card-somalab-title {
+  font-size: var(--fs-2);
+  font-weight: 700;
+  color: var(--cream);
   margin-bottom: 2px;
 }
-.schedule-card-somalab-text { font-size: var(--fs-1); color: rgba(247, 237, 230, .72); }
-.schedule-card-somalab-text strong { color: var(--cream); font-weight: 700; }
+.schedule-card-somalab-instructor { font-size: var(--fs-1); color: rgba(247, 237, 230, .68); }
+.schedule-card-somalab-instructor strong { color: var(--cream); font-weight: 700; }
 .schedule-card-arrow { flex: none; align-self: flex-start; margin-top: 12px; color: rgba(226, 183, 196, .55); }
 
 .schedule-card--tba { border: 1px dashed rgba(226, 183, 196, .3); background: rgba(255, 255, 255, .02); cursor: default; }
@@ -944,13 +951,11 @@ button { font-family: var(--sans); }
 .schedule-card--special .schedule-card-desc { color: rgba(58, 31, 61, .75); }
 .schedule-card--special .schedule-card-type--live,
 .schedule-card--special .schedule-card-type--curated { color: var(--bg-4); }
-.schedule-card--special .schedule-card-somalab {
-  background: rgba(58, 31, 61, .06);
-  border-color: rgba(58, 31, 61, .18);
-}
+.schedule-card--special .schedule-card-somalab { border-top-color: rgba(58, 31, 61, .18); }
 .schedule-card--special .schedule-card-somalab-eyebrow { color: var(--bg-4); }
-.schedule-card--special .schedule-card-somalab-text { color: rgba(58, 31, 61, .72); }
-.schedule-card--special .schedule-card-somalab-text strong { color: rgba(58, 31, 61, .95); }
+.schedule-card--special .schedule-card-somalab-title { color: rgba(58, 31, 61, .95); }
+.schedule-card--special .schedule-card-somalab-instructor { color: rgba(58, 31, 61, .72); }
+.schedule-card--special .schedule-card-somalab-instructor strong { color: rgba(58, 31, 61, .95); }
 .schedule-card--special .schedule-card-arrow { color: rgba(58, 31, 61, .5); }
 .schedule-card--special .ph-photo {
   background: rgba(58, 31, 61, .06);
