@@ -1,24 +1,6 @@
 {
   "weeks": [
     {
-      "shortDescription": "Each journey is intuitively and intentionally guided, blending grounded basslines with celestial vocals, ancestral remembrance, and spacious integration.\n\nWhether through earth- and bass-driven DJ sets, live-looped soul transmissions, heart-opening singer-songwriter acoustic music, or crystalline sound baths, CYRENITY creates immersive dance temples where sound and movement become ceremony and medicine.\n\nFind all of her music online under CYRENITY. 💛🏔️✨💗",
-      "somaticOffering": "Tai Chi Dance with Owl ",
-      "bio": "CYRENITY is a multidimensional music artist, DJ, and ceremonial sound healer crafting immersive dance journeys that bridge devotion, bass, synths, and deep inner awakening.\n\nShe curates conscious dance floors that move through play, beauty, connection, and sensuality, weaving yummy EDM, dirty bass, expansive house, ethereal world textures, melodic techno, and spiritual tribal music with her etheric vocals and original productions—cultivating deeper connection through sound, movement & spirit. ",
-      "soundcloudUrl": "https://soundcloud.com/cyrenitymusic",
-      "name": "Dj Cyrenity",
-      "isSpecialEvent": false,
-      "date": "2026-11-05",
-      "photo": "/assets/images/uploads/cyrenity.png",
-      "tba": false,
-      "websiteUrl": "https://cymariegiordano.wixsite.com/consentcoaching",
-      "somaticInstructorPhoto": "/assets/images/uploads/untitled-design-2-.png",
-      "typeLabel": "Live DJ set",
-      "somaticInstructor": "Owl",
-      "showTicketButton": false,
-      "instagramUrl": "https://www.instagram.com/consentaslove",
-      "somaticBlurb": "Tai Chi Dance with Owl \n~\nTo move from center is to move as one…\n\nThis workshop explores the realms of energy movement, balance, intentional coordination, and the fluidity of water. Integrating tai chi into dance is not about moving or appearing any particular way. Instead, it’s an invitation to restore and deepen our connection with the Earth, and walk more fully in the glory of our authentic selves. P"
-    },
-    {
       "shortDescription": "One of the best ecstatic dance dj's in the world, at least as far as Bend is concerned. He's been one of our finest talents. Kalpa is the culmination of visions induced thru El to give rise to potent dance journeys curated to become the lostness itself, indulging in sonic profusion. It's common to have your head fall off and the personalities redesign themselves. Sometimes there's no more there than there was already here.",
       "somaticOffering": "Expand your understanding & ability to go beyond your present Language of Dance.",
       "bio": "He's basically the skizzleBaloompin you've been hearing about.",
@@ -58,11 +40,12 @@
       "bio": "\nFaren Rajkumar AKA Mother Void is a nomadic musician & muse of West Indian ancestry, currently based in the PNW. she celebrates her culture & the Matriarchy through musical expression and commanding the dancefloor.\n\nMother Void is a classically trained violinist offering DJ sets w/ live violin, acoustic instrumentals, and private instruction. she has been playing violin for over 25 years, and recently developed mixing skills to combine electronic and acoustic sounds for dance.\n\nas a dance journey facilitator/DJ, Mother Void invites bodies to contemplate their inner dark matter and creation center, conjure movement medicine and experience the sacred sensations of sound, vibration, motion, touch and stillness. she is an expert at creating complete dance arc journeys that can take you through the five rhythms, induce powerful awakening & release of suppressed sensual energy, or inspire play with others on the dance floor.\n\n",
       "soundcloudUrl": "https://soundcloud.com/mothervoidmusic",
       "name": "Dj MotherVoid",
-      "isSpecialEvent": false,
-      "date": "2026-11-26",
+      "isSpecialEvent": true,
+      "date": "2026-11-25",
       "photo": "/assets/images/uploads/mother.png",
       "tba": false,
       "websiteUrl": "https://sites.google.com/view/mothervoid/about",
+      "venueName": "SPECIAL WEDNESDAY DANCE TO AVOID TURKEY DAY CONFLICT",
       "typeLabel": "Live DJ set",
       "showTicketButton": false,
       "instagramUrl": "https://www.instagram.com/mother_void_/"
