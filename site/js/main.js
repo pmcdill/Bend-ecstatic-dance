@@ -11,6 +11,7 @@
   // entries by date and shows whichever booked date comes up next as
   // "This week's DJ," then the next three after that.
   const MONTH_NAMES = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  const WEEKDAY_NAMES = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
   // Returns null (rather than throwing) for a missing/malformed date, so one
   // incomplete CMS entry can be skipped instead of taking down the whole
@@ -37,7 +38,10 @@
       const date = parseISODate(week.date);
       week._date = date;
       week.dateLabel = date ? monthDay(date) : '';
-      week.dateDisplay = date ? 'Thursday · ' + monthDay(date) : '';
+      // Computed from the actual date rather than hardcoded, so a week
+      // moved off its usual Thursday (e.g. around a holiday) still shows
+      // its real day name instead of a stale "Thursday".
+      week.dateDisplay = date ? WEEKDAY_NAMES[date.getDay()] + ' · ' + monthDay(date) : '';
     });
   }
 
