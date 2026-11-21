@@ -1,6 +1,33 @@
 (() => {
   'use strict';
 
+  // ---------- scroll reveal ----------
+  // Content fades/rises into place as it scrolls into view. Gated behind
+  // `.js` on <html> — the `.reveal` CSS only applies under that class, so if
+  // this script never runs (disabled JS, or a syntax error upstream), every
+  // element stays at its normal, fully-visible layout instead of being
+  // stuck invisible.
+  document.documentElement.classList.add('js');
+
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('is-visible');
+      revealObserver.unobserve(entry.target);
+    });
+  }, { threshold: .15, rootMargin: '0px 0px -40px 0px' });
+
+  function reveal(el, delayMs) {
+    if (!el) return;
+    el.classList.add('reveal');
+    if (delayMs) el.style.transitionDelay = delayMs + 'ms';
+    revealObserver.observe(el);
+  }
+
+  function revealAll(els, stepMs) {
+    Array.prototype.forEach.call(els, (el, i) => reveal(el, i * (stepMs || 70)));
+  }
+
   // ---------- schedule/artist content, loaded from content/schedule.json ----------
   // (that file is what Decap CMS at /admin edits — see admin/config.yml)
   let WEEKS_BY_ID = {};
@@ -82,11 +109,24 @@
       open() {
         lastFocused = document.activeElement;
         overlayEl.hidden = false;
+        // Force a style flush between un-hiding and adding `.is-open` —
+        // otherwise the browser can coalesce both changes into one frame
+        // and the opacity/transform transition never gets a start state
+        // to animate from, so it'd just snap straight to visible.
+        void overlayEl.offsetHeight;
+        overlayEl.classList.add('is-open');
         const focusable = getFocusable(innerEl);
         (focusable[0] || innerEl).focus();
       },
       close() {
-        overlayEl.hidden = true;
+        overlayEl.classList.remove('is-open');
+        // `hidden` is set once the close transition finishes (transitionend),
+        // with a timeout fallback in case that event never fires (no
+        // transitioning property matched, or the element was already
+        // mid-transition) — either way the modal must not get stuck visible.
+        const finish = () => { overlayEl.hidden = true; };
+        overlayEl.addEventListener('transitionend', finish, { once: true });
+        setTimeout(finish, 350);
         if (lastFocused && typeof lastFocused.focus === 'function') lastFocused.focus();
         lastFocused = null;
       },
@@ -379,6 +419,7 @@
 
     slot.appendChild(photoDiv);
     slot.appendChild(info);
+    reveal(slot);
   }
 
   function renderScheduleList(weeks) {
@@ -392,7 +433,7 @@
     }
 
     list.innerHTML = '';
-    weeks.forEach((week) => {
+    weeks.forEach((week, index) => {
       const item = document.createElement('div');
       item.className = 'schedule-item';
 
@@ -435,6 +476,7 @@
 
         item.appendChild(card);
         list.appendChild(item);
+        reveal(item, index * 90);
         return;
       }
 
@@ -527,6 +569,7 @@
 
       item.appendChild(card);
       list.appendChild(item);
+      reveal(item, index * 90);
     });
   }
 
@@ -865,6 +908,10 @@
   window.addEventListener('resize', () => {
     if (window.innerWidth > 640 && navLinksEl.classList.contains('is-open')) closeNavMenu();
   });
+
+  revealAll(document.querySelectorAll('.section-eyebrow'));
+  revealAll(document.querySelectorAll('.timeline-col'), 90);
+  revealAll(document.querySelectorAll('.agreement-item'), 90);
 
   loadSchedule();
   loadDetails();
