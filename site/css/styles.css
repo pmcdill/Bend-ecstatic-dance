@@ -506,8 +506,13 @@ html.js .reveal.is-visible {
   width: 640px;
   max-width: 100%;
   max-height: 90vh;
-  overflow-y: auto;
-  overflow-x: hidden;
+  /* Scrolling lives on .modal-scroll (below), not here — so .modal-close,
+     positioned relative to this box, stays visually fixed in place while
+     the content underneath it scrolls. This just clips everything to the
+     rounded corners. */
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
   border-radius: 26px;
   background: linear-gradient(180deg, var(--bg-2), var(--bg-3));
   border: 1px solid rgba(226, 183, 196, .28);
@@ -519,6 +524,12 @@ html.js .reveal.is-visible {
   transition: opacity .25s ease, transform .3s cubic-bezier(.22, .9, .32, 1);
 }
 .modal-overlay.is-open .modal { opacity: 1; transform: translateY(0) scale(1); }
+.modal-scroll {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
 
 .modal-close {
   cursor: pointer;
@@ -530,6 +541,12 @@ html.js .reveal.is-visible {
   color: var(--cream);
   font-size: 18px;
   line-height: 1;
+  /* Now a DOM sibling that comes *before* .modal-scroll (so its fixed/
+     absolute positioning isn't carried along by that element's own
+     scrolling) — equal (auto) stacking order falls back to document
+     order, which would otherwise let .modal-photo-scrim and friends
+     paint over it. */
+  z-index: 2;
 }
 
 .label {
@@ -1194,6 +1211,18 @@ html.js .reveal.is-visible {
     max-height: none;
     border-radius: 0;
     transform: translateY(100%);
+  }
+  /* `.modal` always has a non-none `transform` (open or closed), which
+     makes IT — not the viewport — the containing block for `fixed`
+     descendants. Since `.modal` fills the viewport exactly once open,
+     that's indistinguishable from true viewport-fixed, so the close
+     button stays put as the modal's own content scrolls underneath it. */
+  #artist-modal .modal-close,
+  #calendar-modal .modal-close {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    z-index: 5;
   }
 
   .nav { padding: 16px 22px; }
