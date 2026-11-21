@@ -1,25 +1,8 @@
 {
   "weeks": [
     {
-      "shortDescription": "Bex Naj out of  Nevada City, CA\nKnown for clean and euphonious mixing\nA soundship anchored by world bass and global club that could sail freaky in the winds of \nR&B, trap and wave. \nOrganic, deep, and Afro house.\nAmapiano, reggaeton and dancehall.\n",
-      "somaticOffering": "Acro/Contact Fusion",
-      "bio": "Bex’s spaceholding reflects her deep enthusiasm for articulating the\nunderlying patterns of nondual philosophy through the laboratory of\nembodied research — in other words, moving and breathing together.\nShe’s here to remind you: this body is your home, your teacher, your\nportal. And yes, you’re meant to feel whole through it. Free your ass\nand your mind will follow! ",
-      "soundcloudUrl": "https://soundcloud.com/bexnaj",
-      "name": "Dj Bex Naj",
-      "isSpecialEvent": false,
-      "date": "2026-11-19",
-      "photo": "/assets/images/uploads/bexnajdjskool-sat03539small.jpeg",
-      "tba": false,
-      "websiteUrl": "https://bexnaj.love/",
-      "somaticInstructorPhoto": "/assets/images/uploads/file_0000000031bc81fd86a67a7ac1425d5b.png",
-      "typeLabel": "Live DJ set",
-      "somaticInstructor": "Cacey and Loua",
-      "showTicketButton": false,
-      "instagramUrl": "https://www.instagram.com/bex.naj/",
-      "somaticBlurb": "Acro-Contact Fusion\nCome explore the playful space where acro yoga meets contact improv. We’ll learn beginner-friendly acro yoga poses, then explore how to transition in and out of them safely and with ease. Next we’ll weave the poses into contact improv, discovering how acro can naturally emerge within a dance. We’ll also practice inviting each other into acro poses, recognizing a “yes” or “no” through movement, and keeping the dance flowing either way. Come ready to connect, get playful, and discover new ways of moving together."
-    },
-    {
       "shortDescription": "ON WEDS NOV 25TH A highly gifted and multi talented instrumentalist. This woman has been one of the biggest standOut performers that bxd has ever been lucky to host. She's phenomenal and always creates a must be at show.",
+      "somaticOffering": "The Dance of Lead and Follow",
       "bio": "\nNEW DATE, WEDS NOV 25TH Faren Rajkumar AKA Mother Void is a nomadic musician & muse of West Indian ancestry, currently based in the PNW. she celebrates her culture & the Matriarchy through musical expression and commanding the dancefloor.\n\nMother Void is a classically trained violinist offering DJ sets w/ live violin, acoustic instrumentals, and private instruction. she has been playing violin for over 25 years, and recently developed mixing skills to combine electronic and acoustic sounds for dance.\n\nas a dance journey facilitator/DJ, Mother Void invites bodies to contemplate their inner dark matter and creation center, conjure movement medicine and experience the sacred sensations of sound, vibration, motion, touch and stillness. she is an expert at creating complete dance arc journeys that can take you through the five rhythms, induce powerful awakening & release of suppressed sensual energy, or inspire play with others on the dance floor.\n\n",
       "soundcloudUrl": "https://soundcloud.com/mothervoidmusic",
       "name": "Dj MotherVoid",
@@ -28,9 +11,12 @@
       "photo": "/assets/images/uploads/mother.png",
       "tba": false,
       "websiteUrl": "https://sites.google.com/view/mothervoid/about",
+      "somaticInstructorPhoto": "/assets/images/uploads/bp.jpg",
       "typeLabel": "Live DJ set",
+      "somaticInstructor": "Bradley Pizzimenti",
       "showTicketButton": false,
-      "instagramUrl": "https://www.instagram.com/mother_void_/"
+      "instagramUrl": "https://www.instagram.com/mother_void_/",
+      "somaticBlurb": "Bradley Pizzimenti is a dancer and facilitator based in Central Oregon. His background spans contact improvisation, ecstatic dance, and tango, including a year of intensive study in Buenos Aires. He has taught and facilitated across these forms and helped organize the Bend Weekly Contact Jam. He’s drawn to slowness, the fluid exchange of leading and following, and the process of arriving at movement together. His approach invites curiosity, attentive listening, and play, with room to settle, sense what’s emerging, and let a shared dance take shape in its own time.\n\nOur weekly eDance offers a facilitated movement experience called Soma Lab.\nIt’s included in the regular cost of entry.\nEach Week:\n7-7:45pm Soma Lab\n8-10pm Ecstatic Dance\nAll together $22-18 Sliding Scale Payment\n\nBendEcstaticDance.com"
     },
     {
       "shortDescription": "Apukuna is known for creating immersive, genre-blending journeys for dance floors, ecstatic\ndances, ambient sound experiences, and breathwork sessions.\nThrough live looping, remixing, vocals, and percussion, he shapes each set in real time—blurring\nthe line between DJ and live performance",
@@ -45,6 +31,20 @@
       "typeLabel": "Live DJ set",
       "showTicketButton": false,
       "instagramUrl": "https://www.instagram.com/apukunamusic"
+    },
+    {
+      "shortDescription": "A gift of passion and professionalism Dj Qoi travels the world collecting inspirations and slices of the universal knowledge pie that sweeten her essence and find themselves baked into her sets. ",
+      "somaticOffering": "BodyWisdom",
+      "bio": "Qoi is a dynamic force in the electronic music scene-a DJ, producer, and vocalist weaving deep, hypnotic rhythms with ethereal, soul-stirring vocals. Her sets are an enchanting fusion of organic and electronic elements, moving effortlessly between deep bass primal beats, melodic textures, and evocative, healing vocals. Qoi’s music is a journey—one that awakens the senses and invites full-bodied movement.With a deep-rooted passion for bass music, ecstatic dance and global sounds, Qoi channels the sacred and the cinematic, creating dance floors that feel both primal and transcendent. She curates every set as a ritual, guiding listeners through deep basslines, soaring melodies, and hypnotic soundscapes designed to elevate the mind, body, and spirit.",
+      "name": "Dj Qoi",
+      "isSpecialEvent": false,
+      "date": "2026-12-03",
+      "photo": "/assets/images/uploads/qoi.png",
+      "tba": false,
+      "somaticInstructorPhoto": "/assets/images/uploads/bl.jpg",
+      "typeLabel": "Live DJ set",
+      "somaticInstructor": "Blaze",
+      "showTicketButton": false
     }
   ]
 }
