@@ -45,6 +45,20 @@
       "typeLabel": "Live DJ set",
       "somaticInstructor": "Blaze",
       "showTicketButton": false
+    },
+    {
+      "shortDescription": "an Ecstatic dance journey which saunters in sounds of all tempos and temperatures. Rising from downtempo and global fusion through bass, trap and riddim into house, trance and baile funk.",
+      "bio": "Niz Dass (Nate Mladenovic) is a DJ based in Seattle. DJing for over 20 years, he draws inspiration from his own explorations with dance, beginning in the nightclubs of Madrid, discovering ecstatic dance in Los Angeles, and learning the style of Brazilian Zouk in Seattle. A synesthete who sees color in music, he creates soundscapes that reflect the world as it appears. He is a regular for Seattle Ecstatica dance events, including Bloom Dance and Moon Dance.",
+      "soundcloudUrl": "https://soundcloud.com/nizdass",
+      "name": "Dj Niz Dass",
+      "isSpecialEvent": false,
+      "date": "2026-12-17",
+      "photo": "/assets/images/uploads/nizz.png",
+      "tba": false,
+      "typeLabel": "Live DJ set",
+      "somaticInstructor": "",
+      "showTicketButton": false,
+      "instagramUrl": "https://www.instagram.com/nizdass/"
     }
   ]
 }
