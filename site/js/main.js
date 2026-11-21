@@ -904,6 +904,14 @@
   window.addEventListener('resize', updateActiveSection, { passive: true });
   updateActiveSection();
 
+  // ---------- nav shrinks once the page has scrolled past the hero ----------
+  const navEl = document.querySelector('.nav');
+  function updateNavCompact() {
+    navEl.classList.toggle('is-compact', window.scrollY > 40);
+  }
+  window.addEventListener('scroll', updateNavCompact, { passive: true });
+  updateNavCompact();
+
   // ---------- mobile nav menu (condenses .nav-links into a toggle button
   // + dropdown below 640px — see the matching CSS breakpoint) ----------
   const navToggle = document.getElementById('nav-toggle');

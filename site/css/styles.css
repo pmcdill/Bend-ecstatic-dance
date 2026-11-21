@@ -183,6 +183,15 @@ html.js .reveal.is-visible {
   background: rgba(27, 19, 48, .55);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(226, 183, 196, .12);
+  transition: padding .25s ease, background .25s ease;
+}
+/* Shrinks once the page has scrolled past the hero — see the scroll
+   listener in main.js. Also nudges the background a bit more opaque so
+   the now-thinner bar still reads clearly over whatever content is
+   scrolling underneath it. */
+.nav.is-compact {
+  padding: 10px 48px;
+  background: rgba(27, 19, 48, .85);
 }
 .nav-brand {
   display: flex;
@@ -194,8 +203,11 @@ html.js .reveal.is-visible {
   font-size: var(--fs-4);
   letter-spacing: .06em;
   color: var(--cream);
+  transition: font-size .25s ease;
 }
-.nav-logo { width: 34px; height: 34px; flex: none; }
+.nav.is-compact .nav-brand { font-size: var(--fs-3); }
+.nav-logo { width: 34px; height: 34px; flex: none; transition: width .25s ease, height .25s ease; }
+.nav.is-compact .nav-logo { width: 26px; height: 26px; }
 
 /* hidden on desktop — see the <=640px breakpoint for the mobile menu button */
 .nav-toggle {
@@ -1169,6 +1181,7 @@ html.js .reveal.is-visible {
 
 @media (max-width: 640px) {
   .nav { padding: 16px 22px; }
+  .nav.is-compact { padding: 8px 22px; }
   .announcement-bar-inner { padding: 12px 40px 12px 16px; font-size: var(--fs-1); }
   .announcement-bar-close { right: 8px; }
   .nav-toggle { display: inline-flex; }
