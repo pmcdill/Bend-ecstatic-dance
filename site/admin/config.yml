@@ -47,6 +47,18 @@ collections:
               - { label: "Venue map link override (leave blank for the usual Glow Pad map link)", name: "venueUrl", widget: "string", required: false }
               - { label: "Time override (shown on the \"This week's DJ\" pill — leave blank for \"8–10pm\")", name: "timeLabel", widget: "string", required: false }
 
+  - name: "announcement"
+    label: "Announcement"
+    files:
+      - name: "banner"
+        label: "Announcement Banner"
+        file: "site/content/announcement.json"
+        fields:
+          - { label: "Show the banner", name: "enabled", widget: "boolean", default: false, hint: "Turn this on to show a dismissible banner across the top of the site (e.g. a one-off schedule change). Turn it back off when it's no longer relevant." }
+          - { label: "Message", name: "message", widget: "string", required: false }
+          - { label: "Link text (optional)", name: "linkText", widget: "string", required: false }
+          - { label: "Link URL (optional, e.g. #schedule)", name: "linkUrl", widget: "string", required: false }
+
   - name: "details"
     label: "Details"
     files:

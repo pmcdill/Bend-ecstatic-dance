@@ -639,6 +639,54 @@
     }
   }
 
+  // ---------- announcement banner (from content/announcement.json) ----------
+  // Keyed to the message text itself (not just "dismissed: true") so editing
+  // the message — e.g. swapping last week's notice for a new one — shows it
+  // again even to visitors who'd dismissed the old one.
+  function announcementDismissKey(message) {
+    return 'announcementDismissed:' + message;
+  }
+
+  async function loadAnnouncement() {
+    const bar = document.getElementById('announcement-bar');
+    const textEl = document.getElementById('announcement-bar-text');
+    const linkEl = document.getElementById('announcement-bar-link');
+    const closeBtn = document.getElementById('announcement-bar-close');
+
+    try {
+      const res = await fetch('content/announcement.json', { cache: 'no-store' });
+      const data = await res.json();
+      if (!data.enabled || !data.message) return;
+
+      let dismissed = false;
+      try {
+        dismissed = localStorage.getItem(announcementDismissKey(data.message)) === '1';
+      } catch (err) {
+        // Private browsing / blocked storage — fall through and just show it.
+      }
+      if (dismissed) return;
+
+      textEl.textContent = data.message;
+      if (data.linkUrl && data.linkText) {
+        linkEl.href = data.linkUrl;
+        linkEl.textContent = data.linkText;
+        linkEl.hidden = false;
+      }
+      bar.hidden = false;
+
+      closeBtn.addEventListener('click', () => {
+        bar.hidden = true;
+        try {
+          localStorage.setItem(announcementDismissKey(data.message), '1');
+        } catch (err) {
+          // Nothing to persist to — it'll just show again next visit.
+        }
+      });
+    } catch (err) {
+      console.error('Failed to load announcement:', err);
+    }
+  }
+
   // ---------- calendar modal ----------
   const calendarModal = document.getElementById('calendar-modal');
   const calendarModalInner = calendarModal.querySelector('.modal');
@@ -919,4 +967,5 @@
 
   loadSchedule();
   loadDetails();
+  loadAnnouncement();
 })();
